@@ -72,7 +72,7 @@ public class PostAction extends ActionSupport {
 		int pageCount = (postCount - 1) / count + 1;
 		currentPosts = postService.findCurrentPosts(currentPage,
 				memberCur.getId(), pageCount, postCount, count);
-		if (currentPosts.size() >= 0){
+		if (currentPosts.size() >= 0) {
 			Map session = ActionContext.getContext().getSession();
 			session.put("currentPosts", currentPosts);
 			session.put("pageCount", pageCount);
@@ -89,8 +89,9 @@ public class PostAction extends ActionSupport {
 		int postCount = postService.findAllPostCount();
 		int count = 10;
 		int pageCount = (postCount - 1) / count + 1;
-		currentPosts=postService.findCurrentPosts(currentPage, pageCount, postCount, count);
-		if(currentPosts.size()>=0){
+		currentPosts = postService.findCurrentPosts(currentPage, pageCount,
+				postCount, count);
+		if (currentPosts.size() >= 0) {
 			Map session = ActionContext.getContext().getSession();
 			session.put("currentPosts", currentPosts);
 			session.put("pageCount", pageCount);
@@ -106,7 +107,12 @@ public class PostAction extends ActionSupport {
 		Integer id = Integer.parseInt(ServletActionContext.getRequest()
 				.getParameter("postId"));
 		if (postService.deletePostById(id)) {
-			ActionContext.getContext().getValueStack().set("currentListType", ActionContext.getContext().getSession().get("currentListType"));
+			ActionContext
+					.getContext()
+					.getValueStack()
+					.set("currentListType",
+							ActionContext.getContext().getSession()
+									.get("currentListType"));
 			return SUCCESS;
 		}
 		return "input";
@@ -146,7 +152,8 @@ public class PostAction extends ActionSupport {
 		if (postService.saveOrUpdate(postInfo)) {
 			ActionContext.getContext().getValueStack()
 					.set("postId", postInfo.getId());
-			// ServletActionContext.getRequest().setAttribute("postId", postInfo.getId());
+			// ServletActionContext.getRequest().setAttribute("postId",
+			// postInfo.getId());
 			return SUCCESS;
 		}
 		return "input";
