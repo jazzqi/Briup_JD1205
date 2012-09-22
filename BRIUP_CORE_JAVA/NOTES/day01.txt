@@ -1,0 +1,455 @@
+第一天：
+
+教学任务：
+
+	完成前言和第一章内容的讲解，共40个slice。
+
+目标：  1. Java背景知识介绍；
+        2. Java开发环境设置；
+        3. 编写、编译、运行Java程序的过程；
+
+课程安排：
+
+	第一章：Getting Started                     1天
+        第二章：Identifiers,Keywords,and Types      1天
+        第三章：Expressions and Flow Control        1天
+        第四章：Arrays                              1天
+        第五章：Objects And Classes                 2天
+        第六章：Advanced Language Features          2天
+        第七章：Exceptions                          1天
+        第八章：Building GUIs                       1天
+        第九章：The AWT Event Model                 1天
+        第十章：Java Foundation Classes             1天
+        第十一章：Threads                           1天
+        第十二章：Stream I/O And Files              1.5天
+        第十三章：Networking                        1.5天
+
+
+------------------------------------------------------------
+
+        引言：
+
+	1. Why(为什么要学习Core Java)? 
+
+           Core Java是Java语言的基础，其它Java技术均是构建在Core Java基础之上。
+
+        2. What(Core Java课程学习什么)?
+         
+           1) Java编程语法(字符集、条件语句、循环语句);
+           2) Java编程语言面向对象的概念；
+           3) 图形用户界面(GUI)编程；
+           4) 多线程；
+           5) 网络；
+
+        前  言：
+
+	第一章： Getting Started(19)
+
+        目标：
+
+              Sun公司在推出Java语言的同时，也推出了Java的一系列开发工具，如JDK——Java Development Kit(Java开发工具包)。
+              可以从网上免费下载。通常以JDK的版本来定义Java的版本。
+
+              时间      版本                在Java标准函数库中的类(class)的数量
+              ----------------------------------------------------------------------
+              1996 	JDK1.0(Java1.0)	    250		重点applet
+              1997	JDK1.1(Java1.1)     500		比较适于开发图形界面
+              1998	JDK1.2(Java2)       2300	可达到平台原始速度，可用于书写正规企业级应用程序或移动应用程序
+              2000	JDK1.3(Java2)
+              2002	JDK1.4(Java2)		        计算能力大幅度提升
+              2004	JDK1.5(Java5.0)     3500        对语言本身作重大改变，更稳定、更安全、更高效
+
+
+              JDK的实际版本是从1.1推进到1.2，但因变化幅度大，所以用全新的命名。JDK1.2至JDK1.4版本还可以称为Java2. 
+
+              目前JDK最为成熟的版本为JDK1.5, 也称为JDK5.0, 它还有一个吸引人的商业名叫Tiger.
+
+              Sun公司认为JDK1.5的发布是Java语言发展史上的又一里程碑事件。为了表示这个版本的重要性，JDK1.5也称为JDK5.0。
+
+              注：Java 3或4从来没有出现过，实际版本一直从1.0推进到1.5，所谓Java2或Java 5.0只不过是销售的小把戏。
+
+              补充：JDK主要包括内容：
+                    a. Java虚拟机：负责解析和执行Java程序。Java虚拟机可运行在各种平台上；
+                    b. JDK类库：　 提供最基础的Java类及各种实用类。java.lang, java.io, java.util, javax.swing和java.sql                                          包中的类都位于JDK类库中。
+                    c. 开发工具：  这些开发工具都是可执行程序，主要包括：
+                                   javac.exe         编译工具；
+　　　　　　　　　　　　　　　　　 java.exe          运行工具；
+                                   javadoc.exe       生成JavaDoc文档的工具
+                                   jar.exe           打包工具
+                                   等。
+           
+           1. 设置Java开发环境； 
+              
+              a. 获取J2SDK;
+              b. 安装J2SDK;
+              c. 设置环境变量：
+                 
+                 JAVA_HOME: 
+                 1) 作用：简化其它变量设置过程中的内容输入。在变量设置过程中有可能要多次使用到JDK的安装路径，如何简化
+                          多次输入过程? 可先行将JDK的安装路径定义为一变量，以后凡使用到JDK安装路径的地方均使用该变量
+                          进行替换。                          
+
+                 path:       
+                 1) 作用：指定执行外部命令时找寻对应可执行文件的路径范围；
+                 2) 设置：
+                    i.  windows	
+                        [开始]->[控制面板]->[系统]->[高级]->[环境变量]->[新建环境变量]命令，就可以创建环境变量path
+
+                        path	%JAVA_HOME%\bin;%path%
+
+                        重启命令行窗口，变量即生效。windows系统对path命令的大小写不敏感。echo %path%、echo %Path%、
+                        echo %PATH%均显示设定的path变量值。
+
+                    ii. bash
+                        编辑用户home路径下.bashrc文件，增加新行：
+
+                        export PATH=$JAVA_HOME/bin:$PATH
+                        或
+                        PATH=$JAVA_HOME/bin:$PATH
+                        export JAVA_HOME PATH
+
+                        然后在bash shell上运行. ./.bashrc, 其中第一个.代表执行。echo $PATH显示设定的path变量值。
+
+
+                    iii.sh
+                        编辑用户home路径下.profile文件，增加新行：
+
+                        export PATH=$JAVA_HOME/bin:$PATH
+                        或
+                        PATH=$JAVA_HOME/bin:$PATH
+                        export JAVA_HOME PATH
+
+                        然后在sh shell上运行. ./.profile, 其中第一个.代表执行。echo $PATH显示设定的path变量值。
+
+                    iv. csh
+                        编辑用户home路径下.cshrc文件，增加新行：
+
+                        setenv path $JAVA_HOME/bin:$path
+                        或
+                        set path=($JAVA_HOME/bin $path)
+
+                        然后在csh shell上运行source .cshrc。echo $path显示设定的path变量值。
+ 
+                 classpath: 
+                 1) 作用：代表Java类的根路径。java命令会从classpath中寻找所需的Java类， Java编译器编译Java类时，也会从
+                          classpath中寻找所需的Java类。classpath的默认值为当前路径。
+                 2) 设置：
+                    i.  windows	
+                        [开始]->[控制面板]->[系统]->[高级]->[环境变量]->[新建环境变量]命令，就可以创建环境变量classpath
+
+                        classpath	.;%classpath%
+
+                        重启命令行窗口，变量即生效。window系统对classpath命令的大小写不敏感。echo %classpath%、
+                        echo %ClassPath%、echo %CLASSPATH%均显示设定的classpath变量值。
+
+                    ii. bash
+                        编辑用户home路径下.bashrc文件，增加新行：
+
+                        export CLASSPATH=.:$CLASSPATH
+                        或
+                        CLASSPATH=.:$CLASSPATH
+                        export CLASSPATH
+
+                        然后在bash shell上运行. ./.bashrc, 其中第一个.代表执行。echo $CLASSPATH显示设定的classpath变量值。
+
+
+                    iii.sh
+                        编辑用户home路径下.profile文件，增加新行：
+
+                        export CLASSPATH=.:$CLASSPATH
+                        或
+                        CLASSPATH=.:$CLASSPATH
+                        export CLASSPATH
+
+                        然后在sh shell上运行. ./.profile, 其中第一个.代表执行。echo $CLASSPATH显示设定的classpath变量值。
+
+                    iv. csh
+                        编辑用户home路径下.cshrc文件，增加新行：
+
+                        setenv classpath .:$classpath
+                        或
+                        set classpath=(. $classpath)
+
+           2. 理解Java语言特征；
+              
+              Java语言包括语法规则和语法规则的实现。Sun公司对Java语言有自己的一份参考实现：JDK。
+              
+              a. 编程语言：语言本质即规则: 字符集、词法规则、句法规则(条件语句、循环语句等);
+                           桌面应用程序  ：拥有图形化用户接口的软件；
+                           服务器应用程序：通过浏览器访问运行；
+                           
+              b. 开发环境：开发程序，不管是桌面应用还是服务器应用，均需要JDK的支持。
+              c. 应用环境：运行时需要JDK的支持。
+              d. 部署环境：服务器应用程序需部署运行在服务器应用程序上，服务器本身也是一个Java程序
+                           用Java语言编写的服务器应用程序部署运行时也需要Java语言的支持；
+
+           3. 为什么发明Java? 
+
+              为什么发明了java，换而言之，java有哪些优点呢？
+	
+              a. 提供一个解释环境
+	         1) 加速开发: Java当初目的是开发适用于智能化电子消费设备上的软件，它是基于C++语言，但做了简化，能加速
+                              软件的开发过程；
+                 2) 一次编译到处运行: 跨平台；
+                 3) 多线程：多线程编程的简单性是Java成为流行的服务器端开发语言的主要原因之一
+                 4) 支持动态更新: 软件代码文件的替换即更新
+
+              b. 提供一个比较容易的方式编程
+                 1) 更健壮：没有指针、没有内存管理；
+                 2) 纯粹的面向对象的编程：在Java中认为一切均是对象，对象有属性以及改变属性值的方法。通过Java编程围绕
+                            着构建对象的模板、实例化对象、调用对象的方法和属性等来进行。
+              c. 那么如何实现上面这些呢？
+	         虚拟机JVM提供一个解释环境，让java代码可以运行。
+	         垃圾回收机制让程序员无需在代码中进行内存管理。
+	         代码安全校验保证java代码的安全性。
+
+                 那么接下来我们就要重点讲述这三个方面。
+
+           4. 理解Java虚拟机的特征；
+
+              Jvm是什么？简称java 虚拟机（java virtual machine），是用软件来模拟一个虚拟的环境。
+
+              我们用java编写的源程序经过编译以后生成字节码文件，Jvm 提供了一个解释运行 java字节码文件的环境，
+              只要在不同操作系统上安装了jvm后，就能对同一个java程序进行解释运行，这就java的跨平台，一次编译，到处运行。
+              画图解释（在windows linux solaris中）
+
+              画出jvm内部结构图，分析各个部件的功能。
+
+           5. 描述垃圾收集的概念；
+
+              什么叫垃圾回收：
+              1) 垃圾：无用对象所占据的内存空间；
+                 垃圾回收：将无用对象所占据内存空间进行回收的过程；
+              
+              为什么要垃圾回收？
+              1) 对象创建，需要占用内存空间，在一个程序运行过程中要创建无数个对象，如果对象永久占用内存，那么内存很快会
+                 消费光，倒致后续对象无法创建或者出现内存不足的错误。因此必须采取一定措施及时回收那些无用对象的内存，这
+                 样保证内存可以被重复利用。
+
+              C++等程序由程序员显示进行内存释放，这样有可能：
+              1) 忘记内存释放，倒致无端的内存占用；
+              2) 释放核心类库占用内存，倒致系统崩溃；
+
+              Java中垃圾回收处理：
+              1) 由虚拟机通过一个系统级的垃圾回收器线程自动完成，不会忘记也不会释放错，系统更加稳定；
+
+              Java中垃圾回收处理特点：              
+              1) 由虚拟机通过垃圾回收器线程自动完成；
+              2) 只有当对象不再被使用，它的内存才有可能被回收；如果虚拟机认为系统不需要额外的内存，即便对象不再使用，内存
+                 也不会回收；
+              3) 程序无法显示迫使垃圾回收器立即执行垃圾回收，可以通过java.lang.System.gc()/java.lang.Runtime.gc()建议
+                 虚拟机回收对象；
+              4) 垃圾回收器线程在释放无用对象占用内存之前会先行调用该对象的finalize()方法。该方法是否被调用以及被调用的时间
+                 极其不可靠。不建议重写。
+
+           6. 阐述Java平台代码安全实现策略；
+             
+              Java虚拟机为Java程序提供运行时环境，其中一项重要的任务就是管理类，管理类的加载、连接和初始化；
+
+              1) 加载：查找并加载类的二进制文件(class文件),将其置于内存的方法区中，然后在堆区中创建一个java.lang.Class对象，
+                       用来封装类在方法区内的数据结构。
+                       Java虚拟机可以从多种来源加载类的二进制数据，包括：
+                       a. 从本地文件系统中加载.class文件，最常见；
+                       b. 通过网络下载.class文件；
+                       c. 从zip,jar或其他类型的归档文件中提取.class文件；
+                       d. 从一个专有数据库中提取.class文件；
+                       f. 把一个java源文件动态编译为.class文件；
+
+              2) 连接：
+                 a. 验证：确保被加载类的正确性(有正确的内部结构，并且与其他类协调一致)；
+                          为什么要验证：
+
+                          Java虚拟机不知道某个特定的.class文件到底是由正常的Java编译器生成的，还是黑客特制的。类的验证能提
+                          高程序的健壮性，确保程序被安全地执行。
+
+                          类验证内容：
+
+                          . 代码和jvm规范一致
+                          . 代码不能破坏系统的完整性
+                          . 没有堆栈的上溢和下溢
+                          . 参数类型是正确的
+                          . 类型转换的正确的
+                          
+                 b. 准备：为类的静态变量分配内存，并将其初始化为默认值；
+                 c. 解析：把类中的符号引用转换为直接引用(一个指向所调用方法在方法区内的内存位置的指针)；
+              3) 初始化：给类的静态变量赋予正确的初始值；
+ 
+
+           7. 定义类、包、applets和应用程序；
+
+              1) Java的工作方式：
+
+                 源代码: 编写Java源代码文件
+                   |
+                 编译器: 用编译器编译源代码。编译器会检查错误，如果有错就要改正才能产生正确的输出。
+                   |
+                 输出: 编译器会产生字节码。任何支持Java的装置都能够把它转译成可执行的内容。编译后的字节码与平台无关。
+                   |
+               Java虚拟机: 可以读取与执行字节码。加载指定类，开始执行它的main方法，然后一直运行到main的所有程序代码
+                           结束为止。
+         
+             2) Java的程序结构：
+ 
+                a. 源文件：
+                   包含Java代码(按java语法规则编写的内容)的文件;
+
+                   特征：
+                   i.  以java作为后缀；
+                   ii. 可以包含多个类/接口；
+                   iii.名称与类名(只包含一个类/接口)或public修饰的类/接口(包含多个类/接口)同名;
+
+                   结构：
+                   i.  包的声明语句(可有可无，如有只能有一行，且位于最前面);
+                   ii. import语句(可有可无, 可有多行，紧跟着包的声明语句);
+                   iii.类的声明语句();
+
+
+                b. 类：
+                   Java代码组织的单位, Java代码都是以一个个类形式组织的。用Java语言编写程序其实就是编写一个个类；
+                   
+                   一个类里的语句内容用大括号括起来，一个类里带有零至多个方法。
+                   
+                   结构： 
+                   i.  类的声明语句，例：
+                       public class HelloWorld 
+                   ii. 类的内容语句，用大括号括起来：
+                       (1) 属性；
+                       (2) 方法：                       
+
+                c. 方法：
+                   类似于其它语言里的函数或过程。方法里带有零至多行语句。
+
+                   结构： 
+                   i.  方法的声明语句，例：
+                       public static void main(String[] args) 
+ 
+                   ii. 方法体，用大括号括起来：
+                       (1) 属性；
+                       (2) Java语句;   
+
+                d. Main方法：
+                   
+                   Java虚拟机执行Java程序时，首先执行调用的方法。main方法又叫程序的入口方法或起点方法。不管你的程序有多大，
+                   不管你的程序有多少个类，一定都会有一个main()方法来作为程序的起点。
+
+             3) 剖析类：     
+                
+                public class FirstJavaProgram{
+                    public static void main(String[] args) {
+                        System.out.println("Hello Java, I am your fans!");
+                    }
+                }
+
+                public:				公开给其它类存取；
+ 		class:				类声明的关键字；
+		FirstJavaProgram:		类的名称；
+		void: 				方法的返回值；
+		main:				方法的名称；
+		String[]:			数组类型；
+		args:				参数名称；
+		System.out.println:		打印到标准输出上(默认为命令行)
+		"Hello Java, I am your fans!":	要输出的字符串内容；
+		;				每一行语句必须用分号结尾；
+ 
+           8. 编码、编译以及运用Java应用程序；
+
+	课堂练习：练习一： 带领大家实践第一个Java程序：FirstJavaProgram.java, 要点：
+                           1. 让大家对Java程序结构有一个总体认识；
+                           2. 掌握编写、编译、运行Java程序的过程；
+
+                  练习二： 在第一个Java程序基础上加上包声明语句，要点：
+                           1. 让大家知道包的作用；
+                           2. 掌握拥有包的类的编译、运行；
+
+                  练习三： (可选)在第一个Java程序基础上再定义一个方法，让main方法去调用，要点：
+                           1. 让大家对方法的调用有个认识；
+
+	课后练习：问题：
+                  1. (Level 1) Which environment variables need to be set?
+                     JAVA_HOME
+                     path
+                     classpath
+                  2. (Level 1) What are the advantages of Java Language?  
+                     提供了一个解释环境：
+	                    加速开发
+ 	                    只写一次，到处运行
+ 	                    多线程
+ 	                    动态更新
+                     提供了一个更容易开发的方式
+	                     更健壮
+ 	                    完全面向对象
+
+                    Why Java have then?
+
+                    Java运行在虚拟机上，由虚拟机读取字节代码运行程序。不同操作系统均有对应的虚拟机
+                    所以能够跨平台。虚拟机在读取字节代码的时侯首先进行代码安全检测，所以更安全。虚
+                    拟机通过垃圾回收进制能自动完成内存回收, 避免程序员手动对内存进行的复杂操作，所
+                    以加速了开发。
+
+                  3.(Level 1) Which JDK tools can be used to compile and 
+                     run a java program?
+                     javac  compile
+                     java   run
+                  4.(Level 1)What are the basic packages in Java.
+                    java.lang
+                    java.awt/javax.swing/java.awt.event
+                    java.applet
+                    java.io
+                    java.net
+                    java.util
+                  5.(Level 1) If all three top-level elements occur in a source
+                     file, they must appear in which order:
+                     A. Imports, package declarations, classes
+                     B. Classes, imports, package declarations
+                     C. package declarations; order for imports and 
+                        classes doesn’t matter
+                     D. package declarations, imports, classes
+                     答案：D
+
+                  作业：
+
+                  1. (Level 1) Set up your java development environment.
+
+                  2. (Level 2 ) Learn how to use JDK tools and vi to edit,
+                     compile and run FirstJavaProgram.java with package in it.
+
+                     package ch01;
+                     public class FirstJavaProgram {
+                            public static void main(String[] args) {
+	                           System.out.println("Hello Java, I am your fans!");
+                            }
+                     }
+
+                     javac -d . FirstJavaProgram.java
+                     java ch01.FirstJavaProgram		
+
+                  3. (Level 2) Compile and run HelloWorld.java which will print
+                     out a line of text with “Hello World”.
+
+                     package ch01;
+                     public class HelloWorld {
+                            public static void main(String[] args) {
+	                           System.out.println("Hello World!");
+                            }
+                     }
+
+                     javac -d . HelloWorld.java
+                     java ch01.HelloWorld 
+
+                  4. (Level 3) Modify HelloWorld.java to add a new method
+                      which will be called from main() and print out a line of text 
+                      with “Hello World”.
+   
+                     package ch01;
+                     public class HelloWorld {
+                            public static void main(String[] args) {
+	                           sayHello();
+                            }
+
+                            public static void sayHello() {
+                                   System.out.println(Hello World!);
+                            }
+                     }
+
+                     javac -d . HelloWorld.java
+                     java ch01.HelloWorld 

@@ -1,0 +1,326 @@
+第十天：
+
+教学任务：
+
+        第八章  创建图形用户界面(Graphical User Interfaces), 共 32 个slide(189-221);
+
+目标： 
+
+------------------------------------------------------------
+
+第八章：Building GUIs 共 32 个slide(189-221);
+
+
+知识点：一. AWT
+
+            图形用户界面(Graphics User Interface, GUI) 是用户与程序交互的窗口，它比基于命令行的界面更直观并且更友好。
+            GUI的基本类库位于java.awt包中， 这个包也被称为抽象窗口工具箱(Abstract Window Toolkit, AWT)。AWT按照面向
+            对象的思想来创建GUI，它提供了容器类、众多的组件类和布局管理器类。
+
+            AWT构建图形用户界面的机制包括：
+
+            . 提供了一些容器组件(如Frame和Panel), 用来容纳其他的组件(如按钮Button、复选框Checkbox和文本框TextField)。
+            . 用布局管理器来管理组件在容器上的布局；
+            . 利用监听器来响应各种事件，实现用户与程序的交互。一个组件如果注册了某种事件的监听器，由这个组件触发的
+              特定事件就会被监听器接收和响应；
+
+        二. 创建GUI 步骤一：选择一个容器
+
+            java.awt包中提供了一个抽象类Component，它是所有除了菜单类组件之外的AWT组件的父类。Container类表示容器，继承
+            了Component类。容器用来存放别的组件, 有两种类型的容器：Window和Panel。
+
+            1. Window和它的子类Frame
+ 
+               Window是不依赖于其他容器而独立存在的容器。Window有两个子类：Frame和Dialog。Frame带有标题，而且可以调整大
+               小。Dialog可以被移动，但是不能改变大小。
+
+               Frame有一个构造方法——Frame(String title)，通过它可以创建一个以参数为标题的Frame对象。Frame的add()方法
+               向容器中加入其他组件。当Frame被创建后，它是不可见的，必须通过以下步骤使Frame成为可见的。
+
+               1) setSize(int width, int height)显示设置Frame的大小，或者调用pack()方法自动确定Frame的大小。pack()方法会
+                  确保Frame容器中的组件都会有与布局相适应的合理大小。
+               2) setVisible(true)方法使Frame成为可见的。
+
+ 
+		import java.awt.*;
+		public class SimpleFrame {
+			public static void main(String[] args) {
+				Frame f = new Frame("hello");
+				f.add(new Button("Press Me"));
+				f.setSize(100,100);
+				f.setVisible(true);
+			}
+		}
+
+                如果把f.add(new Button("Press Me"))语句移到f.setVisible(true)语句之后，再运行程序，将会发现Button没有被
+                显示。这是因为当执行f.setVisible(true)语句时，Frame按照其当时的状态显示界面，接下来添加或删除Frame中的
+                组件，Frame的形状是不会自动更新的，除非再调用f.validate()方法使容器重新布置界面；
+
+            2.  Panel
+
+                Panel不能单独存在，只能存在于其他容器中(Window或其子类)中，它有一个子类Applet，Applet可以在Web浏览器的窗
+                口中运行。一个Panel对象代表了一个长方形的区域，在这区域中可以容纳其他的组件。
+
+                可以通过Panel类的默认构造方法来创建一个Panel对象，然后通过Panel的add()方法向Panel中添加组件。如果要使Panel
+                成为可见的，必须通过Frame或Window的add()方法把Panel添加到Frame或Window中。
+
+		import java.awt.*;
+		public class SimplePanel {
+			public static void main(String[] args) {
+				Frame f = new Frame("hello");
+				Panel p = new Panel();
+				p.add(new Button("press me"));
+				p.setBackground(Color.YELLOW);
+				f.add(p);
+				f.setSize(100,100);
+				f.setBackground(Color.BLUE);
+				f.setVisible(true);
+			}
+		}
+
+                Index：组件存放的位置
+                constraints：通常是布局管理器的对象
+                Component getComponent()
+                Insets getInsets() ：返回容器的边框尺寸的大小
+                Validate()：使容器内修改过的组件生效
+                  
+        三. 创建GUI 步骤二：布局管理器
+
+            组件在容器中的位置和尺寸是由布局管理器来决定的。所有的容器都会引用一个布局管理器实例，通过它来自动进行组件的
+            布局管理。
+
+            1. 默认布局管理器
+
+               当一个容器被创建后，它们有相应的默认布局管理器。Window、Frame和Dialog的默认布局管理器是BorderLayout, Panel
+               和Applet的默认布局管理器是FlowLayout。可以通过setLayout()方法来重新设置容器的布局管理器。例：
+
+               Frame f = new Frame("hello");
+               f.setLayout(new FlowLayout());
+
+            2. 取消布局管理器
+
+               如果不希望通过布局管理器来管理布局，可以调用容器的setLayout(null)方法，这样布局管理器就被取消了。
+
+               接下来必须调用容器中每个组件的setLocation(), setSize()或setBounds()方法，为这些组件在容器中一一定位。
+
+               和布局管理器管理方式不同的是，这种手工布局将导致图形界面的布局不再和平台无关的。相反，图形界面的布局将依赖
+               于操作系统环境。
+
+		import java.awt.*;
+		public class ManualLayout {
+			public static void main(String[] args) {
+				Frame f = new Frame("hello");
+				f.setLayout(null);		    //取消布局管理器
+				f.setSize(300,100);                 //宽300, 高100
+				Button b = new Button("press me");
+				b.setSize(100,30);                  //宽100, 高30
+				b.setLocation(40,60);               //x坐标40, y坐标60
+				f.add(b);
+				f.setVisible(true);
+			}
+		}              
+
+            3. 布局管理器种类
+
+               java.awt包提供了5种布局管理器：
+               
+               a. FlowLayout流式布局管理器；
+               b. BorderLayout流式布局管理器；
+               c. GridLayout流式布局管理器；
+               d. CardLayout流式布局管理器；
+               e. GridBagLayout流式布局管理器；
+
+               javax.swing包提供了一种BoxLayout布局管理器：
+
+        四. 创建GUI 步骤三：在容器中加入组件
+
+        五. 创建GUI 步骤四：创建事件处理器
+
+        六. FlowLayout流式布局管理器
+
+            最简单的布局管理器，按照组件的添加次序将它们从左到右地放置在容器中。当到达容器边界时，组件将放置在下一行中。
+            FlowLayout允许以左对齐、居中对齐(默认方式)或右对齐的方式排列组件。特性：
+
+            . 不限制它所管理的组件的大小， 而是允许它们有自己的最佳大小。
+            . 当容器被缩放时，组件的位置可能会变化，但组件的大小不改变。
+
+            FlowLayout的构造方法如下：
+
+            . FlowLayout();
+            . FlowLayout(int align);
+            . FlowLayout(int align, int hgap, int vgap) 
+             
+            参数align用来决定组件在每行中相对于容器的边界的对齐方式，可选值有：
+         
+            FlowLayout.LEFT(左对齐)
+            FlowLayout.RIGHT(右对齐)
+            FlowLayout.CENTER(居中对齐)
+
+            参数hgap和参数vgap分别设定组件之间的水平和垂直间隙。
+
+            见书上例子及 ch08.FlowLayoutDemo.java
+
+        七. BorderLayout边界布局管理器
+            
+            将容器分为五个区域：东、南、西、北和中。
+
+            特征：
+
+            . 东西区域的组件保持最佳宽度，高度被垂直拉伸至和所有区域一样高；
+              南北区域的组件保持最佳高度，宽度被水平拉伸至和所在区域一样宽；
+              位于中区域的组件的宽度和高度都被拉伸至和所在区域一样大小。
+            . 垂直拉伸，东、西和中区域也拉伸；
+              水平拉伸，南、北和中区域也拉伸；
+            . 中区域没有组件，也会分配空间显示容器的背景颜色；
+              其它区域没有组件，不会分配空间；
+            . 容器被缩放，组件所在的相对位置不变化，但组件大小改变；
+            . 某个区域添加的组件不止一个，则只有最后添加的一个是可见的；
+
+            构造方法：
+       
+            . BorderLayout();
+            . BorderLayout(int hgap, int vgap);
+            参数hgap和参数vgap分别设定组件之间的水平和垂直间隙；
+
+            对于采用BorderLayout的容器，当它用add()方法添加一个组件时，可以同时为组件指定在容器中的区域。
+
+            void add(Component comp, Object constraints) 
+
+            这里的constraints是String类型，可选值为BorderLayout提供的五个常量：
+
+            . BorderLayout.NORTH: 北区域，值为"North";
+            . BorderLayout.SOUTH: 南区域，值为"South";
+            . BorderLayout.EAST: 东区域，值为"East";
+            . BorderLayout.WEST: 西区域，值为"West";
+            . BorderLayout.CENTER: 北区域，值为"Center";
+
+            Frame的默认布局管理器就是BorderLayout。以下代码把Button放在Frame的北区域。
+
+            Frame f = new Frame("Test");
+            f.add(new Button("b1",BorderLayout.NORTH));
+            //或者：f.add(new Button("b1","North"));
+
+            如果不指定add()方法的constraints参数，在默认情况下把组件放在中区域。以下代码向Frame的中区域加入两个Button，
+            但只有最后加入的Button是可见的。
+
+            Frame f = new Frame("Test");
+            f.add(new Button("b1"));
+            f.add(new Button("b2"));
+            f.setSize(100,100);
+            f.setVisible(true);
+
+            见书上例子及ch08.BorderLayoutDemo.java
+
+        八. GridLayout网格布局管理器
+
+            GridLayout将容器分割成许多行和列，组件被填充到每个网格中。添加到容器中的组件首先放置在左上角的网格中，然后
+            从左到右放置其他组件，直至占满该行的所有网络，接着继续在下一行中从左到右放置组件。特性如下：
+
+            . 组件的相对位置不随区域的缩放而改变，但组件的大小会随之改变。组件始终占据网格的整个区域。
+            . GridLayout总是忽略组件的最佳大小，所有组件的宽度相同，高度也相同。
+            . 将组件用add()方法添加到容器中的先后顺序决定它们占据哪个网络。GridLayout从左到右、从上到下将组件填充到容器
+              的网格中。
+
+            GridLayout的构造方法如下：
+
+            . GridLayout()
+            . GridLayout(int rows, int cols)
+            . GridLayout(int rows, int cols, int hgap, int vgap)
+
+            参数rows代表行数，参数cols代表列数。参数hgap和vgap规定水平(网络之间的水平距离)和垂直方向(网格之间的垂直距离)
+            的间隙。
+
+            见书上例子MyGrid.java及ch08.GridLayoutDemo.java
+
+        九. CardLayout卡片布局管理器
+
+            将界面看做一系列的卡片，在任何时侯只有其中一张卡片是可见的，这张卡片占据容器的整个区域。CardLayout的构造方法:
+
+            . CardLayout()
+            . CardLayout(int hgap, int vgap)
+
+            参数hgap表示卡片和容器的左右边界之间的间隙，参数vgap表示卡片和容器的上下边界的间隙。
+
+            对于采用CardLayout的容器，当用add()方法添加一个组件时，需要同时为组件指定所在的卡片的名字。
+
+            void add(Component comp, Object constraints)
+
+            以上constraints参数是一个字符串，表示卡片的名字。在默认情况下，容器显示第一个用add()方法加入到容器中的组件，
+            也可以通过CardLayout的show(Container parent, String name)方法指定显示哪张卡片，参数parent指定容器，参数name
+            指定卡片的名字。
+
+            见：书上例子及ch08.CardLayoutDemo.java
+
+        十. GridBagLayout网格包布局管理器
+
+            在网格的基础上提供更为复杂的布局。和GridLayout不同， GridBagLayout允许容器中各个组件的大小各不相同，还允许单个
+            组件所在的显示区域占据多个网络。使用GridBagLayout布局管理器的步骤如下：
+ 
+            1. 创建GridBagLayout布局管理器，并使容器采用该布局管理器。
+
+               GridBagLayout layout = new GridBagLayout();
+               container.setLayout(layout);
+
+            2. 创建一个GridBagConstraints对象。
+
+               GridBagConstraints constraints = new GridBagConstraints();
+
+            3. 为第一个添加到容器中的组件设置GridBagConstraints的各种属性。
+
+               constraints.gridx = 1;               //设置网格的左上角的x坐标
+               constraints.gridy = 1;               //设置网格的左上角的y坐标
+               constraints.gridwidth = 1;           //设置网格的宽度
+               constraints.gridheight = 1;               //设置网格的高度
+
+            4. 通过布局管理器放置第一个组件时的GridBagConstraints信息。
+
+               layout.setConstraints(component1, constraints);
+
+            5. 向容器中添加第一个组件
+
+               container.add(component1);
+
+            6. 重复步骤3至步骤5，将每个组件都添加到容器中。
+
+            GridBagConstraints包含了如何把一个组件添加到容器中的布局信息。只需要创建一个GridBagConstraints对象，在每次向
+            容器中加入组件时，先设置GridBagConstraints对象的属性，这个GridBagConstraints对象可以被多次重用。它属性如下：
+
+            1) gridx和gridy: 指定了组件显示区域的左上角的列和行。
+               如果把gridx或gridy设为GridBagConstraints.RELATIVE(默认值), 表示当前组件紧跟在上一个组件的后面。
+            2) gridwidth和gridheight: 指定了组件的显示区域占据的列数和行数, 默认值为1。
+               如果gridwidth和gridheight设为GridBagConstraints.REMAINDER, 表示当前组件在其行或列上为最后一个组件；
+               如果gridwidth或gridheight设为GridBagConstraints.RELATIVE， 表示当前组件在其行或列为为倒数第二个组件。
+            3) fill: 该属性在某组件的显示区域大于它所要求的大小时被使用。fill决定了是否及如何改变组件的大小， 有效值包括：
+               . GridBagConstraints.NONE: 默认，不改变组件的大小；
+               . GridBagConstraints.HORIZONTAL: 使组件足够大，以填充其显示区域的水平方向，但不改变其高度。
+               . GridBagConstraints.VERTICAL: 使组件足够大，以填充其显示区域的垂直方向，但不改变其宽度。
+               . GridBagConstraints.BOTH: 使组件足够大， 以填充其整个显示区域； 
+            4) ipadx和ipady: 这些属性指定了内部填充的大小，即在该组件的最小尺寸基础上还需要增加多少。
+            5) insets: 该属性指定了组件的外部填充大小，即组件与其显示区域边界之间的最小空间大小。
+            6) anchor: 该属性在某组件的大小小于其显示区域时使用。anchor决定了组件放置在该区域中的位置。有效值包括：
+               GridBagConstraints.CENTER(默认值)
+               GridBagConstraints.NORTH
+               ...
+            7) weightx和weighty: weightx属性称为水平重量，weighty属性称为垂直重量，它们用来决定如何布置容器中多余的水平
+               方向和垂直方向的空白区域。除非为一行(weightx)和一列(weighty)中的至少一个组件指定了重量，否早，所有组件都
+               会集中在容器的中央，这是因为当重量为0时，GridBagLayout把所有空白区域放在组件的显示区域和容器边界之间。
+
+            参考书上例子。
+
+        Review Questions : 
+
+           1.(Level 1)What are the four steps for building GUI?
+             答：1) 选择容器;
+                 2) 设置布局管理器；
+                 3) 加入组件；
+                 4) 创建事件处理器；
+           2.(Level 1)What are the five common layout managers?
+             答：FlowLayout、BorderLayout、GridLayout、CardLayout和GridBagLayout                    
+           3.(Level 1)What is the difference between frame and panel?
+             答：Frame可以不依赖于其它容器而单独存在；
+                 Panel不能单独存在，只能存在于其它容器(Window及其子类)中.
+           4.(Level 2)What is the default layout manager for frame and panel respectively? 
+             答：Frame: BorderLayout
+                 Panel: FlowLayout
+
+

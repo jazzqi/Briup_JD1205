@@ -1,0 +1,665 @@
+第五天：
+
+教学任务：
+
+        第五章  对象和类, 共 34 个slide(97-131);
+        第六章  高级特性, 共 39 个slide(132-171);
+
+目标： 1. 
+
+------------------------------------------------------------
+
+第五章： Objects and Classes (97-131)
+
+一. OOP中的基本概念
+
+    Java的编程语言是面向对象的，采用这种语言进行编程称为面向对象编程(Object-Oriented Programming, OOP)， 它允许
+    设计者将面向对象设计实现为一个可运行的系统。Java的编程单位是类，对象最后要通过类进行实例化(即“创建”)。
+
+    面向对象编程有三个特性：
+
+    . 封装：以前我讲过java是以类为基础的，所有的属性和方法都是封装在类中的，不像C++在类外还可以定义函数。
+    . 多态：表面看是多种状态的意思。
+    . 继承：不容置疑，从父亲那里继承什么家产、金钱或者产业什么的，运用到我们java中又是怎么回事呢？它又继承哪些东东呢？
+	    在这里可以询问下学生继承是什么意思，搞活点气氛。
+
+    接下来我们就要对这三个特性进行详细的分析，那么在java中我们一切是以类为基础，当然这三个特性跟类是分不开的，那我们先
+    谈谈什么是类，引出下文。
+
+二. 抽象数据类型
+
+    在C++中，我们可以用struct 来表示一个类，不了解也不要紧。
+    在java中，我们用class 这个关键字来表示一个类，类是一个抽象的数据类型，那怎么抽象法呢？请看下一个slice。
+
+三. 类和对象
+
+    面向对象的开发方法把软件系统看成各种对象的集合，对象就是最小的子系统，一组相关的对象能够组合成更复杂的
+    子系统。面向对象的开发方法将软件系统看成各种对象的集合，接近人的自然思维方式。
+
+    对象是对问题领域中事件的抽象。对象具有以下特性：
+
+    1) 万物皆为对象。问题领域中的实体和概念都可以抽象为对象。例如学生，成绩单、教师、课和教室。
+    2) 每个对象都是惟一的。正如世界上不存在一模一样的叶子。
+    3) 对象具有属性和行为。
+       例如小张，性别女，年龄22，身高1.6m, 体重40kg, 能够学习，唱歌。小张的属性包括姓名、性别、年龄、身高和
+       体重，行为包括学习、唱歌。
+       例如一部手机，牌子是诺基亚、价格是2000元，银白色，能够拍照、打电话和收发短信等。这部手机的属性包括品
+       牌类型type、价格price和颜色color，行为包括拍照takePhoto()，打电话call()，收发短信receiveMessage()和发短
+       信sendMessage().
+    4) 对象具有状态。状态是指某个瞬间对象的各个属性的取值。对象的某些行为会改变对象自身的状态，即属性的取值。
+       例如小张本来体重为40kg，经为减肥后，体重减到45kg. 
+
+       肥胖状态: 40kg
+              |
+              | 减肥行为
+              |              
+       肥胖状态: 35kg 
+     
+    5) 每个对象都是某个类的实例。小张和小王都属于学生类、中国和美国都属于国家类、中文和英文都属于语言类。
+       类是具有相同属性和行为的对象的集合。
+
+       同一个类的所有实例都有相同属性，但属性取值不一事实上相同，但是它们的状态不一定相同。例如小张和小王都属
+       于学生类，都有姓名、性别、年龄、身高和体重这些属性，但是他们的属性取值不同。
+
+       同一个类的所有实例都有相同行为，意味着它们具有一些相同的功能。
+
+    类是一组具有相同属性和行为对象的模板。面向对象编程的主要任务就是定义对象模型中的各个类。   
+  
+    1) 类是一种类型：是引用类型；
+    2) 类是元数据：  描述数据的数据，数据在面向对象领域里以对象的形式存在，类是对象共有属性和方法的抽象描述。
+
+    Java程序是各种对象相互交互作用、而不是类。举例：
+
+    1) 早上到公司上班，在电梯中碰到总经理我们会说，张总早或王总早，会不会说人早呀！那非得把你抄鱿鱼不可。
+    2) 我们要看电视，是买台电视机，而不是买制作电视机的模具；
+
+    在java中，类的申明和实现在同一时间，而且必须在一起，前面我们已经做过很多的例子。
+    在C++中，类的申明和实现可以被分开，不知道也没有关系，这只是让我们了解下两者的区别。
+
+四. 定义方法形式
+
+    接下来我们来看一下类中定义的方法的格式。
+    修饰符 返回类型 方法名（参数列表）异常抛出类型
+
+    1) 必须有返回值，如果方法没有返回值，必须用void申明返回类型。
+    2) 构造器没有返回类型，试问下同学构造器加了返回类型变成了什么。
+
+    方法中定义的参数我们通常叫做形参，调用有参数的方法时，我们通常会
+    传递一些实参给方法，那么在java中方法的参数是如何的传递呢？
+
+五. 参数传递
+
+    参数传递分为两种：
+    1) 对于基本数据类型，参数通过值传递。
+    2) 对于类类型，参数通过引用(对象的引用)传递。
+    3) 只有引用传递的内容能被改变，而按值传递不会变化。
+
+    参考例子ch05.ParameterPassTest.java，并结合示意图讲解参数传递。
+
+    每当用Java命令启动一个Java虚拟机进程时，Java虚拟机就会创建一个主线程，该线程从程序入口main()方法开始执行。主线程
+    在Java栈内有一个方法调用栈，每执行一个方法，就会向方法调用栈中压入一个包含该方法的局部变量及参数的栈桢。
+
+    主线程首先把main()方法的栈帧压入方法调用栈，在这个栈帧中包含2个局部变量 i和s，当主线程开始执行increment()方法时,
+    会把该方法的栈帧也压入方法调用栈。在这个栈帧中包含1个i参数，它的初始值由main()方法的i局部变量传递。
+
+    其它与上类同。
+
+六. this关键字
+
+    在方法调用、参数传递过程中，极有可能出现参数名称与实例变量名同时的情况。在一个方法内，可以定义和成员变量同名的局
+    部变量或参数，此时成员变量被屏蔽。
+
+    Ok, 接下来做一个试验。同学们把day02/Student.java类打开，把构造器中的参数变量改成name,age和score，看看会产生什么结果。
+    String 会变成null，整数类型变成0。
+
+    此时如果要访问实例变量，可以通过this关键字来访问，this为当前实例的引用。
+
+七. 数据隐藏
+
+    那如何对属性进行隐藏呢？
+    在前面用private修饰，表示该属性不能被其它类访问和修改，它只能被本类访问和修改，范围限制在本类内。
+
+    那前面讲了那么多，怎么还没有讲到OOP的第一个特性封装呢？
+    封装有两个方面：
+    其中数据隐藏就是封装的一个方面，那另一个方面是什么呢? 转入下一个slice。
+
+八. 封装
+
+    另一个方面就是让实现细节不可见(方法(行为)实现的具体细节隐藏。)
+    那我如何去访问那些private的属性呢？
+    提供一个统一的接口给所有的用户，用户只有通过这个接口来访问。
+    可以提高可维护性。
+    
+    封装：在属性(实例变量)前加private, 然后通过统一的方法访问以及修改这些属性值的实现过程；
+
+    注意：1) 实现封装的关键在于绝不让其它类访问该类的实例字段。
+          2) 提供一个统一的接口给所有的用户，用户只有通过这个接口来访问。
+    
+    课堂练习：1) 建一个类MobileTelephone.java再建一个测试类MobileTelephoneTest.java
+
+九. 方法重载
+
+    有时侯，类的同一种功能有多种实现方式，换句话说，有很多相同名称的方法，参数不同。这给用户对这种功能的调用使用提供了
+    很大的灵活性。
+
+    对于类的方法(包括从父类中继承的方法), 如果有两个方法的方法名相同，但参数不一致，那么可以说，一个方法是另一个方法的重载
+    方法。这种现象叫重载。
+
+    重载必须满足以下条件：
+    1) 方法名称相同。
+    2) 参数不同(参数类型、个数和顺序)。
+    3) 返回类型可以不相同。
+
+    在一个类中不允许定义两个方法名相同，并且参数签名也完全相同的方法。因为假如存在这样的两个方法，Java虚拟机在运行时就无法
+    决定到底执行哪个方法。参数签名是指参数的类型、个数和顺序。
+
+    具体讲解书上的例子。
+
+十. 创建和初始化对象
+
+    按照前面讲述的定义类的形式、定义方法的形式构建好类好了之后，程序要真实的运行，还是得通过对象的交互来完成。创建好了类，
+    只是创建了构建对象的模板。接下来，我们可以通过new操作符，快速地构建出对象。使用new有以下作用：
+
+    . 为对象分配内存空间，将对象的实例变量自动初始化为其变量类型的默认值；
+    . 如实例变量显示初始化，将初始化值赋给实例变量；
+    . 调用构造方法；
+    . 返回对象的引用；
+
+十一. 构造方法
+
+    1. 定义：
+
+    . 有和类名相同的名字
+    . 没有返回类型，有返回类型的构造器就变成了普通方法。
+
+    2. 调用时刻：
+
+    在创建对象的时候调用；
+
+    3. 作用：
+
+    方法有什么作用，构造方法就有什么作用；只不过构造方法的作用在创建对象的时候生效。一般放置属性初始化代码；
+
+
+    4. 构造方法的作用域：
+
+    构造方法只能通过以下方式被调用：
+
+    . 当前类的其他构造方法通过this语句调用它；
+    . 当前类的子类的构造方法通过super语句调用它；
+    . 在程序中通过new语句调用它；
+
+    课堂练习：1) 在MobileTelephone.java类基础上增加一个有参的构造方法，实现往控制台上输出一句话；
+                 然后相应的修改测试类的创建方式，编译、执行，通过输出内容观察构造方法调用的时刻；
+
+十二. 构造方法重载
+
+    当通过new语句创建一个对象时，在不同的条件下，对象可能会有不同的初始化行为。例如对于公司新来的一
+    个雇员，在一开始的时侯，有可能他的姓名和年龄是未知的，也有可能仅仅他的姓名是已知的，也有可能姓名和
+    年龄都是已知的。如果姓名是未知的，就暂且把姓名设为“无名氏”，如果年龄是未知的，就暂且把年龄设为-1. 
+
+    可通过重载构造方法来表达对象的多种初始化行为。在一个类的多个构造方法中，可能会出现一些重复操作。为了
+    提高代码的可重用性，Java语言允许在一个构造方法中，用this语句来调用另一个构造方法。
+
+    使用this语句来调用其他构造方法时，必须遵守以下语法规则。
+
+    . 假如在一个构造方法中使用了this语句，那么它必须作为构造方法的第一条语句(不考虑注释语句)。
+      
+      public Employee() {
+          String name="无名氏";
+          this(name);      //编译错误，this语句必须作为第一条语句
+      }
+
+    . 只能在一个构造方法中用this语句来调用类的其他构造方法，而不能在实例方法中用this语句来调用类的其他构造
+      方法；
+    . 只能用this语句来调用其他构造方法，而不能通过方法名来直接调用构造方法。
+
+      public Employee() {
+          String name="无名氏";
+          Employee(name);      //编译错误，this语句必须作为第一条语句
+      }
+
+
+    课堂练习：1) 在MobileTelephone.java类基础上多增加几个构造方法，多个构造方法相互调用。然后相应的修改测
+                 试类的创建方式，编译、执行，通过输出内容观察构造方法调用的先后时刻；      
+
+十三. 默认的构造方法
+
+    默认构造方法：没有参数的构造方法，可分为两种：
+    1) 隐含的默认构造方法；
+    2) 程序显示定义的构造方法；
+
+    在Java语言中，每个类至少有一个构造方法。为了保证这一点，如果用户定义类中没有提供任何构造方法，那么Java语
+    言将自动提供一个隐含的默认构造方法。该构造方法没有参数，用public修饰，而且方法体为空，格式如下：
+
+    public ClassName(){}      //隐含的默认构造方法
+
+    在程序中也可以显示地定义默认构造方法，它可以是任意的访问级别。
+
+    如果类中显式定义了一个或多个构造方法，那么Java语言便不再分配隐含的默认构造方法。举例：
+
+    public class Sample{
+	public Sample(int a) {
+		System.out.println("My Constructor");
+ 	}
+    }
+
+    创建Sample类对象的语句:
+
+    Sample s1 = new Sample();        //编译出错
+    Sample s2 = new Sample(1);       //合法的
+
+十四. 子类
+
+    到这里，基本上讲解了封装，接下来我们谈谈OOP中第二个特性继承。
+
+    1. 通过生活中的例子推出Java中继承;
+
+    什么是继承呢？生活中不乏这样的例子，张老头有个儿子张小头，张老头健在的时侯，张小头继承了张老头的坏脾气，国字脸，八字
+    脚。张老头挂了后，作为子女之一，张小头继承了张老头的财产。张小头只有亲生爸爸张老头，张老头却有包括张小头在内的多个子
+    女。
+
+    Java中类与类之间也有生活中类似的继承关系。在Java类继承关系中，对应于父亲的类叫父类，对应于儿子的类叫子类。父子类间的
+    继承关系也叫“is a”关系。这种关系通过类声明上的extends关键字体现。
+
+    一个子类只有一个父类，一个父类可有多个子类。
+
+    2. 为什么要继承？ 
+
+    . 站在巨人的肩膀上；通过继承，我们可以快速构建出一个带有丰富功能的新类；有了张老头，张小头年纪轻轻就可以买上上百万
+                        的新房；
+    . 不修改源代码，修改既有类的行为；通过继承，在子类中构建父类中一样的方法，可以改变父类方法的行为。张老头没有考上大学，
+                        通过张小头圆了其上大学的梦。
+
+    3. Object类简略介绍
+
+    所有的Java类都直接或间接地继承了java.lang.Object类。Object类是所有Java类的祖先，在这个类中定义了所有的Java对象都具有
+    相同行业。
+
+十五.  继承
+
+    子类继承了父类的属性和方法：
+
+    1) 父子类同包，子类继承父类中public、protected和默认访问级别的成员变量和成员方法；
+    2) 父子类不同包，子类继承父类中public、protected的成员变量和成员方法；
+
+    那么继承有哪些细节呢？   
+
+    1、构造器不能被继承
+    2、方法和实例变量可以被继承
+    3、子类构造器隐式地调用父类的默认无参构造器;
+    4、如果父类中没有定义无参构造器，只定义了有参构造器，那么子类构造器则必须显式地调用父类的有参构造器(通过super(…))，
+       且必须放置在第一条语句，否则会有语法错误。
+    5、this()和super()在构造器中都必须为第一条语句，两者不能同时出现。
+    6、当一个子类继承了一个父类后，父类中所有的字段和方法都被子类继承拥有，子类可以任意的支配使用，
+        每个子类对象中都拥有了父类中的所有字段。当构造一个子类的实例对象时，该对象的实例变量包括
+	了子类本身以及父类中的所有实例变量，实例方法也包括了子类和父类中的所有实例方法。
+	子类构造器用来初始化子类中所有的实例变量，而父类构造器super(实参)用来初始化父类中所有的实例变量。
+	*********那么在堆中为子类实例对象分配的内存区域中包括了子类和父类中所有初始化后的实例变量。***********
+
+
+十五. 方法覆盖
+
+    
+    
+    1. 方法覆盖只存在于子类和父类(包括直接父类和间接父类)之间。在同一个类中方法只能被重载，不能被覆盖；
+    2. 静态方法： 
+       不能覆盖；
+       a. 父类的静态方法不能被子类覆盖为非静态方法；                                      -> 编译错误
+       b. 子类可以定义与父类的静态方法同名的静态方法，以便在子类中隐藏父类的静态方法；    -> 编译正常
+       c. 父类的非静态方法不能被子类覆盖为静态方法；                                        -> 编译错误
+    3. 私有方法： 
+       不能被子类覆盖; 这是子类特有方法,允许；                                            -> 编译正常
+
+       class Base {
+             private String showMe() {
+                  return "Base";
+             }
+
+             public void print() {
+                  System.out.println(showMe());
+             }
+       }
+
+       public class Sub extends Base {
+             private String showMe() {
+                  return "Sub";
+             }
+
+             public static void main(String args[]) {
+                  sub sub = new Sub();
+                  sub.print();            //打印出结果"Base", 因为print()方法在Base类中定义，因此调用在Base类中定义的
+                                            private类型的showMe(). 如将private换成public类型，其它代码不变，打印"Sub";
+             }
+       }
+    4. 抽象方法：
+       可以覆盖：
+       a. 父类的抽象方法可以被子类覆盖为非抽象方法： 子类实现父类抽象方法；
+       b. 父类的抽象方法可以被子类覆盖为抽象方法：   重新声明父类的抽象方法；
+       c. 父类的非抽象方法可以被子类覆盖为抽象方法； 
+
+十六. super关键字
+
+    1. 为什么要使用super关键字？
+
+       子类中要访问父类中屏蔽的方法或变量。
+
+       1) 子类方法中定义和父类成员变量同名变量；
+       2) 子类写了一个和父类中相同的方法；
+       3) 子类中写了一个和父类中相同的属性；
+
+    2. 使用注意事项：
+ 
+       a. 只能在构造方法或实例方法内使用super关键字，在静态方法和静态代码块内不能使用super关键字。
+       b. 在子类构造方法中如没有使用this关键字，会隐式调用父类的无参构造方法；
+
+          class Father() { 
+	        public Father() {
+                       System.out.println("In Father()");
+                }
+          }
+
+          class Son extends Father {
+          }
+
+          public class Test {
+                 public static void main(String[] args) {
+                        new Son(); //打印输出 In Father()
+                 }
+          }
+
+          -----------------------------------------------------------------------
+
+          class Father() { 
+	        public Father() {
+                       System.out.println("In Father()");
+                }
+          }
+
+          class Son extends Father {
+                public Son() {
+                       System.out.println("In Son()");	
+                }	
+          }
+
+          public class Test {
+                 public static void main(String[] args) {
+                        new Son(); 
+                        //打印输出 In Father()
+                        //         In Son()
+                 }
+          }
+          
+          -----------------------------------------------------------------------
+
+          class Father() { 
+	        public Father(String name) {
+                       System.out.println("In Father() " + name);
+                }
+          }
+
+          class Son extends Father {
+                public Son() {
+                       System.out.println("In Son()");	
+                }	
+          }
+
+          public class Test {
+                 public static void main(String[] args) {
+                        new Son();  //编译出错, 子类会隐式调用父类中无参构造方法，而此时父类中不存在无参构造方法。
+                 }
+          }
+
+          -----------------------------------------------------------------------
+
+          class Father() { 
+	        public Father(String name) {
+                       System.out.println("In Father() " + name);
+                }
+          }
+
+          class Son extends Father {
+                public Son() {
+                       super("zs");
+                       System.out.println("In Son()");	
+                }	
+          }
+
+          public class Test {
+                 public static void main(String[] args) {
+                        new Son();  
+                        //打印输出：
+                        //In Father() zs
+                        //In Son()
+                 }
+          }
+
+          -----------------------------------------------------------------------
+
+          class Father() { 
+	        public Father() {
+                       System.out.println("In Father()");
+                }
+
+	        public Father(String name) {
+                       System.out.println("In Father(String name)");
+                }
+          }
+
+          class Son extends Father {
+                public Son() {
+                       this("zs");
+                       System.out.println("In Son()");	
+                }
+
+                public Son(String name) {
+                       System.out.println("In Son(String name)");	
+                }	
+          }
+
+          public class Test {
+                 public static void main(String[] args) {
+                        new Son();  
+                        //打印输出：
+                        //In Father()
+                        //In Son(String name)
+                        //In Son()
+                 }
+          }
+        		
+       c. 构造方法中this(...)和super(...)不能同时出现；
+
+    详细讲解ch05/InheritanceTest.java，然后仿照着作练习：
+
+
+十七. 多态
+
+    前面我们讲了OOP的两个特性，接下来要学习另外一个重要特性：多态
+    1) 一个引用变量可以指向多种实际类型的现象。
+    2) 有不同的类型
+    3) 一个对象有一个类型
+    4) 一个引用变量会有许多类型
+    5) 多态是出现在具有继承关系的两个类之间，所以它不像方法重载（发生在一个类中）
+	在编译期间发行（也就是确定下来），而是在运行期间发行（确定下来）。
+
+例子：先解释Person类中的talk()和Student类中的talk()的多态性，在例子com.briup.ch05.StudentTest.java
+		中通过方法out(Person p)实现调用talk()的多态性。
+
+十八. 类型转换
+
+    转换：
+    1) 先使用instanceof 识别类型
+    2) 子类型隐式地扩展到父类型（自动转换）
+    3) 父类型必须显式地缩小到子类型
+
+    转换规则：被转换的实际对象类型一定是转换以后对象类型的自身或者子类。
+    Person p = new Person();
+    Student s = (Student)p;	编译不会错，运行时错误
+
+    Person p2 = new Student();
+    Student s = (Student)p2 或者 Person p = (Student)p2;	正确
+
+    注意：这里可以在com.briup.ch05.StudentTest.java中演示一下类型的强制转换。
+
+
+    继承现象大总结： 
+    1. 子类重写父类方法，调用子类方法；
+    2. 子类属性与父类同名(不管子类属性前修饰符如何均允许)，如获取属性，看获取属性方法位置，如在父类中，获取的是父类属性，
+       如在子类中，获取的是子类属性；
+    3. 子类私有方法与父类私有方法同名，如调用该方法，看私有方法被调用的位置，如在父类中，调用的是父类方法，
+       如在子类中，调用的是子类方法；
+    4. 子类静态方法与父类静态方法同名，子类静态方法屏蔽父类静态方法。如调用该静态方法，看实例化对象时所声明的类型，如声明
+       为父类，调用的是父类中静态方法，反之是子类中静态方法。   
+
+
+
+复习题：  1. (Level 1) What are the three basic concepts for object oriented programming?
+             答：封装、多态与继承；
+          2. (Level 1) What are the difference between method overloading and overriding?
+             答：重载：1) 方法名相同；
+                       2) 参数不同；
+                       3) 返回类型可同可不同；
+                 重写：1) 发生在父子类间；
+                       2) 方法名相同；
+                       3) 参数相同；
+                       4) 返回类型相同；
+                       5) 修饰符不能越来越小；
+                       6) 异常不能越来越大。
+
+          3. (Level 1) Does Java support multiple inheritance?
+             答：不支持，单重继承；
+          4. (Level 2)Consider this class:
+             1. public class Test1{
+             2.    public float aMethod (float a,float b) {}
+             3. }
+             Which of the following methods would be legal if added before line 3?
+             A.public int aMethod (int a,int b){}
+             B.public float aMethod (float a,float b)throws Exception {}
+             C.public float aMethod(float a,float b ,int c) throws Exception{}
+             D.public float aMethod (float c,float d ) {}
+             E.private float aMethod(int a,int b,int c){}
+             答：A, C, E
+          5.(Level 2)Consider the following class definition:
+          	1.public class Test extends Base{
+          	2.	public Test(int j){…}
+          	3.	public Test(int j, int k){super(j , k)}
+          	4.}
+            1) which of the following are legitimate calls to construct instances of the Test class ?
+               A.Test t = new Test(); 
+               B.Test t = new Test(1,2,3); 
+               C.Test t = new Test(1,2);
+               D.Test t = new Test(1,2,3);	
+               E.Test t = (new Base()).new Test(1);
+            答：C
+            2)Which of the following forms of constructor must exist explicitly in the definition of the Base class?
+	      A.Base(){}	
+              B.Base(int j){}	
+              C.Base(int j, int k)		
+              D.Base(int j,int k, int l){} 
+            答；A, C
+
+课后练习：1.(Level 2)Write three classes: Track, Duration and Driver . Duration class has three fields, i.e. hours , 
+            minutes and seconds , and two overloaded constructors. Track has two fields, i.e.title and duration which 
+            has Duration type , and get/set methods. The Driver class has a main method to set track’s duration and 
+            then , print out the duration.
+
+            class Duration {
+                  private int hours;
+                  private int minutes;
+                  private int seconds;
+
+                  public Duration() {}
+                  public Duration(int hours, int minutes, int seconds) {
+                         this.hours = hours;
+                         this.minutes = minutes;
+                         this.hours = hours;
+                  }
+            }
+
+            class Track {
+                  private String title;
+                  private Duration duration;
+
+                  public void setTitle(String title) {
+                          this.title = title;
+                  }
+
+                  public void setDuration(Duration duration) {
+                          this.duration = duration;
+                  }
+
+                  public String getTitle() {
+                          return title;
+                  }
+
+                  public Duration getDuration() {
+                          return duration;
+                  }
+             }
+
+             public class Driver {
+                  public static void main(String[] args) {
+                         Track track = new Track();
+                         Duration duration = new Duration(10,20,30);
+                         track.setDuration(duration);
+                  }
+            }            
+                  
+          2.(Level 2)Write three classes;Shape, Rectangle, and Circle, with Shape being the base class and the 
+            other two being sub classes. The Shape class has two fields, x and y, and one method, draw(). The 
+            Rectangle radius. Use a main method to test that the fields and method in Shape class can be inheritanced
+             by Rectangle and Circle. Then, modify the above classes to add draw() methods to Retangle and Circle, 
+            and test polymorphism. 
+            
+            class Shape {
+                  private int x;
+                  private int y;
+ 
+                  public void draw() {
+                      System.out.println("drawing in Shape class");
+                  }
+            }
+
+            class Rectangle extends Shape {
+            }
+
+            class Circle extends Shape {
+                  private int radius;
+            }
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

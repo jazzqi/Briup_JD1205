@@ -1,0 +1,3 @@
+Hello this is test words writen by bufferedWriter
+line 2
+line 3line 4

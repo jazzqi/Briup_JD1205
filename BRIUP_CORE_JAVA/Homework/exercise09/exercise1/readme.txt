@@ -1,0 +1,3 @@
+写AWTEventFrame修改AWTFrame类
+要求：添加事件处理器处理两个JButton和JFrame的关闭事件。
+

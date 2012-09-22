@@ -1,0 +1,366 @@
+第九天：
+
+教学任务：
+
+        第七章  异常, 共 16 个slide(172-188);
+
+目标：  1. 异常处理流程；
+        2. 自定义异常；
+        3. 断言； 
+
+------------------------------------------------------------
+
+第七章： Exceptions (172-188)
+
+        尽管人人都希望所处理的事情能顺利进行，所操纵的机器能正常运转，但在现实生活中总会遇到各种异常情况。例如职工小
+        王开车去上班，在正常情况下， 小王会准时到达单位。但是天有不测风云，在小王去上班时，可能会遇到一些异常情况：比
+        如小王的车子出了故障，小王只能改为步行，结果上班迟到；或者遭遇车祸而丧命。
+
+        异常情况会改变正常的流程，导致恶劣的后果。为了减少损失，应该事先充分预计到所有可能出现的异常，然后采取解决措施。
+        程序运行时也会遇到各种异常情况，异常处理的原则和现实生活中异常处理原则相似。首先应该预计到所有可能出现的异常，
+        然后考虑能否完全避免异常，如果不能完全避免，再考虑异常发生时的具体处理方法。
+
+        Java语言提供了一套完善的异常处理机制。正确运用这套机制，有助于提高程序的健壮性。所谓程序的健壮性，指程序在多数
+        情况下能够正常运行，返回预期的正确结果；如果偶尔遇到异常情况，程序也可采取周到的解决措施。
+
+        Java语言按照面向对象的思想来处理异常，使得程序具有更好的可维护性。Java异常处理机制具有以下优点：
+
+        . 把各种不同类型的异常情况进行分类，用Java类来表示异常情况，这种类被称为异常类。把异常情况表示成异常类，可以充
+          分发挥类的可扩展和可重用的优势。
+        . 异常流程的代码和正常流程的代码分离，提高了程序的可读性，简化了程序的结构。
+        . 可以灵活地处理异常，如果当前方法有能力处理异常，就捕获并处理它，否则只需要抛出异常，由方法调用者来处理它。
+
+知识点：一. 异常的基本概念
+
+            1. 异常产生的条件
+               或者称为异常情况。在Java代码中哪些是异常情况呢？ 例如： 
+               a. 整数相除运算中，分母为0; 
+               b. 通过一个没有指向任何具体对象的引用去访问对象的方法；
+               c. 使用数组长度作为下标访问数组元素；
+               d. 将一个引用强制转化成不相干的对象；
+               等等；
+            2. 异常会改变正常程序流程;
+               异常产生后，正常的程序流程被打破了，要么程序中止，要么程序被转向异常处理的语句；
+            3. 当一个异常的事件发生后，该异常被虚拟机封装形成异常对象抛出。
+            4. 用来负责处理异常的代码被称为异常处理器
+            5. 通过异常处理器来捕获异常
+             
+            举例：class ExceptionTest {
+                        public static void divide(int a, int b) {
+		                //try {
+		               	    int result = a / b;
+               			    System.out.println(a + "/" + b + "=" + result);
+                		//} catch(ArithmeticException e) {
+               	        	//	System.out.println("Sorry, error in divide");
+               		        //}
+                        }                        
+
+                        public static void main(String[] args) {
+                               divide(1,2);
+                               divide(10,2);
+                               divide(10,0);
+                               divide(10,5);
+                        }
+                  }
+
+        二. try...catch语句
+
+            在Java语言中，用try...catch语句来捕获处理异常。格式如下：
+
+            try {
+                可能会出现异常情况的代码；
+            } catch(异常类型 异常参数) {
+                异常处理代码
+            } catch(异常类型 异常参数) {
+                异常处理代码
+            }
+
+            1. 如果try代码块中没有抛出异常，try代码块中语句会顺序执行完，catch代码块内容不会被执行；
+            2. 如果try代码块中抛出catch代码块所声明的异常类型对象，程序跳过try代码块中接下来代码，直接执行
+               catch代码块中对应内容;
+               a. 可以存在多个catch代码块，究竟执行哪个，看抛出的异常对象是否是catch代码块中异常类型；
+               b. 异常只能被一个异常处理器所处理, 不能声明两个异常处理器处理相同类型的异常；
+               c. 多个catch语句块所声明的异常类型不能越来越小；
+               d. 不能捕获一个在try语句块中没有抛出的异常； 
+            3. 如果try代码块中抛出catch代码块未声明的异常类型对象，异常被抛给调用者；哪个调用了这段语句块
+               哪个负责处理这个异常；
+
+            举例：ch07.TryTest.java
+
+        三. finally语句: 任何情况下都必须执行的代码
+
+            由于异常会强制中断正常流程，这会使得某些不管在任何情况下都必须执行的步骤被忽略，从而影响程序的健壮性。
+            例如小王开了一家小店，在店里上班的正常流程为：打开店门、工作8个小时、关门。异常流程为：小王在工作时突然
+            犯病，因而提前下班。例：
+
+            	public void work() {
+		try {
+			开门();
+			工作8个小时();
+			关门();
+		} catch(Exception e) {
+			//异常处理语句
+		} 
+	        }
+
+            假如小王在工作时突然犯病，那么流程会跳转到catch代码块，这意味着关门的操作不会被执行，这样的流程显然是不
+            安全的，必须确保关门的操作在任何情况下都会被执行。finally代码块能保证特定的操作总是会被执行，它的形式如下：
+
+            	public void work() {
+		try {
+			开门();
+			工作8个小时();
+		} catch(Exception e) {
+			//异常处理语句
+		} finally {
+                        关门();
+                }
+	        }
+
+            当然finally代码块中代码也可位于catch语句块之后，例如：
+
+            	public void work() {
+		try {
+			开门();
+			工作8个小时();
+		} catch(Exception e) {
+			//异常处理语句
+		} 
+
+                关门();
+
+	        }
+
+            这在某些情况下是可行的，但不值得推荐：
+　　　　　　
+　　　　　  a. 把与try代码块相关的操作孤立开来，使程序结构松散，可读性差；
+            b. 影响程序的健壮性。假设catch语句块中继续有异常抛出，关门动作便不会执行。
+
+        四. 异常调用栈
+
+            异常处理时所经过的一系列方法调用过程被称为异常调用栈。
+
+            1. 异常的传播
+               哪个调用，哪个处理；
+               a. 异常情况发生后，发生异常所在的方法可以处理；
+               b. 异常所在的方法内部没有处理，该异常将被抛给该方法调用者，调用者可以处理；
+　　　　　　　 c. 如调用者没有处理，异常将被继续抛出；如一直没有对异常处理，异常将被抛至虚拟机；
+            2. 如果异常没有被捕获，那么异常将使你的程序将被停止。
+               异常产生后，如果一直没有进行捕获处理，该异常被抛给虚拟机。程序将被终止。
+            3. 经常会使用的异常API
+	       getCause()：返回类型是Throwable，该方法获得Throwable的异常原因或者null。
+	       getMessage：获得具体的异常出错信息，可能为null。
+	       printStatckTrace()：打印异常在传播过程中所经过的一系列方法的信息，简称异常处理方法调用栈信息；在程序调试
+                           阶段，此方法可用于跟踪错误。s
+
+            举例：ch07.CallStackTraceTest
+
+        五. 异常层级关系
+
+            所有异常类的祖先类为java.lang.Throwable类。它有两个直接的子类：
+
+            1. Error类：表示仅靠程序本身无法恢复的严重错误，比如内存空间不足，或者Java虚拟机的方法调用栈溢出。在大多数情
+                        况下，遇到这样的错误时，建议让程序终止。
+            2. Exception类：表示程序本身可以处理的异常。Exception还可以分为两种：运行时异常和受检查异常。
+                
+               a. 运行时异常
+
+                  1) 基本概念
+
+                  RuntimeException类及其子类都被称为运行时异常，这种异常的特点是Java编译器不会检查它，也就是说，当程序中
+                  可能出现这类异常时，即使没有用try...catch语句捕获它，也没有用throws子句声明抛出它，还是会编译通过。例
+                  如divide()方法的参数b为0, 执行a/b操作时会出现ArithmeticException异常，它属于运行时异常，Java编译器不会
+                  检查它。
+
+                  public int divide(int a, int b) {
+                         return a/b;      //当参数b为0, 抛出ArithmeticException
+                  }
+
+                  2) 深入解析
+
+                  运行时异常表示无法让程序恢复运行的异常，导致这种异常的原因通常是由于执行了错误操作。一旦出现了错误操作，
+                  建议终止程序，因此Java编译器不检查这种异常。
+
+                  运行时异常应该尽量避免。在程序调试阶段，遇到这种异常时，正确的做法是改进程序的设计和实现方式，修改程序
+                  中的错误，从而避免这种异常。捕获它并且使程序恢复运行并不是明智的办法。
+
+                  3) 对比
+
+                  与Error类相比：
+
+                  相同点：i. Java编译器都不会检查它们；
+                          ii.当程序运行时出现它们， 都会终止程序；
+ 
+                  不同点：i. Error类及其子类表示的错误通常是由Java虚拟机抛出的，在JDK中预定义了一些错误类，比如
+                             OutOfMemoryError和StackOutofMemoryError。
+                             RuntimeException表示程序代码中的错误；
+                          ii.Error类一般不会扩展来创建用户自定义的错误类；
+                             RuntimeException是可以扩展的，用户可以根据特定的问题领域来创建相关的运行时异常类；
+
+               b. 受检查异常。
+
+                  除了RuntimeException及其子类以外， 其他的Exception类及其子类都属于受检查异常(Checked Exception)。 这种
+                  异常的特点是Java编译器会检查它，也就是说，当程序中可能出现这类异常时，要么用try...catch语句捕获它，要
+                  么用throws子句声明抛出它，否则编译不会通过。
+
+        六. 一些未检查的异常RuntimeException
+
+            1. java.lang.ArithmeticException  
+               算术异常	如：除0;
+            2. java.lang.NullPointerException  
+               空指针引用 如：没初始化一个References便使用;
+            3. java.lang.ArrayIndexoutofBoundsException  
+               数组越界	如：调用一个有十个元素的Array的第十一个元素的内容;
+            4. java.lang.SecurityException 
+               违反了java定义的安全规则
+            5. java.lang.NumberFormatException  
+               数据格式异常	如：Integer.parseInt("a");
+            6. java.lang.NegativeArraySizeException 数组长度为负数异常 
+
+        七. 异常声明和处理
+
+            1. 使用throw声明代码会倒致异常；
+            2. 使用try-catch-finally语句结构处理或
+               在方法声明上声明throws继续抛出；
+
+            异常处理语句的语法规则：
+
+            1. try代码块不能脱离catch代码块或finally代码块而单独存在。try代码块后面至少有一个catch代码块或finally代码块。
+            2. try代码块后面可以有零个或多个catch代码块，还可以有零个或至多一个finally代码块。如果catch代码块和finally代码
+               块并存，finally代码块必须在catch代码块后面。
+            3. try代码块后面可以只跟finally代码块。
+            4. 在try代码块中定义的变量的作用域为try代码块，在catch代码块和finally代码块中不能访问该变量。
+            5. 当try代码块后面有多个catch代码块时，Java虚拟机会把实际抛出的异常对象依次和各个catch代码块声明的异常类型匹配，
+               如果异常对象为某个异常或其子类的实例，就执行这个catch代码块，而不会再执行其他的catch代码块。
+            6. 如果一个方法可能出现受检查异常，要么用try...catch语句捕获，要么用throws子句声明将它抛出。
+            7. throw语句后面不允许紧跟其它语句，因为这些语句永远不会被执行。
+
+        八. 编写自己的异常
+
+            在特定的问题领域，可以通过扩展Exception类或RuntimeException类来创建自定义的异常。异常类包含了和异常相关的信息, 
+            这有助于负责捕获异常的catch代码块，正确地分析并处理异常。
+
+            课堂练习：1. 自定义WeatherTooHotException;
+
+        九. 抛出你自己的异常
+
+            课堂练习：1. 编写SelfDefineException测试自定义异常;
+
+            举例：ch07.SelfDefineExceptionTest.java
+
+        十. 断言
+
+            假设要进行如下的计算：
+
+            double y = Math.sqrt(x);
+
+            为了让程序健壮，你会先进行测试检查并抛出异常而不让x的值为负数。
+
+            if(x<0) throw new IllealArgumentException("x < 0");
+
+            但是，就算是测试结束了，以后实际运行时x的值不会小于0。这种测试代码会一直保留在你的程序中。如果程序中有太多的
+            检查，程序的运行就会慢好多。
+
+            如果在测试阶段会有这种检查，而在发布阶段能自动删除这些东西。该多好！ 这就是断言机制。
+
+            1. 断言使用
+
+               在JDK1.4中，Java语言引入一个新的关键字： assert。 该关键字有两种形式： 
+
+               assert  条件
+
+               以及
+
+               assert  条件： 表达式
+
+               这两种形式都会对条件进行评估，如果结果为假则抛出AssertionError。 在第二种形式中，表达式会传入AssertionError的
+               构造器并转成一个消息字符串。
+
+               表达式部分的唯一目的就是生成一个消息字符串。AssertionError对象并不存储表达式的值，因此你不可能在以后获取它。
+
+               要断言x不是负数，只需要使用如下简单的语句：
+
+               assert x >= 0;
+
+               或者你可以将x的值传递给AssertionError对象，从而可以在以后显示： 
+
+               assert x >= 0 : x;
+
+            2. 断言内容代码编译
+
+               因为assert是一个新的关键字，因此在使用时需要告诉编译器你编译所使用jdk的版本号。
+
+               javac -source 1.4 MyClass.java
+
+               在jdk的后续版本中，对断言的支持成为默认特性。
+
+            3. 断言内容代码执行
+
+               默认情况下，断言是关闭的。要通过-enableassertions或者-ea选项来运行程序以打开断言：
+
+               java -enableassertions MyApp
+
+               打开或关闭断言是类装载器的功能。当断言功能被关闭时，类装载器会跳过那些和断言相关的代码，因此不会降低程序运
+               行速度。
+
+               也可以对某个类或者某个包打开断言功能，例如：
+
+               java -ea:MyClass -ea: com.mycompany.mylib... MyApp
+   
+               该命令打开类MyClass以及在com.mycompany.mylib包及其子包中全部类的断言功能。 选项-ea...会打开默认包中全部类
+               的断言功能。
+
+               同样，也可以关闭特定类或者包的断言功能。这是通过-disableassertions或者-da选项来实现。
+
+               java -ea:... -da:MyClass MyApp
+
+               示例： ch07.AssertionTest.java
+
+       复习题：1.(Level 1)What is the difference between error and exception?
+                  答：error:     程序本身无法恢复的严重错误
+                      exception: 表示程序本身可以处理的异常。
+                2.(Level 1)How to declare and handle exception?
+                  答：?????????????????????????????????????????????????????????????????/
+                3.(Level 1)Which one of the following fragments shows the most 
+                           appropriate way to throw an exception?
+                4.(Level 2)Which one of the following fragments shows the most 
+                           appropriate way to throw an exception?
+                  A. Exception e= new IOException(“File not found”);
+                     if(if.exists()){throw e;}
+                  B. if(if.exists()){throw new IOException(“File not found”);}
+                  C. if(if.exists()){throw IOException;}
+                  D. if(if.exists()){throw”File not found”;}
+                  E. if(if.exists()){throw new IOException();}
+                  答：B
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

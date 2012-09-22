@@ -1,0 +1,92 @@
+第十二天：
+
+目标： 
+
+------------------------------------------------------------
+
+第十一章  JFC , 共 77 个slide(279-356);
+
+
+知识点：一. JFC预览
+
+            前面二天我们介绍了用AWT创建图形用户界面的基本原理。图形用户界面由各种组件构成，普通组件被添加到容器类组件中, 
+            布局管理器决定如何在容器中放置组件。组件委托事件监听器来响应事件，从而完成与用户的交互。
+
+            在java.awt包中，提供了各种具体的组件，如窗体Frame, 面板Panel, 按钮Button等。AWT组件的优点是简单、稳定，兼容
+            于任何一个JDK版本，缺点是依赖于本地操作系统的GUI， 缺乏平台独立性。每个AWT组件都有一个同位体(peer)， 它们位
+            于java.awt.peer包中， 这些peer负责与本地操作系统进行交互，而本地操作系统负责显示和操作组件。由于AWT组件与本
+            地平台GUI绑定，因此用AWT组件创建和图形界面在不同的操作系统中会有不同的外观。
+
+            为了让用Java创建的图形界面也能够跨平台， 即在不同操作系统中保持相同的外观，从JDK1.2版本开始引入了Swing组件，
+            这些Swing组件位于javax.swing包中，成为JDK基础类库的一部分。
+
+            Swing组件是用纯Java语言编写而成的，不依赖于本地操作系统的GUI， Swing组件可以跨平台运行。独立于本地平台的Swing
+            组件被称为轻量级组件， 而依赖于本地平台的AWT组件被称为重量级组件。
+
+            多数Swing组件的父类为javax.swing.JComponent， 多数Swing组件类都以大写字母"J"开头。除JFrame之外，其余的Swing
+            组件都继承了JComponent类。
+
+        二. JFrame
+
+            JFrame与Frame的最大区别在于前者不能直接通过add()方法加入组件，也不能直接通过setLayout()方法设置布局。以下代码
+            是非法的，运行时将抛出错误。
+
+            JFrame jFrame = new JFrame("Hello");
+            jFrame.setLayout(new GridLayout(2,1));
+            jFrame.add(jLabel);
+
+            每个JFrame都有一个与之关联的内容面板(contentPane), 只能针对这个contentPane设置布局及加入组件。
+
+            JFrame jFrame = new JFrame("Hello");
+            Container contentPane = jFrame.getContentPane();
+            contentPane.setLayout(new GridLayout(2,1));
+            contentPane.add(jLabel);  
+
+            JFrame的setContentPane(Container contentPane)用来重新设置内容面板，因此也可以按以下方式向容器中加入组件。
+
+            JFrame jFrame = new JFrame("Hello");
+            JPanel jPanel = new JPanel();
+            jPanel.setLayout(new GridLayout(2,1));
+            jPanel.add(jLabel);
+            jFrame.setContentPane(jPanel);
+
+            JFrame的setDefaultCloseOperation(int operation)方法用来决定如何响应用户关闭窗体的操作，参数operation有以下
+            可选值：
+
+            . JFrame.DO_NOTHING_ON_CLOSE: 什么都不做
+            . JFrame.HIDE_ON_CLOSE:       隐藏窗体，这是JFrame的默认选项
+            . JFrame.EXIT_ON_CLOSE:       结束程序                    
+
+        三. BoxLayout布局管理器
+
+            GridBagLayout布局管理器灵活，但使用比较麻烦。为了简化布局管理器的使用方法，javax.swing包提供了BoxLayout布
+            局管理器。BoxLayout通常和Box容器联合使用。Box有以下两个静态工厂方法。
+
+            . createHorizontalBox(): 返回一个Box对象，它采用水平BoxLayout, 即BoxLayout沿着水平方向放置组件；
+            . createVerticalBox():   返回一个Box对象，它采用垂直BoxLayout, 即BoxLayout沿着垂直方向放置组件；
+
+            Box还提供了用于决定组件之间的间隔的静态方法：
+
+            . createHorizontalGlue():           创建水平Glue(胶水);
+            . createVerticalGlue():             创建垂直Glue(胶水);
+            . createHorizontalStrut(int width): 创建水平Strut(支柱)，参数width指定支柱宽度;
+            . createVerticalStrut():            创建垂直Strut(支柱)，参数height指定支柱高度;
+            . createRigidArea(Dimension d):     创建一个硬区域，参数d指定硬区域的尺寸;
+
+            以上方法都返回一个Component类型的实例，分别表示Glue(胶水)，Strut(支柱)和Rigid Area(硬区域): 
+
+            . Glue(胶水) : 胶水是一种不可见的组件，用于占据其他大小固定的GUI组件之间的多余空间。在调整容器大小时，
+                           GUI组件保持原有尺寸，胶水组件本身将被拉伸或收缩。
+            . Strut(支柱): 支柱是一种不可见的组件，水平支持具有固定宽度、垂直支柱具有固定高度。在调整容器大小时，
+                           GUI组件之间间隔保持不变。
+            . Rigid Area(硬区域): 硬区域是一种不可见的，具有固定像素高度和宽度的GUI组件。在调整容器的大小时，硬区
+                           域的大小保持不变。
+
+        Review questions: 
+
+            1. (Level 1)What are the five APIs JFC is composed of?
+               答：AWT, Java 2D, Accessibility, Drag and Drop, and Swing
+            2. (Level 2)What is the difference JComboBox and AWT choice?
+               答：Like AWT's Choice component, but renames some methods and offers an editable option
+            3. (Level 1)What is a JTabbedPane? 
+               答：Offering a tabbed control for quick accessibility to multiple panels

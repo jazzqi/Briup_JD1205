@@ -1,0 +1,925 @@
+第六天：
+
+教学任务：
+
+        第六章  高级特性, 共 39 个slide(132-171);
+
+目标： 
+
+------------------------------------------------------------
+
+第六章： Advanced Language Features (132-171)
+
+知识点：一. static修改符
+
+            static修饰符可以用来修饰类的成员变量、成员方法和代码块。
+            . 用static修饰的成员变量表示静态变量，可以直接通过类名来访问；
+            . 用static修饰的成员方法表示静态方法，可以直接通过类名来访问；
+            . 用static修饰的程序代码表示静态代码块，当Java虚似机加载类时，就会执行该代码块；
+
+            被static所修饰的成员变量和成员方法表明归某个类所有，它不依赖于类的特定实例，被类的所有实例共享。只要这个类被
+            加载，Java虚拟机就能根据类名在运行时数据区的方法区内定位到它们。
+
+            1. static 变量
+
+               成员变量：定义在类里面、方法外面的变量, 分两种：
+                         a. 实例变量;
+                         b. 静态变量；形式和实例变量类似，在实例变量前面加static关键字；
+
+               static变量和实例变量的区别：
+               . static变量对于每个类而言在内存中只有一个，能被类的所有实例所共享；实例变量对于每个类的每个实例都有一份，
+                 它们之间互不影响；
+               . Java虚拟机在加载类的过程中为static变量分配内存，实例变量在加载完类后创建对象时分配内存；
+               . static变量存在方法区，实例变量存在堆区；
+               . static变量可以直接通过类名访问，实例变量通过引用类型变量访问；
+
+               举例： public class Counter {
+                             public int count1 = 0;
+                             public static int count2 = 0;
+
+                             public static void main(String[] args) {
+                                    Counter counterA = new Counter();
+                                    Counter counterB = new Counter();
+                                    counterA.count1++;
+                                    counterA.count2++;
+                                    counterB.count1++;
+                                    counterB.count2++;
+                             }
+                      }
+
+                      通过内存图讲解以上代码.
+
+               按课件上内容一条条讲解，以及详细讲解课件示例程序；
+
+               课堂练习：1) 带着做：统计一个类创建实例的个数；
+                         2) 自行练习： ?????????????????????///
+                              
+            2. static 方法
+
+               成员方法分为静态方法和实例方法。用static修饰的方法叫静态方法，或类方法。静态方法也和静态变量一样，不需要创
+               建类的实例，可以直接通过类名来访问。
+
+               public class Sample1 {
+                     public static int add(int x, int y) {
+                            return x+y;
+                     }
+               }
+
+               public class Sample2 {
+                     public void method() {
+                            int result = Sample1.add(1,2);
+                            System.out.println("result= " + result);
+                     }
+               }
+
+               a. static方法可以直接访问所属类的实例变量和实例方法，直接访问所属类的静态变量和静态方法；
+
+                  注：1) 不能使用this关键字；
+                      2) super关键字用来访问当前实例从父类中继承的方法和属性。super关键字与类的特定实例相关；
+                      3) 静态方法必须被实现。静态方法用来表示某个类所特有的功能，这种功能的实现不依赖于类的具体实例，也不
+                         依赖于它的子类。既然如此，当前类必须为静态方法提供实现。
+
+               b. 父类的静态方法不能被子类覆为非静态方法。以下代码编译出错。
+
+                  public class Base {
+                         public static void method() {}
+                  }
+
+                  public class Sub extends Base {
+                         public void method() {}//编译出错
+                  }
+
+                  子类可以定义与父类的静态方法同名的静态方法，以便在子类中隐藏父类的静态方法。子类的静态方法也要满足覆
+                  盖条件。
+
+                  子类隐藏父类的静态方法和子类覆盖父类的实例方法，区别在于：运行时，JVM把静态方法和所属的类绑定，而把实例
+                  方法和所属的实例绑定。
+
+               c. 父类的非静态方法不能被子类覆盖为静态方法；
+
+            3. static 代码块                  
+
+               类中可以包含静态代码块，它不存于任何方法中。在Java虚拟机中加载类时会执行这些静态代码块。如果类中包含多个静
+               态代码块，那么Java虚拟机将按照它们在类中出现的顺序依次执行它们，每个静态代码块只会被执行一次。
+
+               public class Sample {
+                   static int i = 5;
+                   static {//第一个静态代码块
+                          System.out.println("First Static code i="+i++);
+                   }
+                   static {//第二个静态代码块
+                          System.out.println("Second Static code i="+i++);
+                   }
+                   public static void main(String[] args) {
+                          Sample s1 = new Sample();
+                          Sample s2 = new Sample();
+                          System.out.println("At last, i= "+i);
+                   }
+               }
+
+               类的构造方法用于初始化类的实例，而类的静态代码块则可用于初始化类，给类的静态变量赋初始值。
+
+               静态代码块与静态方法一样，也不能直接访问类的实例变量和实例方法，而必须通过实例的引用来访问它们。
+
+        二. final修改符
+
+               final具有"不可改变的"含义，它可以修饰非抽象类、非抽象成员方法和变量。
+               . 用final修饰的类不能被继承，没有子类；
+               . 用final修饰的方法不能被子类的方法覆盖；
+               . 用final修饰的变量表示常量，只能被赋一次值；
+
+               final不能用来修饰构造方法，因为"方法覆盖"这一概念仅适用于类的成员方法，而不适用于类的构造方法，父类的
+               构造方法和子类的构造方法之间不存在覆盖关系. 因此用final修饰构造方法是无意义的。父类中用private修饰的方法
+               不能被子类的方法覆盖，因此private类型的方法默认是final类型的。
+
+               1. final类
+
+                  继承关系的弱点是打破封装，子类能够访问父类的实现细节，而且能以方法覆盖的方式修改实现细节。在以下情况下,
+                  可以考虑把类定义为final类型，使得这个类不能被继承。
+
+                  . 子类有可能会错误地修改父类的实现细节；
+                  . 出于安全，类的实现细节不允许有任何改动；
+                  . 在创建对象模型时，确信这个类不会再被扩展；
+
+                  例如JDK中java.lang.String类被定义为final类型；
+
+               2. final方法；
+ 
+                  某些情况下，出于安全原因，父类不允许子类覆盖某个方法， 此时可以把这个方法声明为final类型。例如在
+                  java.lang.Object类中，getClass()方法为final类型。
+
+               3. finally变量：
+
+                  a. finally可以修饰静态变量、实例变量、局部变量；
+                  b. finally变量都必须显示初始化，否则会导致编译错误；
+                     1) 静态变量，只能在定义变量时进行初始化；
+                     2) 实例变量，可以在定义变量时，或者在构造方法中进行初始化；
+                  c. finaly变量只能赋一次值。
+
+                     public class Sample {
+                            private final int var1 = 1;
+                            public Sample() {
+                                 var1 = 2;                //编译出错，不允许改变var1实例变量的值；
+                            }
+
+                            public void method(final int param) {
+                                 final int var2 = 1;         
+                                 var2++;                  //编译出错，不允许改变var2局部常量的值
+                                 param++;                 //编译出错，不允许改变final类型参数的值；
+                            }
+                     }
+
+                     public class Sample {
+                            final int var1;               //定义var1实例常量
+                            final int var2 = 0;           //定义并初始化var2实例常量
+   
+                            Sample() {
+                                  var1 = 1;               //初始化var1实例常量
+                            }
+
+                            Sample() {
+                                  var1 = x;                //初始化var1实例常量
+                            }
+                     }                     
+
+        三. abstract修改符
+
+            可用来修饰类和成员方法。
+            . 用abstract修饰的类表示抽象类，抽象类不能实例化，即不允许创建抽象类本身的实例。没有用abstract修饰的类称为具
+              体类，具体类可以被实例化。
+            . 用abstract修饰的方法表示抽象方法，抽象方法没有方法体。抽象方法用来描述系统具有什么功能，但不提供具体的实现。
+              没有abstract修饰的方法称为具体方法，具体方法具有方法体。
+            
+            语法规则；
+            1) 抽象类中可以没有抽象方法，但包含了抽象方法的类必须被定义为抽象类；
+            2) 没有抽象构造方法，也没有抽象静态方法；
+            3) 抽象类中可以有非抽象的构造方法；
+            4) 抽象类及抽象方法不能被final修饰符修饰。
+
+            抽象类不允许实例化：假设允许抽象化，调用抽象类中的抽象方法将执行什么方法体内容？
+
+        四. 接口
+
+            接口使用的目的：解决多重继承问题；例如Fish类继承Animal类，表明Fish是一种动特，但鱼同样也是一种食物，如何表
+            示这种关系呢？ 由于Java语言不支持一个类有多个直接的父类，因此无法用继承关系来描述鱼既是一种食物，又是一种动
+            物，为了解决这一问题，Java语言引入接口类型，简称接口。一个类只能有一个直接的父类，但是可以实现多个接口。 采
+            用这种方式，Java语言对多继承提供了有力的支持。
+
+            1. 接口是抽象类的另外一种形式
+
+               接口是抽象类的抽象，抽象类可存在有方法体的方法，接口中的方法全部为抽象方法；
+
+            2. 接口中的所有方法均是抽象方法， 默认都是public、abstract类型的；
+
+               public interface A {
+                      void method1();                //合法，默认为public、abstract类型
+                      public abstract void method2();//合法，显示声明为public、abstract类型
+
+            3. 接口中的成员变量默认都是public, static, final类型，必须被显式初始化；
+               public interface A {
+                      int CONST = 1;                 //合法，CONST默认为public, static, final类型
+                      public static final int OPAQUE = 1;  //合法，显示声明为public static final 类型
+               }
+ 
+            4. 接口中只能包含public, static, final类型成员变量和public、abstract类型的成员方法；
+            5. 接口中没有构造方法，不能被实例化。
+            6. 一个类只能继承一个直接的父类，但能实现多个接口。
+
+            抽象类和接口比较：
+
+            1. 相同点：
+               a. 都不能被实例化；
+               b. 都能包含抽象方法；
+            2. 不同点；
+               a. 抽象类中可以为部分方法提供默认的实现，从而避免子类中重复实现它们，提高代码的可重用性，
+                  而接口中只能包含抽象方法；
+               b. 一个类只能继承一个直接的父类，这个父类有可能是抽象类；但一个类可以实现多个接口，这是接口的优势所在。
+
+        五. 访问控制
+
+            面向对象的基本思想之一是封装实现细节并且公开方法。Java语言采用访问控制修饰符来控制类及类的方法和变量的访问
+            权限，从而只向使用者暴露方法，但隐藏实现细节。访问控制分4种级别。
+
+            访问级别       访问控制修饰符        同类       同包       子类      不同的包
+            公开级别：       public               y          y          y          y
+            受保护           protected            y          y          y
+            默认           没有访问控制符         y          y
+            私有             private              y
+
+            成员变量、成员方法和构造方法可以处于4个访问级别中的一个；
+            顶层类只可以处于公开或默认访问级别；
+
+        六. 内部类
+
+            在一个类的内部定义的类称为内部类。内部类允许把一些逻辑相关的类组织在一起，并且控制内部类代码的可视性。对于初
+            学者而言，内部类似乎有多条，但是随着内部类的逐步了解，就会发现它有独到的用途。它能够让程序结构变得更优雅。
+
+            变量按照作用域可分为：
+
+            1) 成员变量: 实例变量、静态变量；
+            2) 局部变量；
+
+            同样，内部类按照作用域可分为；
+               
+            1) 成员内部类: 实例内部类、静态内部类；
+            2) 局部内部类；
+
+            顶层类只能处于public和默认访问级别，而成员内部类可以处于public, protected, private和默认这4种访问级别；
+
+            1.  静态内部类；
+
+                是成员内部类的一种，用static修饰。静态内部类具有以下特点：
+
+                1)  静态内部类的实例不会自动持有外部类的特定实例的引用，在创建内部类的实例时，不必创建外部类的实例。
+                    class A {
+                          public static class B{
+                                 int v;
+                          }
+                    }
+
+                    class Tester {
+                          public void test() {
+                                 A.B b = new A.B();
+                                 b.v = 1;
+                          }
+                    }
+
+                 2) 静态内部类可以直接访问外部类的静态成员，如果访问外部类的实例成员，就必须通过外部类的实例去访问。
+
+                    class A {
+                          private int a1;              //实例变量a1
+                          private static int a2;       //静态变量a2
+ 
+                          public static class B {
+                                 int b1 = a1;          //编译错误，不能直接访问外部类A的实例变量a1
+                                 int b2 = a2;          //合法，可以直接访问外部类A的静态变量a2
+                                 int b3 = new A().a1;  //合法，可以通过类A的实例访问变量a1
+                          }
+                    }
+
+                 3) 在静态内部类中可以定义静态成员和实例成员。
+
+                    class A {
+                          public static class B {
+                                 int v1;                       //实例变量
+                                 static int v2;                //静态变量
+
+                                 public static class C {
+                                        static int v3;         //静态内部类
+                                 }
+                          }
+                    }
+                  
+                 4) 可以通过完整的类名直接访问静态内部类的静态成员。
+
+                    class A {
+                          public static class B {
+                                 int v1;                       //实例变量
+                                 static int v2;                //静态变量
+
+                                 public static class C {
+                                        static int v3;         //静态内部类
+                                        int v4;
+                                 }
+                          }
+                    }
+
+                    public class Tester {
+                          public void test() {
+                                 A.B b = new A.B();
+                                 A.B.C c = new A.B.C();
+                                 b.v1 = 1;
+                                 v.v2 = 1;
+                                 A.B.v1 = 1;             //编译错误
+                                 A.B.v2 = 1;             //合法
+                                 A.B.C.v3 = 1;           //合法
+                          }
+                    }
+
+            2.  实例内部类；
+
+                成员内部类的一种，没有static修饰符。特点：
+
+                1) 在创建实例内部类的实例时，外部类的实例必须已经存在。
+
+                   Outer.InnerTool tool = new Outer().new InnerTool();
+
+                   等价于：
+
+                   Outer outer = new Outer();
+                   Outer.InnerTool tool = outer.new InnerTool();
+
+                   以下代码会导致编译错误：
+
+                   Outer.InnerTool tool = new Outer.InnerTool();
+
+                2) 实例内部类的实例自动持有外部类的实例的引用。在内部类中， 可以直接访问外部类的所有成员，包括
+                   成员变量和成员方法。
+
+                   public class A {
+                          private int a1;
+                          public int a1;
+                          static int a1;
+                          public A(int a1, int a2) {
+                                 this.a1 = a1;
+                                 this.a2 = a2;
+                          }
+                          protected int methodA() {
+                                 return a1*a2;
+                          }
+
+                          class B {
+                                int b1 = a1;               //直接访问private的a1
+                                int b2 = a2;               //直接访问public的a2
+                                int b3 = a3;               //直接访问static的a3
+                                int b4 = new A(3,4).a1;    //访问一个新建的实例A的a1
+                                int b5 = methodA();        //访问methodA()方法
+                          }
+
+                          public static void main(String args[]) {
+                                 A.B b = new A(1,2).new B();
+                                 System.out.println("b.b1="+b.b1);    //打印b.b1=1;
+                                 System.out.println("b.b2="+b.b2);    //打印b.b2=2;
+                                 System.out.println("b.b3="+b.b3);    //打印b.b3=0;
+                                 System.out.println("b.b4="+b.b4);    //打印b.b4=3;
+                                 System.out.println("b.b5="+b.b5);    //打印b.b5=2;
+                          }
+                    }                 
+
+                3) 外部类实例与内部类实例之间是一对多的关系，一个内部类实例只会引用一个外部类实例，而一个外部类实例
+                   对应零个或多个内部类实例。在外部类中不能直接访问内部类的成员，必须通过内部类的实例去访问。         
+
+                   class A {
+                         class B {
+                               private int b1 = 1;
+                               public int b2 = 2;
+                               class C{}
+                         }
+
+                         public void test() {
+                                int v1 = b1;                          //invalid
+                                int v2 = b2;                          //invalid
+                                B.C c1 = new C();                     //invalid
+
+                                B b = new B();
+                                int v3 = b.b1;                          //valid
+                                int v4 = b.b2;                          //valid
+                                B.C c2 = b.new C();                     //valid                       
+                                B.C c3 = new B().new C();               //valid  
+                         }
+                   }
+
+                4) 实例内部类中不能定义静态成员，而只能定义实例成员。         
+                5) 如果实例内部类B与外部类A包含同名的成员，那么在类B中， this.v表示类B的成员， A.this.v表示类A的成员。  
+
+            3.  局部内部类；
+
+                在一个方法中定义的内部类，它的可见范围是当前方法。和局部变量一样，局部内部类不能用访问控制修饰符
+                (public, private和protected)及static修饰符来修饰。特点：
+
+                1) 局部内部类只能在当前方法中使用。
+                   class A {
+                         B b = new B();                 //编译错误；
+                         public void method() {
+                                class B{
+                                      int v1;
+                                      int v2;
+    
+                                      class C {
+                                            int v3;
+                                      }
+                                }
+                                B b = new B();                 //合法
+                                B.C c = b.new C();             //合法
+                         }
+                   }
+
+                2) 局部内部类和实例内部类一样，不能包含静态成员。
+                   class A {
+                         public void method() {
+                                class B{
+                                      static int v1;           //编译错误
+                                      int v2;                  //合法
+
+                                      static class C {         //编译错误
+                                             int v3;
+                                      }
+                                }
+                         }
+                   }
+                
+                3) 在局部内部类中定义的内部类也不能被public、protected和private这些访问控制修饰符修饰；
+                4) 局部内部类和实例内部类一样，可以访问外部类的所有成员，此外，局部内部类还可以访问所在方法中的final类型
+                   的参数和变量。
+
+                几种内部类的区别：
+
+                1. 创建
+                   a. 声明的位置: 
+                      静态内部类：类的内部，方法的外部，用static关键字修饰；
+                      实例内部类：类的内部，方法的外部，不用static关键字修饰；
+                      局部内部类：方法的内部；
+                      匿名内部类：既可以在类的内部，方法的外部，也可以在方法的内部；
+                      
+                   b. 实例化方式:
+                      静态内部类：new Outer.Inner();          	//在外部类外创建；
+                                  new Inner();                	//在外部类内内部类外创建
+                      实例内部类：new Outer().new Inner();      //在外部类外创建；
+                                  this.new Inner();             //在外部类内内部类外创建 
+                      局部内部类：new Inner();                  //只能在方法内部创建；                                  
+                      匿名内部类：new 类名() {};            
+         
+                2. 访问
+                   a. 外部类访问内部类：
+                      静态内部类：通过完整的类名直接访问静态内部类的静态成员;
+                      实例内部类：通过内部类的实例去访问内部类的成员;
+                      局部内部类：不能访问；
+                      匿名内部类：不能访问；
+
+                   b. 内部类访问外部类：
+                      静态内部类：直接访问外部类的静态成员；
+                      实例内部类：可以直接访问外部类的所有成员;
+                                  如果实例内部类B与外部类A包含同名的成员，那么在类B中， this.v表示类B的成员，
+                                  A.this.v表示类A的成员。
+                      局部内部类：可以直接访问外部类的所有成员, 访问所在方法中的final类型的参数和变量；
+                      匿名内部类：可以直接访问外部类的所有成员, 访问所在方法中的final类型的参数和变量；
+
+
+
+        七. 包装类                         
+
+            作用：1) 用引用类型表示数值；例如表示一个缺考学生的成绩；
+                  2) 有些场合必须要引用类型；例如集合中只能存储引用类型；
+                  3) 实现基本类型间以及与字符串间转换；
+
+                     public static Integer valueOf(int i);
+                     public static Integer valueOf(String s) throws NumberFormatException;
+
+                     public static int parseInt(String s) throws NumberFormatException;
+                     public static String toString(int i);
+
+
+                     int     ->  String : toString(int i) 
+                     Integer ->  String : toString() 
+                     String  ->  int    : parseInt(String s)
+                     Integer ->  int    : intValue();
+                     int     ->  Integer: valueOf(int i)
+                     String  ->  Integer: valueOf(String s)
+
+        八. 集合   
+
+            由数组的缺点引出集合: 
+
+            数组的长度是固定的，在许多应用场合，一组数据的数目是不固定的，比如一个单位的员工数目是变化的，有老的员工
+            跳槽，也有新的员工进来。比如一个单位的客户是变化的，有老的客户流失，也有新的客户签单。
+
+            为了使程序能方便地存储和操纵数目不固定的一组数据，JDK类库提供了Java集合，所有Java集合类都位于java.util包中。
+            与Java数组不同，Java集合中不能存放基本类型数据，而只能存放对象的引用。出于表达上的便利，下面把“集合中的对象
+            的引用”简称为“集合中的对象“。
+
+            Java中集合主要分为三种类型：
+
+            . Set : 无序，并且没有重复对象。
+            . List: 有序(放入的先后的次序), 可重复。
+            . Map : 集合中的每一个元素包含一对键对象和值对象，集合中没有重复的键对象，值对象可以重复。
+
+            1. Collection和Iterator接口
+
+               在Collection接口中声明了适用于Set和List的通用方法：
+
+               boolean add(Object o)          : 向集合中加入一个对象的引用；
+               void clear()                   : 删除集合中的所有对象引用，即不再持有这些对象的引用；
+               boolean contains(Object o)     : 判断在集合中是否持有特定对象的引用；
+               boolean isEmpty()              : 判断集合是否为空；
+               Iterator iterator()            : 返回一个Iterator对象，可用它来遍历集合中的元素；
+               boolean remove(Object o)       : 从集合中删除一个对象的引用；
+               int size()                     : 返回集合中元素的数目；
+               Object[] toAttray()            : 返回一个数组，该数组包含集合中的所有元素；
+
+               Iterator接口隐藏底层集合的数据结构，向客户程序提供了遍历各种类型的集合的统一方法。Iterator接口中声明方法：
+
+               hasNext()                      : 判断集合中的元素是否遍历完毕，如没有，就返回true;
+               next()                         : 返回下一个元素；
+               //remove()                       : 从集合中删除上一个由next()方法返回的元素；
+
+               通过下面程序实践上面的方法：
+
+               import java.util.*;
+               public class Visitor {
+                      public static void print(Collection c) {
+                             Iterator it = c.iterator();
+                             while(it.hasNext()) {
+                                    Object element = it.next();
+                                    System.out.println(element);
+                             }
+                      }
+
+                      public static void main(String args[]) {
+                             Set set = new HashSet();
+                             set.add("Tom");
+                             set.add("Mary");
+                             set.add("Jack");
+                             print(set);
+
+                             List list = new ArrayList();
+                             list.add("Linda");
+                             list.add("Mary");
+                             list.add("Rose");
+                             print(list);
+
+                             Map map = new HashMap();
+                             map.put("M","男");
+                             map.put("F","女");
+                             print(map.entrySet());
+                     }
+               }
+
+            2. Set
+
+               最简单的一种集合，集合中的对象无序、不能重复。主要实现类包括：
+         
+               . HashSet      : 按照哈希算法来存取集合中的对象，存取速度比较快；
+               . LinkedHashSet: HashSet子类，不仅实现Hash算法，还实现链表数据结构，链表数据结构能提高插入和删除元素的性能；
+               . TreeSet      : 实现SortedSet接口，具有排序功能；
+
+               一般用法：
+
+               Set集合中存放的是对象的引用，并且没有重复对象。
+
+               Set set = new HashSet();
+               String s1 = new String("hello");
+               String s2 = s1;
+               String s3 = new String("world");
+               set.add(s1);
+               set.add(s2);
+               set.add(s3);
+               System.out.println(set.size());
+
+               当一个新的对象加入到Set集合中时，Set的add方法是如何判断这个对象是否已经存在于集合中的呢？它遍历既存对象，通过
+               equals方法比较新对象和既存对象是否有相等的。
+
+               boolean isExist = false;
+               Iterator it = set.iterator();
+               while(it.hasNext()) {
+                     String oldStr = it.next();
+                     if(newStr.equals(oldStr)) {
+                            isExists = true;
+                            break;
+                     }
+               }
+
+               举例：Set set = new HashSet();
+                     String s1 = new String("hello");
+                     String s2 = new String("hello");
+                     set.add(s1);
+                     set.add(s2);
+                     System.out.println(set.size());                         //集合中对象数目为1;
+
+               1) HashSet
+                  
+                  按照哈希算法来存取集合中的对象，存取速度比较快。当向集合中加入一个对象时，HashSet会调用对象的hashCode()
+                  方法来获得哈希码，然后根据这个哈希码进一步计算出对象在集合中的存放位置。
+
+                  在Object类中定义了hashCode()方法和equals()方法，Object类的equals()方法按照内存地址比较对象是否相等，因
+                  此如果object.equals(object2)为true, 则表明object1变量和object2变量实际上引用同一个对象，那么object1和
+                  object2的哈希码也肯定相同。
+
+                  为了保证HashSet能正常工作， 要求当两年对象用equals()方法比较的结果为true时，它们的哈希码也相等。如果用户
+                  定义的Customer类覆盖了Object类的equals()方法，但是没有覆盖Object类的hashCode()方法，就会导致当
+                  customer1.equals(customer2)为true时，而customer1和customer2的哈希码不一定一样，这会使HashSet无法正常工作。
+
+                  public class Customer {
+                         private String name;
+                         private int age;
+
+                         public Customer(String name, int age) {
+                                this.name = name;
+                                this.age = age;
+                         }
+                         
+                         public String getName() {
+                                return name;
+                         }
+
+                         public int getAge() {
+                                return age;
+                         }
+
+                         public boolean equals(Object o) {
+                                if(this==o) return true;                          
+                                if(!(o instanceof Customer)) return false;
+                                Customer other = (Customer)o;
+
+                                if(this.name.equals(other.getName()) && this.age.equals(other.getAge())
+                                      return true;
+                                else 
+                                      return false;
+
+                         }
+                  }
+
+                  以下程序向HashSet中加入两个Customer对象。
+
+                  Set set = new HashSet();
+                  Customer customer1 = new Customer("Tom", 15);
+                  Customer customer2 = new Customer("Tom", 15);
+                  set.add(customer1);
+                  set.add(customer2);
+                  System.out.println(set.size());         //打印出 2
+
+                  出现以上原因在于customer1和customer2的哈希码不一样，因此为两为customer对象计算出不同的位置，于是把它们
+                  放到集中中的不同的地方。
+
+                  应加入以下hashCode()方法: 
+
+                  public int hashCode() {
+                         int result;
+                         result = (name==null?0:name.hashCode());
+                         result = 29*result + age;
+                         return result;
+                  }
+
+               2) TreeSet
+
+                  TreeSet实现了SortedSet接口，能够对集合中的对象进行排序。当TreeSet向集合中加入一个对象时，会把它插入到有
+                  序的对象序列中。那么TreeSet是如何对对象进行排序的呢？TreeSet支持两种排序方式：自然排序和客户化排序。默
+                  认情况下TreeSet采用的是自然排序方式：
+
+                  a. 自然排序
+
+                     在JDK类库中， 有一部分类实现了Comparable接口，如Integer、Double和String等。Comparable接口有一个
+                     compareTo(Object o)方法，它返回整数类型。对于x.comapreTo(y), 如
+
+                     返回0,       表明   x和y相等
+                     返回值大于0, 表明   x>y
+                     返回值小于0, 表明   x<y
+
+                     TreeSet调用对象的compareTo()方法比较集合中对象的大小，然后进行升序排序，这种排序方式称为自然排序。
+
+                     ------------------------------------------------------------------------------------------------
+                     JDK类库中实现了Comparable接口的一些类的排序方式： 
+
+                     Byte, Short, Integer, Long, Double, Float     :         按数字大小排序；
+                     Character                                     :         按字符的Unicode值的数字大小排序；
+                     String                                        :         按字符串中字符的Unicode值排序；
+                     ------------------------------------------------------------------------------------------------
+
+
+                     使用自然排序， TreeSet中只能加入相同类型对象，且这些对象必须实现了Comparable接口。否则会抛出
+                     ClassCastException异常。
+
+                     当修改了对象的属性后， TreeSet不会重新排序。最适合TreeSet排序的是不可变类(它们的对象的属性不能修改)。
+
+                  b. 客户化排序                
+
+                     除了自然排序外， TreeSet还支持客户化排序。java.util.Comparator接口提供了具体的排序方法， 它有一个
+                     compare(Object x, Object y)方法，用于比较两个对象的大小， 当compare(x,y)：
+
+                     返回0,       表明   x和y相等
+                     返回值大于0, 表明   x>y
+                     返回值小于0, 表明   x<y
+
+                     如果希望TreeSet按照Customer对象的name属性进行降序排列，可以先创建一个实现Comparator接口的类  
+                     CustomerComparator, 参见：
+
+                     import java.util.*;
+                     public class CustomerComparator implements Comparator {
+                            public int compare(Object o1, Object o2) {
+                                   Customer c1 = (Customer)o1;
+                                   Customer c2 = (Customer)o2;
+
+                                   if(c1.getName().compareTo(c2.getName())>0) return -1;
+                                   if(c1.getName().compareTo(c2.getName())<0) return 1;
+
+				   return 0;
+                            }
+
+                            public static void main(String[] args) {
+                                   Set set = new TreeSet(new CustomerComparator());
+
+                                   Customer customer1 = new Customer("Tom",15);
+                                   Customer customer3 = new Customer("Jack",16);
+                                   Customer customer2 = new Customer("Mike",26);
+                                   set.add(customer1);
+                                   set.add(customer2);
+                                   set.add(customer3);
+
+                                   Iterator it = set.iterator();
+                      
+                                   while(it.hasNext()) {
+                                         Customer customer = it.next();
+                                         System.out.println(customer.getName() + " " + customer.getAge());
+                                   }
+                             }
+                      }
+
+                      打印输出：
+
+                      Tom 15
+                      Mike 26
+                      Jack 16
+
+            3. List
+ 
+               主要特征是其元素以线性方式存储，集合中允许存放重复对象。主要实现类包括：
+
+               . ArrayList: 代表长度可变的数组。允许对元素进行快速的随机访问，但是向ArrayList中插入与删除元素的速度较慢；
+               . LinkedList: 在实现中采用链表结构。对顺序访问进行了优化，向List中插入和删除元素的速度较快，随机访问速度
+                             则相对较慢。随机访问是指检索位于特定索引位置的元素。
+
+               遍历方式：
+               a. list.get(i);    //通过索引检索对象；
+               b. Iterator it = list.iterator();
+                  it.next();
+               
+               讲解书上的例子；
+
+            4. Map
+
+               Map是一种把键对象和值对象进行映射的集合，它的每一个元素都包含一对键对象和值对象。向Map集合中加入元素时，
+               必须提供一对键对象和值对象，从Map集合中检索元素时，只要给出键对象，就会返回对应的值对象。
+
+               map.put("2", "Tuesday");
+               map.put("3", "Wednsday");
+               map.put("4", "Thursday");
+
+               String day = map.get("2");    //day的值为"Tuesday"
+
+               Map集合中的键对象不允许重复，如以相同的键对象加入多个值对象，第一次加入的值对象将被覆盖。
+               对于值对象则没有唯一性的要求，可以将任意多个键对象映射到同一个值对象上。
+
+               map.put("1", "Mon");
+               map.put("1", "Monday");      //"1"此时对应"Monday"
+               map.put("one", "Monday");    //"one"此时对应"Monday"
+
+               Map有两种比较常见的实现：
+
+               1) HashMap
+
+                  按哈希算法来存取键对象，有很好的存取性能，为了保证HashMap能正常工作，和HashSet一样，要求当两个键对象
+                  通过equals()方法比较为true时，这两个键对象的hashCode()方法返回的哈希码也一样。
+
+                  讲解书上例子。
+
+               2) TreeMap
+
+                  实现了SortedMap接口，能对键对象进行排序。和TreeSet一样，TreeMap也支持自然排序和客户化排序两种方式。
+
+                  Map map = new TreeMap();
+                  map.put("1", "Monday");
+                  map.put("3", "Wednsday");
+                  map.put("4", "Thursday");
+                  map.put("2", "Tuesday");
+
+                  Set keys = map.keySet();
+                  Iterator it = keys.iterator();
+                  while(it.hasNext()) {
+                        String key = (String)it.next();
+                        String value= (String)map.get(key);
+                        System.out.println(key + " " + value);
+                  }
+
+                  打印输出：
+
+                  1 Monday
+                  2 Tuesday
+                  3 Wednsday
+                  4 Thursday
+
+        九. 反射 
+
+            提到反射可能会使我们联想到光学中的反射概念，在Java中又是另外一个概念：
+            平时我们照镜子的时候，在镜子后面会有自己的影子，其实java中的反射也是类似的，一个类或者对象通过反射可以
+            获得自身的对象，该对象是一个java.lang.Class 的对象(就像一个镜像文件)。
+
+            一个对象或者类获得自身的Class对象的过程称为反射。
+
+            有两种方法可以获得自身的Class对象引用(对每一个被装载的类型(类或接口)，虚拟机都会为它创建一个
+            java.lang.Class的实例)：
+            1) Class c = Class.forName(“com.briup.ch06.Student”);	//虚拟机中没有该类的Class的实例对象
+            2) Class c = stu.getClass();		                //虚拟机已经存在Class的实例对象
+               Class c = this.getClass();	                        ////虚拟机已经存在Class的实例对象
+
+            注意：类和它所创建的所有对象通过反射获得的Class对象都是同一个，在这个例子中是com.briup.ch06.Student
+	          这里可以参考例子com.briup.ch06.ClassTest.java
+
+            反射可以让我们利用这个Class对象来获取和修改私有的变量和方法，不通过共有的方法去获得（原来我们例子都是通过
+            一个public的方法来设置和获取私有的变量），可以破坏数据的封装性。
+
+            反射：
+            1) 确定一个对象的class
+            2) 可以获得一个类的修饰符、字段、方法、构造器和父类。
+            3) 获得接口声明的常量和方法。
+            4) 创建Class的实例，直到运行时才获得。
+            5) 运行前即使字段名字不知道，可以到程序运行时获得和修改这些字段的值。
+            6) 运行前即使对象的方法名不知道，可以到程序运行时触发调用该方法。
+            7) 运行前创建了一个大小和元素都未知的新数组，可以到运行时修改数组的元素。
+
+            反射机制通过在运行时探查字段和方法，从而可以帮助写出通用性很好的程序，这项能力对系统编程来说特别有用，但
+            它并不适合于应用编程。而且，反射是脆弱的——编译不能帮助你发现编译错误，任何错误在运行时被发现并且都会导
+            致异常。
+
+       Review Questions: 
+
+            1. (Level 1) What is the functionalities for initialization block?
+                      答：初始化成员变量；
+            2. (Level 1) What is abstract method and abstract class?
+                      答：抽象方法：没有方法体的方法； 
+                          抽象类：　不能直接实例化，用abstract关键字修饰的类；可以包含抽象方法；
+            3. (Level 1) What is inside an interface?
+                      答：public, static, final类型成员变量和public、abstract类型的成员方法；
+            4. (Level 1) How many types of inner classes does Java have?
+　　　　　　　　　　　答：四种。静态、实例、局部、匿名内部类
+            5. (Level 1) What are the differences between Map, Set and List?
+                      答：. Set : 无序，并且没有重复对象。
+                          . List: 有序(放入的先后的次序), 可重复。
+                          . Map : 集合中的每一个元素包含一对键对象和值对象，集合中没有重复的键对象，值对象可以重复。
+
+            6. (Level 2) Which of the following statements are true?
+                A. An inner class may be declared private.
+                B. An inner class may be declared static.
+                C. An inner class defined in a method should always be anonymous.
+                D. An inner class defined in a method can access all the method local variables.
+                   //能访问所在方法中的final类型的参数和变量。
+                E. Construction of an inner class may require an instance of the outer class.
+                答：A, B, E
+            7. (Level 3) Consider the following definition:
+               1. public class Outer{
+               2.   public int a = 1;
+               3.   public int b = 2;
+               4.   public void method(final int c) {
+               5.    Int d = 3;
+               6.    Class Inner{
+               7.      private void iMethod(int e) {
+               8.  
+               9.      }}}}
+              Which variables can be referenced correctly at line 8?
+               A. a     B. b     C. c     D. d     E. e 
+              答：A, B, C, E
+            8. (Level 2) Which would be most suitable for storing data elements that must not appear in the store 
+               more than once, if searching is not a priority?
+               A. Collection     B. List      C. Set      D. Map       E. Vector
+               答：c
+            9. (Level 3) In the following code fragment, line 4 is executed.
+               1. String s1 = “XYZ”;
+               2. String s2 = “XYZ”;
+               3. If( s1 == s2) 
+               4.     System.out.println(“Line 4);
+                  A. True                  
+                  B. False
+               答：A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

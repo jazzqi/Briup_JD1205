@@ -1,0 +1,2 @@
+写AWTFrame类
+要求：包含一个JFrame，JFrame使用BorderLayout并包含一个JLabel和一个JPanel，JPanel使用FlowLayout并包含两个JButton。
