@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title></title>
+		<style type="text/css">
+			table{
+				margin:auto;
+				padding:auto;
+				border:1px solid gray;
+				border-radius:5px;
+				width:40%;
+			}
+			table tr{
+				text-align:center;
+			}
+			*{
+				font-size:18px;
+				font-family:Monaco,Verdana,serif;
+				font-weight:600;
+			}
+			#disTab{
+				text-align:center;
+			}
+			#disTab tr{
+				height:28px;
+				text-align:left;
+			}
+			.cap{
+				text-align:center;
+				height: 60px;
+				font-size:28px;
+				font-weight:900;
+				border-bottom:1px solid;
+			}
+		</style>
+</head>
+<body onload="addHeadMov()">
+<script src="https://gist.github.com/1202870.js?file=countdown.rb"></script>
+        <table id="disTab">
+			<tr>
+		        <td class="cap" colspan="3">今日电影看点</td>
+			</tr>
+			<tr>
+					<td>电影编号</td>
+			        <td>电影名称</td>
+			        <td>主演明星</td>
+			        <td>电影类别</td>
+			</tr>
+			<tr>
+					<td class="numTd">1</td>
+			        <td>消失的子弹</td>
+			        <td>谢霆锋,刘青云</td>
+			        <td>动作</td>
+			</tr>
+			<tr>
+					<td class="numTd">16</td>
+			        <td>山楂树之恋</td>
+			        <td>周冬雨,窦骁</td>
+			        <td>爱情</td>
+			</tr>
+		</table>
+		<br />
+		<table>
+			<tr>
+					<td>电影名称</td>
+			        <td><input id="movName" name="" type="text" /></td>
+			</tr>
+			<tr>
+					<td>主演明星</td>
+			        <td><input id="movActor" name="" type="text" /></td>
+			</tr>
+			<tr>
+					<td>电影类别</td>
+			        <td><input id="movClass" name="" type="text" /></td>
+			</tr>
+			<tr>
+			        <td colspan="2"><input type="button" value="submit" onclick="addMov()" /></td>
+			</tr>
+		</table>
+		<table>
+		        <tr>
+		                <td>请输入电影编号</td>
+		                <td><input id="delNum" name="" type="text" /></td>
+		                <td><input type="button" value="Delete" onclick="delMov()" /></td>
+		        </tr>
+		</table>
+
+</body>
+<script type="text/javascript">
+	var disTab=document.getElementById("disTab");
+	function addMov(){
+	//alert("nul");
+		var movName=document.getElementById("movName").value;
+		var movActor=document.getElementById("movActor").value;
+		var movClass=document.getElementById("movClass").value;
+		var movNameText=document.createTextNode(movName);
+		var movActorText=document.createTextNode(movActor);
+		var movClassText=document.createTextNode(movClass);
+
+		var movTr=document.createElement("tr");
+		
+		var movNoTd=document.createElement("td");
+		movNoTd.setAttribute("class","numTd");
+		var currRow = disTab.rows.length;//.lastChild.previousSibling.nodeName;
+		var currNo=disTab.rows[currRow-1].cells[0].innerHTML;
+		//alert(parseInt(currNo)+1);
+		movNoText=document.createTextNode(parseInt(currNo)+1);
+		movNoTd.appendChild(movNoText);
+		movTr.appendChild(movNoTd);
+
+		var movNameTd=document.createElement("td");
+		movTr.appendChild(movNameTd);
+		movNameTd.appendChild(movNameText);
+
+		var movActorTd=document.createElement("td");
+		movTr.appendChild(movActorTd);
+		movActorTd.appendChild(movActorText);
+
+		var movClassTd=document.createElement("td");
+		movTr.appendChild(movClassTd);
+		movClassTd.appendChild(movClassText);
+
+		document.getElementById("disTab").appendChild(movTr);
+	}
+
+	function addHeadMov(){
+		disTab
+		var tr=document.createElement("tr");
+		tr.setAttribute("class","disTr");
+
+		var movNoTd=document.createElement("td");
+		var movNameTd=document.createElement("td");
+		var movActorTd=document.createElement("td");
+		var movClassTd=document.createElement("td");
+
+		movNoTd.setAttribute("class","numTd");
+
+		var movNumText=document.createTextNode("1");
+		var movNameText=document.createTextNode("Titannic");
+		var movActorText=document.createTextNode("Leonard D");
+		var movClassText=document.createTextNode("爱情");
+
+		movNoTd.appendChild(movNumText);
+		movNameTd.appendChild(movNameText);
+		movActorTd.appendChild(movActorText);
+		movClassTd.appendChild(movClassText);
+		
+		tr.appendChild(movNoTd);
+		tr.appendChild(movNameTd);
+		tr.appendChild(movActorTd);
+		tr.appendChild(movClassTd);
+
+		disTab.appendChild(tr);
+	}
+
+	function delMov(){
+		var delNum=document.getElementById("delNum");
+		var tds=document.getElementsByClassName("numTd");
+		for(var i=0;i<tds.length;i++){
+			if(delNum.value==tds[i].firstChild.nodeValue){
+				tds[i].parentNode.parentNode.removeChild(tds[i].parentNode);
+			}
+		}
+	}
+</script>
+</html>

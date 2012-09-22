@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title></title>
+</head>
+<body>
+        <div id="div1">
+			sb
+			<p id="p1"></p>
+		</div>
+		<div id="div2"></div>
+</body>
+		<script type="text/javascript">
+			var div1=document.getElementById("div1");
+			//alert(div1.firstChild.nodeValue);
+		//	alert(div1.firstChild.)
+			var p=document.createElement("p")
+			var div2=document.getElementById("div2");
+			var pText=document.createTextNode("pText");
+			p.style.color="blue";
+			//pText.style.fontsize="28px";
+			p.appendChild(pText);
+			div2.appendChild(p)
+		</script>
+
+</html>

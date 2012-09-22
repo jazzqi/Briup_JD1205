@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title></title>
+		<script type="text/javascript">
+			var timmerId = null;
+			function displayTime(){
+				//document.write(new Date().toLocaleString());
+				var now = new Date();
+				var p = document.getElementById("disP");
+				disP.innerHTML = now.toLocaleString();
+			}
+			function startTimer(){
+				timmerId=window.setInterval("displayTime()",1000);
+			}
+			function stopTimmer(){
+				window.clearInterval(timmerId);
+			}
+
+			var navigatorText="";
+			for(var prop in navigator){
+				navigatorText+=prop+":"+navigator[prop]+"<br />";
+			}
+			document.write(navigatorText);
+
+			document.write("<hr/>");
+
+			var locationText="";
+			for(var prop in location){
+				locationText+=prop+":"+location[prop]+"<br />";
+			}
+			document.write(locationText);
+
+			document.write("<hr/>");
+
+		</script>
+</head>
+<body>
+	<h1>
+		<p id="disP"> </p>
+		<input type="button" value="Show me time" onclick="startTimer()" />
+		<input type="button" value="Stop show" onclick="stopTimmer" />
+	</h1>
+</body>
+</html>

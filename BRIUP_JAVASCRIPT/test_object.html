@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title></title>
+		<script type="text/javascript">
+			var str="I love XXX a";
+			document.writeln(str.indexOf("X"));
+			document.write("<br/>");
+			document.writeln(str.lastIndexOf("X"));
+			document.write("<br/>");
+			document.writeln(str.charCodeAt("11"));
+			document.write("<hr/>");
+			document.write("数组测试");
+			document.write("<br/>");
+			var arr=new Array(3);
+			document.write("arr.length:"+arr.length);
+			arr[0]=0;
+			arr[1]="1";
+			arr[2]=new Date();
+			arr[3]="HTML";
+			arr[4]="ajax";
+			arr[5]="dwr";
+			arr[6]="r";
+			document.write("<br/>");
+			document.write("arr.toString():"+arr.toString());
+			document.write("<br/>");
+			document.write(arr.slice(1,5));
+
+			var now = new Date()
+			document.write("<br/>");
+			document.write(now.toLocaleString());
+			var testDate = new Date('2008/08/08 20:08:08');
+			document.write("<br/>");
+			document.write(testDate.toLocaleString());
+			document.write("<br/>");
+			document.write(testDate.getMonth());
+			document.write("<br/>");
+		</script>
+		<style type="text/css">
+			body{
+				font-size:26px;
+			}
+		</style>
+</head>
+<body>
+        
+</body>
+</html>

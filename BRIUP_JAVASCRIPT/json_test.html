@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title></title>
+		<script language="javascript">
+			var person={
+				"name":"briup",
+				"age":18,
+				"email":"jd1205@briup.com",
+				"tele":188888888
+			};
+			//alert(person.name);
+			//alert(person[name]);
+			var personInfo="";
+			var personInfo2="";
+			for(var prop in person){
+				personInfo += prop+":"+person[prop] + "<br/>"
+				personInfo2 += prop+":"+person[prop] + "\n"
+			}
+				//alert(personInfo2);
+				document.write(personInfo);
+		</script>
+		<style type="text/css">
+			p{
+				font-size:28px;
+				font-family:Verdana,serif;
+			}
+		</style>
+</head>
+<body>
+<p onmouseover="this.style.color='red'" onmouseout="this.style.color='blue'">change text color</p>
+        
+</body>
+</html>
