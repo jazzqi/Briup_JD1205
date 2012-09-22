@@ -1,0 +1,45 @@
+				Lesson 6
+1、语法
+	SELECT	select_list
+	FROM table
+	WHERE expr operator
+	(SELECT	select_list
+	 FROM table);
+
+    1) 子查询是一个完整的Select语句，可以拥有group by, having子句，可以使用组函数，可以从多个表查询结果。
+    2) 子查询外围的语句可以是select语句，也可以是其它语句(如Create table, insert等语句)。
+       如果外围的语句是select语句，则子查询内容必须用小括号界定。
+    3) 根据返回的结果是单个值还是多个值可以分为
+	a) 单行子查询: 使用单行比较符"="
+	b) 多行子查询: 使用多行比较符"in"
+    4) 子查询的位置可以出现在
+	a) where子句 较多
+	b) having子句
+	c) from子句  较多
+
+    经典案例: 
+    1) 从s_emp表中找出那些工资高于他们所在部门的平均工资的员工
+	select a.last_name, a.salary, a.dept_id, b.avgsal 
+	from s_emp a, (select dept_id, avg(salary) avgsal from s_emp group by dept_id) b 
+	where a.dept_id=b.dept_id 
+	and a.salary>b.avgsal;
+
+    2) 从s_emp表中查找3～5行的记录
+	select r,id,last_name
+ 	from (select rownum r,s.* from s_emp s)
+ 	where r between 3 and 5;
+
+    3)  从s_emp表中查找第三行的记录
+	select *
+ 	from (select rownum r,s.* from s_emp s)
+ 	where r=3;
+
+    4) 从s_emp表中找出薪水最高的三名员工
+	select rownum,last_name,salary
+	from (select last_name,salary from s_emp order by salary desc)
+	where rownum<=3;
+
+   注意:
+    rownum为表中的行号，不是真正的rowid，只能用<或者<=判断
+    不可以用=、>或者>=判断(不会出现语法报错，只是查询不到任何记录)，
+    除非使用rownum=1进行判断

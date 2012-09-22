@@ -1,0 +1,48 @@
+					Lesson 16
+
+1、创建用户
+	CREATE USER scott IDENTIFIED BY tiger;
+
+2、修改用户的密码
+	ALTER USER scott IDENTIFIED BY lion
+
+3、DBA赋予用户权限
+	GRANT	create table, create sequence,create view
+  	TO scott;
+
+	GRANT resource,connect
+	TO scott;
+
+	三种标准的角色: 
+	1) connect: 提供了登录和执行基本函数的能力。
+	可以连接数据库以及在这些表中进对数据进行查询，
+	插入，修改及删除的权限。
+	2) resource: 建立对象的能力。
+	3) dba: 拥有所有的系统权限，包括无限的空间限额，
+	以及给其他用户授予全部权限的能力。
+
+4、开放权限给其它的用户
+	GRANT object_priv [(columns)]
+	ON object
+	TO {user|role|PUBLIC}
+	[WITH GRANT OPTION];
+	
+	PUBLIC: 将权限赋予给所有的用户
+	WITH GRANT OPTION: 权限的受予者也可以将权限赋予其它的用户。
+	没有这个选项，接受权限的用户就不能将接受到的权限再赋予其它的用户。
+	这个选项不能赋予PUBLIC。
+
+5、回收权限
+	REVOKE select, insert
+  	ON s_dept
+ 	FROM scott
+	[WITH GRANT OPTION];
+
+	WITH GRANT OPTION: 回收赋予给其它用户的权限
+
+6、创建和删除同义词
+	为对象定义另一个名字，可以通过这个名字访问该对象
+	create [public] synonym synonym_name for table_name
+	drop synonym synonym_name
+
+	public: 创建和删除同义词只能由DBA执行 

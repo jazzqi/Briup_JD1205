@@ -1,0 +1,33 @@
+				Lesson 9
+1、创建表的语法：
+	CREATE TABLE [schema.]table
+		(column datatype [DEFAULT expr]
+		[column_constraint], 
+		...,
+	 	[table_constraint]);
+    注: 1) schema, 用户所创建对象的集合，如在当前schema下创建表，
+    schema可以不加。
+        2) default expr, 设置默认值，如某列没有具体赋值，列的值即为该默认值。
+
+2、命名规则
+    1) 以字母开头;
+    2) 长度限制为30个字符;
+    3) 内容组成为：A-Z, a-z, 0-9, _, $和#;
+    4) 不能为Oracle的保留字;
+    5) 同一schema下对象名不能重名;
+
+3、在创建表的时候加约束
+	1) 约束级别
+	    a) 列级别: 约束类型紧跟在列后，约束和列间没有逗号分隔
+	    b) 表级别: 约束和列间通过逗号分隔
+	2) not null只能用于列级别，不能用于表级别
+	3) 为两个或者两个以上的列定义联合约束
+	   (包括联合主键，联合外键，联合唯一键)时必须在表级别上定义
+
+4、使用子查询创建表
+	CREATE TABLE table
+	      [column(, column...)]
+        AS subquery;
+    注: 通过子查询创建表，可以获得源表的结构以及数据内容。
+        如我们不希望获得数据内容，可以通过子查询中的where子句进行限定。
+        另外只有not null约束才能拷贝入新表，其它约束丢失。

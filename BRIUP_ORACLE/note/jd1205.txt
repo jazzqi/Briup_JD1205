@@ -1,0 +1,1060 @@
+闫宇帅
+yanys@briup.com
+---------------------------------------
+oracle
+DB---->RDBMS
+世界第一大数据库厂商
+
+数据持久化：在数据持久保存的基础之上，
+		对数据进行增删改查的操作。
+		
+关系型数据库 RDB
+三要点：
+	1、数据库对象或关系的集合
+	2、对关系的操作（增删改查）
+	3、具有完整性、唯一性等的约束
+	
+pk:primary key(主键)
+	唯一标识
+fk:foreign key(外键)
+	建立表与表之间的关联关系
+	
+sql:结构化查询语言
+	第四代语言：结果化
+	只关心做什么，不关心怎么做
+	
+	PL/sql
+	s_day1~31
+	create table table1
+	
+	select name,age
+	from s_student
+	where id=1;
+	
+约束：
+	1、实体性约束
+		对主键进行约束，要求主键非空、唯一
+	2、关联性约束
+		对外键进行约束
+		要求外键的值必须与（所关联列）的值匹配
+			或为空值
+	3、列约束
+		某一列中所保存的数据必须
+			与该列的数据类型相匹配
+			char\varchar\varchar2
+			number
+			date
+	4、自定义约束
+			gender	
+-------------------------------------
+
+sql server、mysql、oracle、db2、sqlite....
+
+世界第一大数据库厂商
+世界第二大的ERP厂商
+*世界第二大软件厂商
+sun  
+
+9i		internet
+10g		grid		网格式计算、分布式计算、云计算
+11g		
+
+dba
+
+-----------------------------------
+ch01
+
+sql:
+select [distinct] {*,colName [alies],...}
+from table_name;
+
+*		所有信息
+
+	尽量少用
+	
+||		连接字符
+
+查询所有员工的姓名
+select last_name,id
+from s_emp;
+
+查询所有员工的年薪
+select salary*12
+from s_emp;
+
+select (salary+1000)*12
+from s_emp;
+
+查询所用员工的全名
+select first_name||','||last_name
+from s_emp;
+
+别名
+select first_name||','||last_name "Name"
+from s_emp [alies];
+
+1、colName alies
+2、colName as alies
+3、colName "alies"
+
+处理空值
+nvl(colName,'替换值')		
+select commission_pct
+from s_emp;
+
+查询所有员工的年薪（10000*commission_pct）
+select salary+10000*nvl(commission_pct,0)
+from s_emp;
+
+select nvl(commission_pct,0)
+from s_emp;
+
+去重
+去除重复的记录
+distinct
+
+select distinct name,region_id 
+from s_dept;
+
+sql*plus命令：
+desc table_name		查询表结构
+l(ist)				查看buffer中保存的sql语句
+/					再次执行buffer中的sql语句
+n 内容				覆盖第n行的语句
+n					定位
+a 内容				追加
+c/old/new			替换
+i 内容				插入，当前行的下一行
+del					删除
+col					设置列的输出格式
+
+select last_name,id,salary6
+from s_emp;
+
+col colName for(mat) aN
+
+
+---------------------------------------
+ch02
+order by			排序
+	ASC				升序（默认）
+	DESC			降序
+	
+用法：
+	order by colName
+	order by 别名
+	order by 序列号
+	
+空值:无穷大
+	select commission_pct com
+	from s_emp
+	order by com;
+	
+	select 		2
+	from 		1
+	order by	3
+
+查询所有员工的编号，姓名，入职时间
+	并按编号进行排序
+SELECT	last_name,id,start_date
+FROM 	 	s_emp
+ORDER BY	id desc;
+
+查询所有员工的薪水，按照名字的降序排序
+select salary,last_name
+from s_emp
+order by 1 desc;
+
+先按姓名升序排列，再按id降序
+select name,id
+from s_dept
+order by name,id desc;
+
+
+where				限制（条件）查询
+	1、逻辑运算符
+		=,>,<,>=,<=
+	2、
+		between and 	在某一个范围内查询
+		in(list)		在某个集合内查询
+		like			模糊查询
+			通配符
+				%		没有或多个				
+				_		一个
+			转义字符	
+				escape
+		is null			判断是否为空
+	3、
+		优先级：
+			not
+			and
+			or
+	
+查询薪水大于1000的所有员工的信息
+select last_name,id,salary
+from s_emp
+where salary>1000;
+
+查询last_name是Ngao的员工的信息
+select last_name,salary
+from s_emp
+where last_name='Ngao';
+
+查询薪水在1000~1500之间的员工信息
+select last_name,salary
+from s_emp
+where salary between 1000 and 1500;
+
+select last_name,salary
+from s_emp
+where salary in(1450,1400);
+
+查询41~45号部门的员工的姓名，编号
+select last_name,id,dept_id
+from s_emp
+where dept_id between 41 and 45;
+
+select last_name,id,dept_id
+from s_emp
+where dept_id in(41,45);
+
+查询名字中带有‘p’的员工的信息
+select last_name
+from s_emp
+where last_name like '%p%'
+
+查询名字长度是5的员工的信息
+select last_name
+from s_emp
+where last_name like '_____'
+
+
+select last_name
+from s_emp
+where length(last_name)=5;
+
+
+select table_name
+from user_tables
+where table_name like 'S_a%' escape 'a';
+
+查询所有没用提成的员工的姓名
+select last_name,commission_pct
+from s_emp
+where commission_pct is null;
+
+查询45号部门中薪水大于1200的员工的姓名
+select last_name,dept_id,salary
+from s_emp
+where dept_id=45
+and salary>1200;
+
+查询45号部门或者薪水大于1200的员工的姓名
+select last_name,dept_id,salary
+from s_emp
+where dept_id=45
+or salary>1200;
+
+查询 44号中工资大于1000的员工
+	或 42号部门的员工
+	的姓名，薪水，部门编号
+	
+SELECT	last_name, salary, dept_id
+FROM 	s_emp
+WHERE	salary >= 1000
+AND	dept_id = 44
+OR	dept_id = 42;
+
+
+select		3
+from 		1
+where		2 
+order by 	4
+
+select last_name name
+from s_emp
+where name='Ngao';
+
+---------------------------------------
+ch03
+单值函数
+
+function_name(args)
+
+dual:哑表
+
+字符
+	LOWER		将字符转换为小写
+	UPPER		将字符转换为大写
+	INITCAP		将字符转换为首字母大写，其余小写
+	CONCAT		拼接字符串
+	SUBSTR		求子串
+	LENGTH		求长度
+	NVL			处理空值
+
+查询名字中带有‘p’的员工的信息
+select last_name
+from s_emp
+where lower(last_name) like '%p%'
+
+数字
+	ROUND		四舍五入
+	TRUNC		只舍不入
+	MOD			求模
+日期
+	MONTHS_BETWEEN		在某两个日期之间相差几个月
+	ADD_MONTHS			在某个日期上加n个月
+	NEXT_DAY			求某个日期的下个星期几是哪一天
+	LAST_DAY	        求某个日期所在月的最后一天 
+	ROUND	          	对日期类型的数据进行取舍
+	TRUNC				对日期类型的数据进行舍
+	
+	sysdate
+	
+	round()
+		month:按15号取舍
+		year:按6月取舍
+	
+	*round,trunc
+		使用时必须使用to_date函数对字符串转换
+		
+		
+转换函数
+	to_char
+	to_number
+	to_date
+	
+	
+	dd-mm-yy
+	
+	yy 12    2012
+	   49	 1949
+	   
+	   
+	千年虫：
+		yy    91
+			  00,01
+		rr
+			00~49   20+
+			50~99	19+
+			
+----------------------------------------
+ch04 
+多表查询
+Equijoin			等连接
+Non-equijoin		不等连接
+Outer join			外连接
+Self join			自连接
+Set operators		
+
+等连接：
+	将多张表通过等号连接
+	
+	n张表进行多表查询，至少需要n-1条限制语句
+	
+	避免笛卡尔积现象
+	
+查询41号部门的员工的姓名，部门名称，地区名称
+select e.last_name,d.name,r.name
+from s_emp e,s_dept d,s_region r
+where e.dept_id=d.id
+and d.region_id=r.id
+and dept_id=41;
+
+查询所在部门名称中包含sa的员工的薪水
+select e.salary,d.name
+from s_emp e,s_dept d
+where e.dept_id=d.id
+and lower(d.name) like '%sa%';
+
+查询欧洲销售部门的薪水在1000到2000之间的
+员工的名字
+select e.last_name,e.salary,d.name
+from s_emp e,s_dept d,s_region r
+where e.dept_id=d.id
+and e.salary between 1000 and 2000
+and r.name='Europe'
+and d.region_id=r.id;
+and d.name='Sales';
+
+查询部门名称是5位
+且该部门员工的薪水不等于1500的员工薪水
+并将员工薪水降序排列
+select e.last_name,e.salary,d.name
+from s_emp e,s_dept d
+where e.dept_id=d.id
+and salary!=1500
+and length(d.name)=5
+order by salary desc;
+
+不等连接
+	将多张表 不使用等号 连接起来
+create table s_grade(
+		id number(7) primary key,
+		grade varchar2(10),
+		minsal number(4),
+		maxsal number(4)
+);
+insert into s_grade values
+	(1,'蓝领',0,1000);
+insert into s_grade values
+	(2,'白领',1001,1500);
+insert into s_grade values
+	(3,'金领',1501,2000);
+commit;	
+
+查询所有员工的姓名和等级
+select e.last_name,g.grade
+from s_emp e,s_grade g
+where e.salary between g.minsal and g.maxsal;
+
+
+外连接
+insert into s_emp values(999,'briup',
+null,null,null,null,null,null,null,
+null,null);
+
+commit;
+
+查询所有员工的姓名，部门名称
+select e.last_name,d.name
+from s_emp e,s_dept d
+where e.dept_id=d.id(+);
+
+用法：
+	哪边数据少，在那边写+
+	
+SELECT	e.last_name, e.id, c.name
+FROM	s_emp e, s_customer c
+WHERE	e.id(+)  = c.sales_rep_id
+ORDER BY	e.id;
+
+自连接
+查询所有员工的姓名及其经理的姓名
+select worker.last_name,manager.last_name
+from s_emp worker,s_emp manager
+where worker.manager_id=manager.id;
+
+
+Set operators
+	
+	
+rownum:伪列
+本身的值是1
+可以小于任何的正整数
+不能大于任何的正整数
+
+-----------------------------------------
+ch05
+1、组函数
+AVG()			求平均值		
+COUNT()			统计，计数
+MAX()			求最大值
+MIN()			求最小值
+SUM() 			求和
+	
+	
+查询所有员工的最大薪水，最小薪水，平均薪水
+select max(salary),min(salary),avg(salary)
+from s_emp;
+查询41号部门的人数，薪水总和
+select count(id),sum(salary)
+from s_emp
+where dept_id=41;
+
+2、分组查询
+group by			对限制语句处理后的结果进行进一步的分组
+查询每个部门的人数
+select count(id),dept_id
+from s_emp
+group by dept_id;
+
+查询平均薪水在1500以上的部门的员工人数
+select count(id)
+from s_emp
+group by dept_id
+having avg(salary)>1500
+
+查询各部门的部门名称和员工数
+select d.name,count(e.id)
+from s_emp e,s_dept d
+where e.dept_id=d.id
+group by e.dept_id,d.name;
+
+查询平均薪水大于1500的各部门各职位的
+	平均薪水,最大薪水,职位名称
+select avg(salary),max(salary),title,dept_id
+from s_emp
+group by dept_id,title
+having avg(salary)>1500;
+
+查询总薪水大于5000
+并且职位名字不包含vp的职位的平均薪水，
+并对其降序排列
+select avg(salary),title
+from s_emp
+where lower(title) not like '%vp%'
+group by title
+having sum(salary)>5000
+order by avg(salary) desc;
+	
+	
+*组函数不允许在where中使用
+*在select子句中出现的任何非组函数列，
+	都必须在group by作为分组依据
+
+select		5
+from		1
+where		2
+group by 	3
+having		4
+order by	6
+
+briup_students
+姓名		班级		生源学校
+-----------------------------------------
+ch06
+子查询
+1、条件不明确
+查询(Ngao所在部门)的所用员工姓名,薪水
+select last_name,salary
+from s_emp
+where dept_id=(
+	select dept_id
+	from s_emp
+	where last_name='Ngao'
+);
+查询工资大于Chang的所有员工的编号和姓名
+select id,last_name
+from s_emp
+where salary>(
+	select salary 
+	from s_emp
+	where last_name='Chang'
+);
+
+查询工资小于平均薪水的员工的编号和姓名
+select id,last_name
+from s_emp
+where salary<(
+	select avg(salary)
+	from s_emp
+);
+
+查询Chang所在部门的部门名称
+	或者地区编号为2的部门的名称
+select name
+from s_dept
+where id=(
+	select dept_id
+	from s_emp
+	where last_name='Chang'
+)
+or region_id=2;
+	
+查询工资在41号部门最大工资和最小工资之间的
+员工的工资
+select salary
+from s_emp
+where salary between (
+	select min(salary)
+	from s_emp
+	where dept_id=41
+) and (
+	select max(salary)
+	from s_emp
+	where dept_id=41
+);
+
+查询部门平均薪水大于32号部门的平均薪水
+的部门的编号
+select dept_id
+from s_emp
+group by dept_id
+having avg(salary)>(
+	select avg(salary)
+	from s_emp
+	where dept_id=32
+);
+
+查询工资大于smith所在部门平均工资的员工
+的id和名字
+select id,last_name
+from s_emp
+where salary>(
+	select avg(salary)
+	from s_emp
+	where dept_id=(
+		select dept_id
+		from s_emp
+		where lower(last_name)='smith'
+	)
+);
+2、表不明确
+查询部门平均工资最高的部门编号
+select dept_id
+from (
+	select avg(salary) avg_sal,dept_id
+	from s_emp
+	group by dept_id
+)
+where avg_sal=(
+	select max(avg_sal)
+	from (
+		select avg(salary) avg_sal,dept_id
+		from s_emp
+		group by dept_id
+	)
+);
+
+--------------------------------------
+ch08
+数据建模
+建立一套完整的表的步骤
+1、需求分析
+	1）抽象实体
+		域实体、行为实体
+	2）提炼属性
+	3）建立关系
+		(1)一对一、一对多、多对多
+		某一个时刻：时效性
+		使用桥表将多对多的关系简化为一对多的关系
+		(2)maybe/mustbe			需求
+		(3)主外键的关系
+2、设计ER模型图
+# 唯一    
+* 非空   
+o 任意
+
+主键：#*
+外键：一对一的关系，外键可以建立在任意一边
+	  一对多的关系，外键建立在多的那边
+3、建立文档（数据字典）
+4、建表
+5、测试，产品化
+
+联合主键
+order		item
+1			1
+			2
+			3
+2			1
+			2
+			3	
+			
+范式
+一范式：所用的属性必须是单值  
+二范式：每个表里必须有且只有一个主键  
+三范式：非主键列之间不能存在依赖关系
+
+-------------------------------------------
+ch09
+建表
+CREATE TABLE [schema.]table
+		(column datatype [DEFAULT expr] 
+				[column_constraint], 
+		...
+	 	  [table_constraint]);
+		  
+		  
+schema:用户集群，用户名
+dba
+create table briup.tableName
+
+datatype:
+字符
+	char
+	varchar
+	varchar2
+	char(10)  varchar2(10)
+	char   			varchar/varchar2
+	固定长度		可变长度
+	hello-----		hello
+	效率高			效率低
+数字
+	number(7)	7位
+	number(5,2)	总长5位，2位小数
+日期
+	date
+
+default
+默认值	default 2
+
+约束：
+列级约束	写在列最后
+表级约束	写在所有的列全部完成之后
+
+NOT NULL		非空
+UNIQUE			唯一
+PRIMARY KEY		主键
+FOREIGN KEY		外键
+CHECK			检测
+
+列级约束
+create table a(
+	id number(7) constraint a_id_pk 
+		primary key,
+	name varchar2(10) constraint a_name_nn 
+		not null,
+	phone number(11) constraint a_phone_uk
+		unique,
+	age number(2) default 0,
+	gender varchar2(7) constraint a_gender_ck 
+		check (gender in('male','female'))
+);
+
+表级约束
+create table a(
+	id number(7),
+	name varchar2(10) constraint a_name_nn 
+		not null,
+	phone number(11),
+	age number(2) default 0,
+	gender varchar2(7),
+	constraint a_id_name_pk2 
+		primary key(id,name),
+	constraint a_phone_uk unique(phone),
+	constraint a_gender_ck 
+		check (gender in('male','female'))
+);
+
+表级约束：
+	用来定义联合主键、联合外键、联合唯一键
+非空不能使用表级约束
+
+
+
+
+drop table a;
+
+select constraint_name,constraint_type
+from user_constraints
+where table_name='A';
+
+
+外键
+列级约束
+create table b(
+	id number(7),
+	a_id number(7) constraint b_a_id_fk
+		references a(id)
+);
+表级约束
+create table b(
+	id number(7),
+	a_id number(7),
+	constraint b_a_id_fk foreign key(a_id) 
+		references a(id)
+);
+
+
+PRIMARY KEY		主键
+列级约束
+	colName datetype 
+		constraint tableName_colName_pk
+		primary key
+表级约束
+	constraint tableName_colName_pk 
+		primary key(colName,colName,...)
+
+FOREIGN KEY		外键
+列级约束
+	colName datetype 
+		constraint tableName_colName_fk
+		references tableName(colName)
+表级约束
+	constraint tableName_colName_fk
+		foreign key(colName,...)
+		references tableName(colName,...)
+
+NOT NULL		非空
+列级约束
+	colName datetype 
+		constraint tableName_colName_nn
+		not null
+
+UNIQUE			唯一
+列级约束
+	colName datetype 
+		constraint tableName_colName_uk
+		unique
+表级约束
+	constraint tableName_colName_uk
+		unique(colName)
+	
+CHECK			检测
+列级约束
+	colName datetype 
+		constraint tableName_colName_ck
+		check (colName in(list))
+表级约束
+	constraint tableName_colName_ck
+		check (colName in(list))
+
+-------------------------------------------
+ch11
+插入
+INSERT INTO	table [(column [, column...])]
+VALUES(value [, value...]);
+
+手动插入：
+insert into s_emp
+values(999,'briup',null,null,null,null,
+null,null,null,null,null,);
+
+insert into s_emp(id,last_name)
+values(999,'briup');
+
+自动插入
+insert into a
+select id,last_name from s_emp;
+
+更新/修改
+UPDATE	table
+SET	column = value [, column = value]
+[WHERE	condition];
+
+update a
+set name='yanys';
+where id=999;
+
+删除
+DELETE [FROM] table
+[WHERE	condition];
+
+delete a;
+where id=999;
+
+============
+事务
+事务是组合在一块的多个操作，
+这多个操作表现像一个不可分割的原子操作，
+要么同时成功，要么同时失败。
+通过事务确保数据的完整性。
+
+事务的四个特性（ACID）
+A：原子性，所有的操作是不可再分割的，
+	要么同时成功，要么同时失败。
+C: 一致性，一个事务的过程中，数据保持不变
+I: 隔离性，一个事务的过程中，
+	其他事务无法影响当前事务的内部过程
+D: 持久性，一个事务结束的情况下，
+	会将数据持久的保存起来
+	
+事务的开始
+	1、打开sqlplus
+	2、当前事务提交，意外着新的事务开始
+事务的结束
+	1、正常结束:commit;
+	2、正常退出sqlplus:exit
+	3、DDL，DCL自动提交事务
+	
+	
+	rollback:回滚
+	
+----------------------------------------
+ch10
+数据字典
+select table_name from dictionary;
+
+
+select table_name from user_tables;
+select constraint_name from user_constraints;
+
+---------------------------------------
+ch12
+操作列
+	增加列
+	ALTER TABLE table
+	ADD	(column datatype [DEFAULT expr][NOT NULL]
+		[, column datatype]...);
+
+	alter table a
+	add(phone varchar2(20) not null);
+	*只能增加非空约束
+	*在添加非空列的时候，表内不能有数据
+	
+	删除列
+	ALTER TABLE table
+	DROP COLUMN column;
+	
+	alter table a
+	drop column phone;
+	
+	修改列
+	ALTER TABLE table
+	MODIFY(column datatype [DEFAULT expr][NOT NULL]
+				[, column datatype]...);
+	
+	alter table a
+	modify(id number(8) not null);
+	
+	
+操作约束
+
+增加约束
+	ALTER TABLE	table
+		ADD [CONSTRAINT constraint] type (column);
+
+	alter table a
+		add constraint a_id_pk primary key (id);
+删除约束
+	ALTER TABLE	table
+		DROP CONSTRAINT constaint_name;
+		
+	alter table a
+		drop constraint a_id_pk;
+		
+失效约束
+	ALTER TABLE	table
+		DISABLE CONSTRAINT constaint_name;
+	
+生效约束
+	ALTER TABLE	table
+		ENABLE CONSTRAINT constaint_name;
+		
+其他操作
+
+删除表
+	DROP TABLE table [CASCADE CONSTRAINTS];
+	
+	cascade constraints:
+		级联删除，
+			再删除表的同时一并删除与之相关联的外键
+	
+create table b(
+	id number(7),
+	a_id number(7) constraint b_a_id_fk
+		references a(id)
+);
+	
+表重命名
+RENAME oldName TO newName;
+
+rename b to c;
+
+列重命名
+alter table tableName 
+	rename column columnName to newcolumnName
+	
+alter table a
+	rename column id to bianhao
+
+截断：
+TRUNCATE TABLE table_name;
+
+truncate table a;
+
+清空表内容
+	与delete区别
+	1、delete是可以回滚的，truncate不可以
+	2、truncate速度比delete要快
+
+------------------------------------------
+ch13
+序列：一组自动增加的、不重复的数字，设置主键
+CREATE SEQUENCE name
+	[INCREMENT BY n]
+	[START WITH n]
+	[{MAXVALUE n | NOMAXVALUE}]
+	[{MINVALUE n | NOMINVALUE}]
+	[{CYCLE | NOCYCLE}]
+	[{CACHE n | NOCACHE}]
+
+increment by	步长
+start with		起始值
+maxvalue		最大值
+minvalue		最小值
+cycle			循环（不推荐使用）
+cache			缓存
+
+create sequence seq
+increment by 1
+start with 1;
+
+nextval:下一个值
+currval:当前的值
+
+create sequence seq2
+maxvalue 5;
+
+ch15 索引（目录）
+数据量很庞大，而需求量很小的情况下
+2%~4%
+
+自动创建
+	主键约束、唯一约束，自动添加索引
+手动创建
+	CREATE INDEX indexName
+	ON table (column[, column]...);
+-------------------------------------
+ch14
+视图（虚表）view
+
+表相：虚拟表，镜像
+本质：sql语句
+
+简化操作
+隐藏数据
+
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view
+  [(alias[, alias]...)]
+AS subquery
+[WITH CHECK OPTION [CONSTRAINT constraint]]
+[WITH READ ONLY]
+
+or replace			替换,修改
+force|noforce		强制|不强制
+alias				别名
+with check option	对视图的操作
+						严格遵守where子句中的条件
+with read only		只读，只能查询，不能增删改
+
+						
+简单视图
+	可以进行DML
+复杂视图
+	子查询中涉及多表查询、函数、分组
+	复杂视图不可以进行DML
+
+						
+create or replace force view view1
+as
+select id
+from a
+where id>10
+with check option;
+
+insert into view1
+values(1000,'wukong');
+
+select id,last_name from s_emp;
+
+
+CREATE VIEW view2
+(name, minsal, maxsal, avgsal)
+AS SELECT	d.name, MIN(e.salary),
+MAX(e.salary), AVG(e.salary)
+FROM	s_emp e, s_dept d
+WHERE	e.dept_id = d.id
+GROUP BY 	d.name;
+
+
+drop table\sequence\index\view Name
+
+
+--------------------------------
+ch16
+resource：可以访问一些资源，比如增删改查等资源
+connect:普通用户可以连接的数据库
+dba:
+
+
+grant create view to briup
+
+
+
+
+
+
+

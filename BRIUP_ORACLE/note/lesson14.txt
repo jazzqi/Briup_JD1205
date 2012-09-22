@@ -1,0 +1,42 @@
+					Lesson 14
+1、视图
+	视图是一个或多个表的部分数据，它可以像表
+	一样进行CRUD(Create、Retrieve、Update、Delete)操作，
+	但没有具体的存储数据结构，它以一个select语句的形式存在
+	数据库中。
+	本质: 一条有名字的select语句
+	表现: 一到多张表的部分内容
+
+2、创建视图
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view
+ [(alias[, alias]...)]
+AS subquery        
+[WITH CHECK OPTION
+[CONSTRAINT constraint]]
+[WITH READ ONLY]
+  注: a) or replace: 如有相同名字的视图对象，替换。
+      b) force: 如subquery中源表不存在，先创建视图对像，这时视图对象虽创建，但不能正常使用
+	默认值为noforce,即源表不存在,不能正常创建视图。
+      c) with check option:表示可以进行插入、更新和删除操作，但应该满足WHERE子句的条件。
+      d) 视图的查询可以使用复杂的SELECT语法,包括连接/分组查询和子查询
+      e) 在没有WITH CHECK OPTION和WITH READ ONLY的情况下，查询中不能使用ORDER BY子句
+      f) 如果没有为WITH CHECK OPTION约束命名,系统会自动为之命名，形式为SYS_Cn		  	例: 创建一视图:
+               create or replace view a
+	       as 
+	       select id from s_emp
+               where id<9;
+      g) with read only: 只允许进行select操作。
+	注: 当对建立视图的那张真正的表进行修改(插入、更新和删除)后，
+	通过视图查看到的数据是修改以后的数据。
+3、视图的分类
+	1) 简单视图
+		数据来源于一个表，不包含函数以及进行分组，
+		可以进行DML操作;
+	2) 复杂视图
+		数据来源于多个表，包含函数以及进行分组，
+		不可以进行DML操作;   
+4、修改视图
+	创建视图的时候显式的加上or replace关键字
+
+5、删除视图
+	drop view view_name;

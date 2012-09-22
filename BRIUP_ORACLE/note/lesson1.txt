@@ -1,0 +1,52 @@
+配置Oracle:
+ 1) 打开命令终端切换到root用户 
+    su - root
+
+ 2) 切换到oracle用户
+    su - oracle
+
+ 3) 以oracle管理员身份进入oracle
+    sqlplus "/as sysdba"
+
+ 4) 启动oracle 
+      SQL>startup：
+      可以对数据库进行增删改查，
+      但是不能通过程序来访问
+
+      //停止oracle: shutdown
+
+ 5) 启动oracle监听器
+       先退出sqlplus:
+           exit
+       启动监听器:通过java程序访问数据库，对数据库进行增删改查
+           lsnrctl start
+	   lsnrctl status
+
+ 6) 创建新的用户
+	sqlplus "/as sysdba"
+	show user
+
+	create user briup identified by briup;
+	grant resource,connect to briup;
+
+	退出sqlplus  在sqlplus环境下输入exit回车即可
+	resource：可以访问一些资源，比如增删改查等资源
+	connect:普通用户可以连接的数据库
+ 7) 然后以briup用户登陆sqlplus
+
+        sqlplus briup/briup
+
+
+
+ 8) 修改当前得语言格式,默认为中文
+	alter session set nls_date_language=english;
+
+
+ 9) 执行脚本文件oracle1.sql
+	start d:/oracle1.sql  (start /home/briup/oracle1.sql)
+	或者
+	@d:/oracle1.sql
+
+ 10) 查看用户briup中的数据表
+     select table_name from user_tables;
+

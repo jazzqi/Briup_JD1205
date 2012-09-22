@@ -1,0 +1,138 @@
+				Lesson 4
+1、单表连接可以没有where子句，但多表查询一定要存在where子句
+	1) Where子句里的内容一定要是两表连接的内容
+	2) 有重复的列名一定要通过表名分隔,
+	建议重不重复都加上表名，可以大幅度地提高性能
+	
+2、标识不明确的列名
+	1) 在列名前使用表名限定列名
+	2) 使用表名能提高性能
+	3) 通过使用别名区分不同表中相同名字的列
+
+3、表的别名
+	1) 列的别名在select里定义, 表的别名在from里定义
+	2) 别名只在该语句内有用
+	3) 一旦给表创建了别名，标识列时只能通过表的别名，
+	而不能是表的真名，不能三心二意
+
+4、equijoin(等价连接)
+	两个表间的连接条件是通过"="建立
+
+5、non equijoin(不等价连接)
+	两个表间的连接条件不是通过"="号建立，
+	可以是"<"、"between and"、以及"like"等。总之不是"="号。
+
+6、outer join(外连接)
+	1) 左外连接(left outer join)等同于在"="右边加"+"，
+	用来显示"="左边表中未匹配的记录
+	2) 右外连接(rigth outer join)等同于在"="左边加"+"，
+	用来显示"="右边表中未匹配的记录
+	3) 外连接只能出现在表达式的一边
+	4) 包含外连接的条件不允许:
+   		a) 使用in 操作符
+  		b) 使用or操作符连接到另外一个条件
+
+	例子:
+	从s_emp和s_customer表中显示所有的销售代表的名字和
+	所有顾客的名字，甚至没有对应销售代表的顾客名字。
+ 	select e.last_name, e.id, c.name
+ 	from s_emp e,s_customer c
+ 	where e.id(+)=c.sales_rep_id
+	ORDER BY e.id;
+	或者采用标准的SQL(标准的用on, oracle用where)
+	select e.last_name, e.id, c.name
+ 	from  s_emp e right outer join s_customer c
+ 	on e.id = c.sales_rep_id
+	ORDER BY e.id;
+
+	select e.last_name, e.id, c.name
+ 	from s_customer c left outer join s_emp e
+ 	on e.id = c.sales_rep_id
+	ORDER BY e.id;
+
+	全连接(full outer join)从s_emp和s_customer表中查找所有没有销售代表的顾客和没有顾客的销售代表
+	select e.last_name, e.id, c.name
+ 	from s_emp e full outer join s_customer c
+ 	on e.id=c.sales_rep_id
+	ORDER BY e.id;
+
+	从s_customer和s_ord表中显示所有用户id、名字和用户订单id以及未下订单的所有用户
+	select c.id "customer_id",c.name "customer_name",o.id "order_id"
+	from s_customer c,s_ord o
+	where c.id=o.customer_id(+)
+
+	注意:不能写成where c.id(+)=o.customer_id(+)，全连接要像下面这样写
+	full join:
+		select e.title,e.dept_id "Dept_id",d.id "Dept_id"
+		from s_emp e full outer join s_dept d 
+		on e.dept_id=d.id
+
+7、self join(自连接)
+	从s_emp表中找出所有部门员工的工号、名字以及员工对应的部门经理的工号和名字
+	SELECT	worker.last_name||' works for '|| manager.last_name
+  	FROM	s_emp worker, s_emp manager
+  	WHERE	worker.manager_id = manager.id;
+
+	从s_emp表中找出所有员工信息(包括未分配进部门的员工)
+	select emp.id,emp.last_name,emp.manager_id,mgr.id manager_id,mgr.last_name
+	from s_emp emp,s_emp mgr
+	where emp.manager_id=mgr.id(+)
+
+8、操作符
+   1) union
+	union在进行表链接后会筛选掉重复的记录，所以在表链接后会对所产生的结果集进行排序运算，删除重复的记录再返回结果。
+
+   2) union all
+	union all将两个结果合并后就返回且不进行排序。这样，如果返回的两个结果集中有重复的数据，那么返回的结果集就会包含重复的数据。
+
+    例如: 
+       表1             表2
+	A               A
+	B		C
+	C		D
+
+     selet * from 表1 union selet * from 表2
+       结果
+         A
+         B
+         C
+         D
+
+     selet * from 表1 union all selet * from 表2
+       结果
+	A
+	B
+	C
+	A
+	C
+	D
+
+   3) minus
+	第一个结果集减去第二个结果集中的记录(在第一个也存在的记录)
+	例如:
+	 A表
+           ID   NAME   ADDRESS        TEL
+	   1    ABC     AAAA         123456
+           2    ABD     BBBB         123455
+           3    ABE     CCCCC        111111
+
+	B表
+           ID    NAME   ADDRESS      TEL
+            1    ABC     AAAC       123456
+            2    ABD     BBBB       123455
+
+	SELECT * FROM A
+	MINUS
+	SELECT * FROM B
+   结果:
+	1    ABC     AAAA        123456  
+	3    ABE     CCCCC        111111
+
+   注意: 两个表的数据类型应保持一致  
+
+   4) intersect
+	返回两个结果集的交集(返回两个查询中都出现的记录)
+
+   5) rownum
+       rownum是在查询到的结果集后加上去的，它总是从1开始.
+       对于Oracle的rownum，不支持>,>=,=,between...and(语法不会出现错误，但使用后查询不到任何记录)，只能用<、<=、!=或=1符号
