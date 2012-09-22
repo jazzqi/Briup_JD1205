@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- constant name="struts.i18n.encoding" value="utf-8" /-->
+    <!-- 
+    <package name="default" namespace="/" extends="struts-default">
+        <default-action-ref name="index" />
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+    </package>
+    -->
+    <include file="example.xml"/>
+    <package name="test" namespace="/test" extends="struts-default">
+    	<action name="test" class="com.briup.test.action.TestAction">
+    		<result>
+    			test.jsp
+    		</result>
+    	</action>
+    	<action name="conversion" class="com.briup.test.action.ConversionAction">
+    		<result>
+    			/login.jsp
+    		</result>
+    	</action>
+    </package>
+    <package name="default" namespace="/" extends="struts-default">
+      	<default-action-ref name="error"></default-action-ref>
+      	<global-results>
+      		<result name="error">
+      			/error.jsp
+      		</result>
+      	</global-results>
+     	<action name="error" class="com.briup.bbs.test.ErrorAction">
+    		<result name="error">
+    			/error.jsp
+    		</result>
+    	</action> 
+    </package>
+    <package name="member" namespace="/member" extends="struts-default">
+      	<default-action-ref name="error"></default-action-ref>
+      	<global-results>
+      		<result name="error">
+      			/error.jsp
+      		</result>
+      		<result name="input">
+    			/register.jsp
+    		</result>
+      	</global-results>
+     	<action name="error" class="com.briup.bbs.test.ErrorAction">
+    		<result name="error">
+    			/error.jsp
+    		</result>
+    	</action> 
+   		 <action name="member" class="com.briup.bbs.action.MemberAction">
+    		<result name="register_success">
+    			/member/register_success.jsp
+    		</result>
+    		<result name="register_failed">
+    			/member/register_failed.jsp
+    		</result>
+    		<result name="login_success">
+    			/member/login_success.jsp
+    		</result>
+    		<result name="login_failed">
+    			/member/login_failed.jsp
+    		</result>
+    		<result name="input">
+    			/register.jsp
+    		</result>
+    	</action>
+    	<action name="register" class="com.briup.bbs.action.MemberAction" method="register">
+    		<result name="register_success">
+    			/member/register_success.jsp
+    		</result>
+    		<result name="register_failed">
+    			/member/register_failed.jsp
+    		</result>
+    		<result name="input">
+    			/register.jsp
+    		</result>
+    	</action>
+    	<action name="login" class="com.briup.bbs.action.MemberAction" method="login">
+    		<result name="login_success">
+    			/member/login_success.jsp
+    		</result>
+    		<result name="login_failed">
+    			/member/login_failed.jsp
+    		</result>
+		</action>
+		<action name="*Action" class="com.briup.bbs.action.MemberAction" method="{1}">
+    		<result name="{1}_success" type="redirect">
+    			/member/{1}_success.jsp
+    		</result>
+    		<result name="{1}_failed" type="redirect">
+    			/member/{1}_failed.jsp
+    		</result>
+    		<result name="input">
+    			/register.jsp
+    		</result>
+    	</action>
+    </package>
+    <package name="post" namespace="/post" extends="struts-default">
+    	<interceptors>
+    		<!-- 使用自定义拦截器后，那么本包下的所有action将不被struts-default下的默认拦截器拦截 -->
+    		<interceptor name="loginInterceptor" class="com.briup.bbs.interceptor.LoginInterceptor"></interceptor>
+    		<interceptor-stack name="loginStack">
+    			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+    			<!-- 增加struts默认拦截器栈 -->
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+    	<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+       	<default-action-ref name="error"></default-action-ref>
+      	<global-results>
+      		<result name="error">
+      			/error.jsp
+      		</result>
+      		<result name="input">
+      			/login.jsp
+      		</result>
+      	</global-results>
+     	<action name="error" class="com.briup.bbs.test.ErrorAction">
+    		<result name="error">
+    			/error.jsp
+    		</result>
+    	</action> 
+    	<action name="addPost" class="com.briup.bbs.action.PostAction" method="addPost">
+    		<result name="add_post_success">
+    			add_post_success.jsp
+    		</result>
+    		<result name="add_post_failed">
+    			add_post_failed.jsp
+    		</result>
+    	</action>
+    	<action name="listPost" class="com.briup.bbs.action.PostAction" method="listPost">
+    		<result name="list_post_success">
+    			list_post_success.jsp
+    		</result>
+    		<result name="list_post_failed">
+    			list_post_failed.jsp
+    		</result>
+    	</action>
+    	<action name="listAllPost" class="com.briup.bbs.action.PostAction" method="listAllPost">
+    		<result name="list_post_success">
+    			list_post_success.jsp
+    		</result>
+    		<result name="list_post_failed">
+    			list_post_failed.jsp
+    		</result>
+    	</action>
+    	<action name="deletePost" class="com.briup.bbs.action.PostAction" method="deletePost">
+    		<result name="success" type="redirect">
+    			${currentListType}
+    		</result>
+    	</action>
+    	<action name="modifyPost" class="com.briup.bbs.action.PostAction" method="modifyPost">
+    		<result name="success">modify_post.jsp</result>
+    	</action>
+    	<action name="savePost" class="com.briup.bbs.action.PostAction" method="savePost">
+    		<result name="success" type="redirect">
+    			viewPost.action?postId=${postId}
+    		</result>
+    	</action>
+    	<action name="viewPost" class="com.briup.bbs.action.PostAction" method="viewPost">
+    		<result name="success" type="dispatcher">
+    			view_post.jsp
+    		</result>
+    	</action>
+    </package>
+    <!-- Add packages here -->
+</struts>

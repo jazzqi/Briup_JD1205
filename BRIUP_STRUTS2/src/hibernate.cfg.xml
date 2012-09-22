@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/hibernate</property> -->
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:orcl</property>
+        <property name="connection.username">struts</property>
+        <property name="connection.password">struts</property>
+        <!-- JDBC connection pool (use the built-in) -->
+        <!-- <property name="connection.pool_size">1</property> -->
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.OracleDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <!-- <property name="current_session_context_class">thread</property> -->
+		<property name="current_session_context_class">thread</property>
+        <!-- Disable the second-level cache  -->
+         <!-- <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> -->
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property> 
+
+        <!-- 
+        <mapping resource="com/model/Student.hbm.xml"/>
+		<mapping class="com.model.Teacher"/> 
+		<mapping resource="com/one2one_uni_fk/Husband.hbm.xml"/>
+		<mapping class="com.one2one_uni_fk.HusBand"/>
+		<mapping class="com.one2one_uni_fk.Wife"/>
+		<mapping class="com.one2many_bi.Customer"/>
+		<mapping class="com.one2many_bi.Order"/>
+		<mapping resource="com/one2many_bi/Customer.hbm.xml"/>
+		<mapping resource="com/one2many_bi/Order.hbm.xml"/>
+		<mapping class="com.one2one.HusBand"/> 
+		<mapping class="com.one2one.Wife"/>
+		
+		-->
+		<mapping class="com.briup.bbs.pojo.Member"/> 
+		<mapping class="com.briup.bbs.pojo.Topic"/>		
+		<mapping class="com.briup.bbs.pojo.Post"/>		
+    </session-factory>
+
+</hibernate-configuration>
