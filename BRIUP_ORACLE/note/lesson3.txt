@@ -1,74 +1,74 @@
-				Lesson 3
-1¡¢´¦Àí×Ö·û´®µÄµ¥ÐÐº¯Êý
-	1) LOWER:×ª»»³ÉÐ¡Ð´
-	2) UPPER:×ª»»³É´óÐ´
-	3) INITCAP:Ê××ÖÄ¸±ä³É´óÐ´£¬ÆäÓà¶¼Ð¡Ð´
-	4) CONCAT:×Ö·û´®µÄÁ¬½Ó
-	5) SUBSTR(str,start,end):×Ö·û´®µÄ½ØÈ¡
-	6) LENGTH:Çó×Ö·û´®µÄ³¤¶È
+ï»¿				Lesson 3
+1ã€å¤„ç†å­—ç¬¦ä¸²çš„å•è¡Œå‡½æ•°
+	1) LOWER:è½¬æ¢æˆå°å†™
+	2) UPPER:è½¬æ¢æˆå¤§å†™
+	3) INITCAP:é¦–å­—æ¯å˜æˆå¤§å†™ï¼Œå…¶ä½™éƒ½å°å†™
+	4) CONCAT:å­—ç¬¦ä¸²çš„è¿žæŽ¥
+	5) SUBSTR(str,start,end):å­—ç¬¦ä¸²çš„æˆªå–
+	6) LENGTH:æ±‚å­—ç¬¦ä¸²çš„é•¿åº¦
 
-2¡¢´¦ÀíÊýÖµµÄµ¥ÐÐº¯Êý
-	1) ROUND:ËÄÉáÎåÈë
-	2) TRUNC:½ØÈ¡£¬²»½øÐÐËÄÉáÎåÈë
-	3) MOD:È¡Óà
+2ã€å¤„ç†æ•°å€¼çš„å•è¡Œå‡½æ•°
+	1) ROUND:å››èˆäº”å…¥
+	2) TRUNC:æˆªå–ï¼Œä¸è¿›è¡Œå››èˆäº”å…¥
+	3) MOD:å–ä½™
 
-3¡¢´¦ÀíÈÕÆÚµÄµ¥ÐÐº¯Êý
-	1) MONTHS_BETWEEN(date1,date2):Á½¸öÈÕÆÚÖ®¼äµÄÔÂÊý
-	2) ADD_MONTHS(date,n):ÔÚÖ¸¶¨ÈÕÆÚÉÏÔö¼ÓÔÂÊý
-	3) NEXT_DAY(date,'friday'):Ö¸¶¨ÈÕÆÚµÄÏÂÒ»¸öÐÇÆÚÎåÊÇÄÄÌì
-	4) LAST_DAY(date):Ö¸¶¨ÈÕÆÚµÄ×îºóÒ»Ìì
+3ã€å¤„ç†æ—¥æœŸçš„å•è¡Œå‡½æ•°
+	1) MONTHS_BETWEEN(date1,date2):ä¸¤ä¸ªæ—¥æœŸä¹‹é—´çš„æœˆæ•°
+	2) ADD_MONTHS(date,n):åœ¨æŒ‡å®šæ—¥æœŸä¸Šå¢žåŠ æœˆæ•°
+	3) NEXT_DAY(date,'friday'):æŒ‡å®šæ—¥æœŸçš„ä¸‹ä¸€ä¸ªæ˜ŸæœŸäº”æ˜¯å“ªå¤©
+	4) LAST_DAY(date):æŒ‡å®šæ—¥æœŸçš„æœ€åŽä¸€å¤©
 
-	ÀýÈç:select MONTHS_BETWEEN('3-feb-2007','3-may-2007') from dual;
-	»ò   select MONTHS_BETWEEN(to_date('3-feb-2007'),to_date('3-may-2007')) from dual;
+	ä¾‹å¦‚:select MONTHS_BETWEEN('3-feb-2007','3-may-2007') from dual;
+	æˆ–   select MONTHS_BETWEEN(to_date('3-feb-2007'),to_date('3-may-2007')) from dual;
 
-	5) ROUND(date,'year'):¶ÔÖ¸¶¨ÈÕÆÚ½øÐÐËÄÉáÎåÈë£¬·ê16ÈÕÍùÔÂ·Ý½øÒ»,·ê7ÔÂÍùÄê·Ý½øÒ»
-	6) TRUNC(date,'year'):¶ÔÖ¸¶¨ÈÕÆÚ½øÐÐ½ØÈ¡
+	5) ROUND(date,'year'):å¯¹æŒ‡å®šæ—¥æœŸè¿›è¡Œå››èˆäº”å…¥ï¼Œé€¢16æ—¥å¾€æœˆä»½è¿›ä¸€,é€¢7æœˆå¾€å¹´ä»½è¿›ä¸€
+	6) TRUNC(date,'year'):å¯¹æŒ‡å®šæ—¥æœŸè¿›è¡Œæˆªå–
 
-	×¢: 5)ºÍ6)±ØÐë¼Óto_date()
+	æ³¨: 5)å’Œ6)å¿…é¡»åŠ to_date()
 	    select round(to_date('2-mar-2007'),'year') from dual;
 
 	    
-4¡¢×ª»»º¯Êý
-	1) to_char:½«ÈÕÆÚ»òÕßÊýÖµ×ª»»³É×Ö·û´®
+4ã€è½¬æ¢å‡½æ•°
+	1) to_char:å°†æ—¥æœŸæˆ–è€…æ•°å€¼è½¬æ¢æˆå­—ç¬¦ä¸²
 	    a) to_char(date,['fmt'])
-		.Ê¹ÓÃformat¶¨ÖÆÈÕÆÚµÄ¸ñÊ½
-		.Ê¹ÓÃfmÀ´È¥³ý¿Õ¸ñ»òÕß0
-		.Ê¹ÓÃ¶ººÅ·Ö¸ô
+		.ä½¿ç”¨formatå®šåˆ¶æ—¥æœŸçš„æ ¼å¼
+		.ä½¿ç”¨fmæ¥åŽ»é™¤ç©ºæ ¼æˆ–è€…0
+		.ä½¿ç”¨é€—å·åˆ†éš”
 
-		.ÈÕÆÚ¸ñÊ½Ä£ÐÍµÄÔªËØ
-			year: Ó¢ÎÄÄê·Ý(ÀýÈç:two thousand seven(2007Äê))
-			month: Ó¢ÎÄÔÂ·Ý(ÀýÈç:march(3ÔÂ))
-			mon:Ó¢ÎÄÔÂ·ÝµÄËõÐ´(ÀýÈç:mar)
-			DAY: ÐÇÆÚ¼¸µÄÓ¢ÎÄµ¥´Ê(ÀýÈç:monday(ÐÇÆÚÒ»))
-			DY: ÐÇÆÚ¼¸µÄÇ°Èý¸ö×ÖÄ¸(ÀýÈç:mon)
-			ddsp:Ó¢ÎÄÆ´Ð´µÄÌì(ÀýÈç:five(5ºÅ))
-			ddspth:Ó¢ÎÄÆ´Ð´µÄµÚ¼¸Ìì(ÀýÈç:fifth(µÚÎåÌì))
-			d: Ò»¸öÐÇÆÚµÄÊý×Ö±íÊ¾£¬ÐÇÆÚÌìÎª1£¬ÐÇÆÚÁùÎª7
-			dd: Ò»¸öÔÂµÄµÚ¼¸Ìì
-			ddd: Ò»ÄêµÄµÚ¼¸Ìì
-			yyyy:ËÄÎ»ÊýµÄÄê
-			mm:¶þÎ»ÊýµÄÔÂ
-			hh24:24Ð¡Ê±ÖÆ
-			mi:·ÖÖÓ
-			ss:Ãë
-			AM:ÉÏÎç
-			PM:ÏÂÎç
-	ÀýÈç: select to_char(to_date('2-mar-2007'),'year-month-day') from dual;
+		.æ—¥æœŸæ ¼å¼æ¨¡åž‹çš„å…ƒç´ 
+			year: è‹±æ–‡å¹´ä»½(ä¾‹å¦‚:two thousand seven(2007å¹´))
+			month: è‹±æ–‡æœˆä»½(ä¾‹å¦‚:march(3æœˆ))
+			mon:è‹±æ–‡æœˆä»½çš„ç¼©å†™(ä¾‹å¦‚:mar)
+			DAY: æ˜ŸæœŸå‡ çš„è‹±æ–‡å•è¯(ä¾‹å¦‚:monday(æ˜ŸæœŸä¸€))
+			DY: æ˜ŸæœŸå‡ çš„å‰ä¸‰ä¸ªå­—æ¯(ä¾‹å¦‚:mon)
+			ddsp:è‹±æ–‡æ‹¼å†™çš„å¤©(ä¾‹å¦‚:five(5å·))
+			ddspth:è‹±æ–‡æ‹¼å†™çš„ç¬¬å‡ å¤©(ä¾‹å¦‚:fifth(ç¬¬äº”å¤©))
+			d: ä¸€ä¸ªæ˜ŸæœŸçš„æ•°å­—è¡¨ç¤ºï¼Œæ˜ŸæœŸå¤©ä¸º1ï¼Œæ˜ŸæœŸå…­ä¸º7
+			dd: ä¸€ä¸ªæœˆçš„ç¬¬å‡ å¤©
+			ddd: ä¸€å¹´çš„ç¬¬å‡ å¤©
+			yyyy:å››ä½æ•°çš„å¹´
+			mm:äºŒä½æ•°çš„æœˆ
+			hh24:24å°æ—¶åˆ¶
+			mi:åˆ†é’Ÿ
+			ss:ç§’
+			AM:ä¸Šåˆ
+			PM:ä¸‹åˆ
+	ä¾‹å¦‚: select to_char(to_date('2-mar-2007'),'year-month-day') from dual;
 
-		×¢Òâ:select to_char('2-mar-2007') from dual;
-			Êä³ö 2-mar-2007(Êä³ö×Ö·û´®)	
+		æ³¨æ„:select to_char('2-mar-2007') from dual;
+			è¾“å‡º 2-mar-2007(è¾“å‡ºå­—ç¬¦ä¸²)	
 		     select to_char(to_date('2-mar-2007')) from dual;
-			Êä³ö 02-MAR-07(Êä³öÈÕÆÚ)
+			è¾“å‡º 02-MAR-07(è¾“å‡ºæ—¥æœŸ)
 
 	   b) to_char(number,['fmt'])
 		select to_char(2232) from dual;
-			¿ÉÒÔ²»¶¨ÒåÈÎºÎÊý×ÖµÄ¸ñÊ½
+			å¯ä»¥ä¸å®šä¹‰ä»»ä½•æ•°å­—çš„æ ¼å¼
 		select to_char(34324.454353,'fm$999,999.999') from dual;
-			¶¨Òå¸ñÊ½£¬fmÈ¥³ýÇ°Ãæ¶àÓàµÄ¿Õ¸ñ
+			å®šä¹‰æ ¼å¼ï¼ŒfmåŽ»é™¤å‰é¢å¤šä½™çš„ç©ºæ ¼
 
-		0:Ç¿ÖÆÏÔÊ¾0À´Ìî³äÎ´ÂúÊý¾ÝÎ»Êý
+		0:å¼ºåˆ¶æ˜¾ç¤º0æ¥å¡«å……æœªæ»¡æ•°æ®ä½æ•°
 
-		LµÄÓÃ·¨£º 
+		Lçš„ç”¨æ³•ï¼š 
 			SQL> select to_char(123456.78,'l0,000,000.00')
   			  2  from dual;
 
@@ -76,22 +76,22 @@
 			-----------------------
         		RMB0,123,456.78
 		
-		×¢Òâ£ºÈç¹û³öÏÖ#########£¬ÄÇÊÇÒòÎªÐ¡Êýµã×ó±ß¶¨ÖÆµÄÊý×Ö¸öÊý²»¹»
+		æ³¨æ„ï¼šå¦‚æžœå‡ºçŽ°#########ï¼Œé‚£æ˜¯å› ä¸ºå°æ•°ç‚¹å·¦è¾¹å®šåˆ¶çš„æ•°å­—ä¸ªæ•°ä¸å¤Ÿ
 
 
-	2) to_number:½«Ò»¸öÊýÖµ×Ö·û´®×ª»»³ÉÊýÖµ
-		TO_NUMBER(char):ÀýÈçto_number('34543')
+	2) to_number:å°†ä¸€ä¸ªæ•°å€¼å­—ç¬¦ä¸²è½¬æ¢æˆæ•°å€¼
+		TO_NUMBER(char):ä¾‹å¦‚to_number('34543')
 
-	3) to_date:½«Ò»¸öÈÕÆÚ×Ö·û´®×ª»»³ÉÈÕÆÚ
-	     .TO_DATE(char, ['fmt']):ÀýÈç  
+	3) to_date:å°†ä¸€ä¸ªæ—¥æœŸå­—ç¬¦ä¸²è½¬æ¢æˆæ—¥æœŸ
+	     .TO_DATE(char, ['fmt']):ä¾‹å¦‚  
 		select TO_DATE ('10-September-1992','dd-Month-YYYY') from dual
-	     .Ê¹ÓÃformatµÄÔªËØ¸ñÊ½
+	     .ä½¿ç”¨formatçš„å…ƒç´ æ ¼å¼
 
-5¡¢RRµÄÈÕÆÚ¸ñÊ½
-	1) RR:0-49´ú±í±¾ÊÀ¼Í,50¼°ÒÔÉÏ´ú±íÉÏÊÀ¼Í(Ä¬ÈÏ)
-	2) yy:´ú±íºÍµ±Ç°Ê±¼äËù´¦µÄÍ¬Ò»¸öÊÀ¼Í
+5ã€RRçš„æ—¥æœŸæ ¼å¼
+	1) RR:0-49ä»£è¡¨æœ¬ä¸–çºª,50åŠä»¥ä¸Šä»£è¡¨ä¸Šä¸–çºª(é»˜è®¤)
+	2) yy:ä»£è¡¨å’Œå½“å‰æ—¶é—´æ‰€å¤„çš„åŒä¸€ä¸ªä¸–çºª
 
-	ÀýÈç:
+	ä¾‹å¦‚:
 	   create table hu(
 		id number(3),
 		now date

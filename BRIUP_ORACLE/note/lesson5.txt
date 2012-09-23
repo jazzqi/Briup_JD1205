@@ -1,57 +1,57 @@
-					Lesson 5
-1¡¢×éº¯Êý
-	1) ×÷ÓÃÓÚÐÐ¼¯µÄ×éº¯Êý¸øÁËÃ¿×éÒ»¸ö½á¹û(½«Èô¸ÉÐÐ·Ö³É¼¸¸ö×é)
-	2) ×éº¯Êý³öÏÖÓÚselectÁÐºÍhaving×Ó¾äÖÐ
-	3) ÔÚselectÉùÃ÷µÄgroup by×Ó¾ä½«ÐÐÏ¸·ÖÎª¸üÐ¡µÄ×é£¬
-	Having×Ó¾äÓÃÀ´ÏÞÖÆ½á¹û¼¯
+ï»¿					Lesson 5
+1ã€ç»„å‡½æ•°
+	1) ä½œç”¨äºŽè¡Œé›†çš„ç»„å‡½æ•°ç»™äº†æ¯ç»„ä¸€ä¸ªç»“æžœ(å°†è‹¥å¹²è¡Œåˆ†æˆå‡ ä¸ªç»„)
+	2) ç»„å‡½æ•°å‡ºçŽ°äºŽselectåˆ—å’Œhavingå­å¥ä¸­
+	3) åœ¨selectå£°æ˜Žçš„group byå­å¥å°†è¡Œç»†åˆ†ä¸ºæ›´å°çš„ç»„ï¼Œ
+	Havingå­å¥ç”¨æ¥é™åˆ¶ç»“æžœé›†
 
-2¡¢×éº¯Êý½éÉÜ
-	AVG (DISTINCT|ALL|n): ÇóÁÐµÄÆ½¾ù
-	COUNT (DISTINCT|ALL|expr|*): Í³¼ÆÐÐ(¼ÇÂ¼Êý)
-	MAX (DISTINCT|ALL|expr): ÇóÁÐµÄ×î´óÖµ
-	MIN (DISTINCT|ALL|expr): ÇóÁÐµÄ×îÐ¡Öµ
-	SUM (DISTINCT|ALL|n): ÇóÁÐµÄ×ÜºÍ
-	Í³¼ÆÑ§Ê¹ÓÃ
-	VARIANCE (DISTINCT|ALL|n)ÀëÉ¢²î
-	STDDEV (DISTINCT|ALL|n)±ê×¼²î
+2ã€ç»„å‡½æ•°ä»‹ç»
+	AVG (DISTINCT|ALL|n): æ±‚åˆ—çš„å¹³å‡
+	COUNT (DISTINCT|ALL|expr|*): ç»Ÿè®¡è¡Œ(è®°å½•æ•°)
+	MAX (DISTINCT|ALL|expr): æ±‚åˆ—çš„æœ€å¤§å€¼
+	MIN (DISTINCT|ALL|expr): æ±‚åˆ—çš„æœ€å°å€¼
+	SUM (DISTINCT|ALL|n): æ±‚åˆ—çš„æ€»å’Œ
+	ç»Ÿè®¡å­¦ä½¿ç”¨
+	VARIANCE (DISTINCT|ALL|n)ç¦»æ•£å·®
+	STDDEV (DISTINCT|ALL|n)æ ‡å‡†å·®
 	
-	Distinct: Î¨Ò»Öµ(²»°üÀ¨ÖØ¸´Öµ)
-	ALL: ËùÓÐÖµ(°üÀ¨ÖØ¸´Öµ)£¬²»°üÀ¨¿ÕÖµ
-	N: ´ú±íËù²Ù×÷µÄÁÐÎªÊýÖµÀàÐÍ
-	Expr: ´ú±íËù²Ù×÷µÄÁÐ¿ÉÎªÈÎÒâÊý¾ÝÀàÐÍ
+	Distinct: å”¯ä¸€å€¼(ä¸åŒ…æ‹¬é‡å¤å€¼)
+	ALL: æ‰€æœ‰å€¼(åŒ…æ‹¬é‡å¤å€¼)ï¼Œä¸åŒ…æ‹¬ç©ºå€¼
+	N: ä»£è¡¨æ‰€æ“ä½œçš„åˆ—ä¸ºæ•°å€¼ç±»åž‹
+	Expr: ä»£è¡¨æ‰€æ“ä½œçš„åˆ—å¯ä¸ºä»»æ„æ•°æ®ç±»åž‹
 
-	ÀýÈç:
+	ä¾‹å¦‚:
 	select avg(all salary) from s_emp;
 	select avg(distinct salary) from s_emp;
 	
-	×¢Òâ:
-	1) count(*):Í³¼ÆÐÐ(°üÀ¨¿ÕÐÐ)
-	2) count(column):²»¼ÆËã¿ÕµÄÁÐÖµ£¬ÆäËü×éº¯Êý¶¼²»¶Ô¿ÕÖµ½øÐÐ¼ÆËã
-	3) Ö»ÄÜ²Ù×÷ÊýÖµÀàÐÍÁÐ: avg()ºÍsum()
-        4) ÄÜ²Ù×÷×Ö·û´®¡¢ÈÕÆÚÒÔ¼°ÊýÖµÀàÐÍÁÐ: count()¡¢max()ºÍmin()
+	æ³¨æ„:
+	1) count(*):ç»Ÿè®¡è¡Œ(åŒ…æ‹¬ç©ºè¡Œ)
+	2) count(column):ä¸è®¡ç®—ç©ºçš„åˆ—å€¼ï¼Œå…¶å®ƒç»„å‡½æ•°éƒ½ä¸å¯¹ç©ºå€¼è¿›è¡Œè®¡ç®—
+	3) åªèƒ½æ“ä½œæ•°å€¼ç±»åž‹åˆ—: avg()å’Œsum()
+        4) èƒ½æ“ä½œå­—ç¬¦ä¸²ã€æ—¥æœŸä»¥åŠæ•°å€¼ç±»åž‹åˆ—: count()ã€max()å’Œmin()
 
-3¡¢group by×Ó¾ä
+3ã€group byå­å¥
 	SELECT	column, group_function
 	FROM table
 	[WHERE	condition]
 	[GROUP BY group_by_expression]
 	[ORDER BY column];
 
-	1) order byºóÃæ¿ÉÒÔ¸úÁÐÃû¡¢±ðÃû¡¢ÁÐºÅºÍ±í´ïÊ½
-	2) group byºóÃæÖ»ÄÜ¸úÁÐÃû(1¸ö»òÕß¶à¸ö)
-	3) ³öÏÖÔÚselect×Ó¾äÖÐµÄÃ»ÓÐÊ¹ÓÃ×éº¯ÊýµÄÁÐ±ØÐë³öÏÖÔÚgroup by×Ó¾äÖÐ
-	4) group by×Ó¾äÖÐµÄÁÐ²»±ØÐë³öÏÖÔÚselectÖÐ£¬µ«ÊÇgroup by×Ó¾äÖÐµÄÁÐ³öÏÖÔÚselectÖÐ»á¸üÓÐÒâÒå
-	5) group by×Ó¾äÖÐÈô³öÏÖ¶à¸öÁÐµÄÊ±ºò£¬ÊÇ°´ÕÕ¶à¸öÁÐÁªºÏÎ¨Ò»½øÐÐ·Ö×é
-		ÀýÈç: select dept_id,title,count(*)
+	1) order byåŽé¢å¯ä»¥è·Ÿåˆ—åã€åˆ«åã€åˆ—å·å’Œè¡¨è¾¾å¼
+	2) group byåŽé¢åªèƒ½è·Ÿåˆ—å(1ä¸ªæˆ–è€…å¤šä¸ª)
+	3) å‡ºçŽ°åœ¨selectå­å¥ä¸­çš„æ²¡æœ‰ä½¿ç”¨ç»„å‡½æ•°çš„åˆ—å¿…é¡»å‡ºçŽ°åœ¨group byå­å¥ä¸­
+	4) group byå­å¥ä¸­çš„åˆ—ä¸å¿…é¡»å‡ºçŽ°åœ¨selectä¸­ï¼Œä½†æ˜¯group byå­å¥ä¸­çš„åˆ—å‡ºçŽ°åœ¨selectä¸­ä¼šæ›´æœ‰æ„ä¹‰
+	5) group byå­å¥ä¸­è‹¥å‡ºçŽ°å¤šä¸ªåˆ—çš„æ—¶å€™ï¼Œæ˜¯æŒ‰ç…§å¤šä¸ªåˆ—è”åˆå”¯ä¸€è¿›è¡Œåˆ†ç»„
+		ä¾‹å¦‚: select dept_id,title,count(*)
  		      from s_emp
  		      group by dept_id,title
-		 °´ÕÕ²¿ÃÅºÍÖ°Î»ÁªºÏ·Ö×é£¬²¢°´dept_idºÍtitleÅÅÐò
-	6) Ö´ÐÐµÄÏÈºó´ÎÐò: ÏÈÖ´ÐÐwhere½øÐÐ¹ýÂË£¬È»ºóÔÙ½øÐÐ·Ö×é
-	£¬½Ó×ÅÊÇgroup function£¬×îºóÊÇorder by×Ó¾ä¡£
+		 æŒ‰ç…§éƒ¨é—¨å’ŒèŒä½è”åˆåˆ†ç»„ï¼Œå¹¶æŒ‰dept_idå’ŒtitleæŽ’åº
+	6) æ‰§è¡Œçš„å…ˆåŽæ¬¡åº: å…ˆæ‰§è¡Œwhereè¿›è¡Œè¿‡æ»¤ï¼Œç„¶åŽå†è¿›è¡Œåˆ†ç»„
+	ï¼ŒæŽ¥ç€æ˜¯group functionï¼Œæœ€åŽæ˜¯order byå­å¥ã€‚
 
-4¡¢having×Ó¾ä
-	ÈôÒª¸øgroup by·Ö×éµÄÇé¿ö¼ÓÉÏÏÞ¶¨Ìõ¼þ£¬µ±ÏÞ¶¨Ìõ¼þÀïÓÐ×éº¯ÊýµÄÊ±ºò£¬ÒªÊ¹ÓÃhaving¡£
-	Where×Ó¾äÀï¿ÉÒÔÊ¹ÓÃÈÎºÎÏÞ¶¨Ìõ¼þ£¬Ö»ÊÇ²»¿ÉÒÔ´ø×éº¯Êý¡£
+4ã€havingå­å¥
+	è‹¥è¦ç»™group byåˆ†ç»„çš„æƒ…å†µåŠ ä¸Šé™å®šæ¡ä»¶ï¼Œå½“é™å®šæ¡ä»¶é‡Œæœ‰ç»„å‡½æ•°çš„æ—¶å€™ï¼Œè¦ä½¿ç”¨havingã€‚
+	Whereå­å¥é‡Œå¯ä»¥ä½¿ç”¨ä»»ä½•é™å®šæ¡ä»¶ï¼Œåªæ˜¯ä¸å¯ä»¥å¸¦ç»„å‡½æ•°ã€‚
 
 	SELECT column, group_function
 	FROM table
@@ -60,20 +60,20 @@
 	[HAVING	group_condition]
 	[ORDER BY column];
 
-   ×¢Òâ: 
-      1) ÔÚselectÖÐ¿ÉÒÔ²»Ê¹ÓÃ×éº¯Êý¶øÖ±½Ó½øÐÐ·Ö×é
-      2) Ê¹ÓÃÁËhaving×Ó¾äºó£¬±ØÐëÊ¹ÓÃgroup by×Ó¾ä
-      3) Èç¹ûÒª¶Ô×éº¯ÊýµÄ½á¹û½øÐÐÏÞÖÆ£¬ÄÇÃ´±ØÐëÒªÊ¹ÓÃgroup by×Ó¾ä£¬²¢ÇÒÒ²ÒªÊ¹ÓÃhaving×Ó¾ä¡£
-      4) Èç¹ûhaving×Ó¾äºóÃæ¸úµÄ²»ÊÇ×éº¯Êý¶øÊÇÁÐ£¬
-      ÄÇÃ´group by±ØÐë¸ù¾ÝÕâ¸öÁÐ½øÐÐ·Ö×é
-	 ÀýÈç: SELECT dept_id
+   æ³¨æ„: 
+      1) åœ¨selectä¸­å¯ä»¥ä¸ä½¿ç”¨ç»„å‡½æ•°è€Œç›´æŽ¥è¿›è¡Œåˆ†ç»„
+      2) ä½¿ç”¨äº†havingå­å¥åŽï¼Œå¿…é¡»ä½¿ç”¨group byå­å¥
+      3) å¦‚æžœè¦å¯¹ç»„å‡½æ•°çš„ç»“æžœè¿›è¡Œé™åˆ¶ï¼Œé‚£ä¹ˆå¿…é¡»è¦ä½¿ç”¨group byå­å¥ï¼Œå¹¶ä¸”ä¹Ÿè¦ä½¿ç”¨havingå­å¥ã€‚
+      4) å¦‚æžœhavingå­å¥åŽé¢è·Ÿçš„ä¸æ˜¯ç»„å‡½æ•°è€Œæ˜¯åˆ—ï¼Œ
+      é‚£ä¹ˆgroup byå¿…é¡»æ ¹æ®è¿™ä¸ªåˆ—è¿›è¡Œåˆ†ç»„
+	 ä¾‹å¦‚: SELECT dept_id
  	       FROM s_emp
  	       GROUP BY dept_id
  	       HAVING SUM(salary) > 4000;
-	       ½«SUM(salary)»»³Ésalary²»¿ÉÒÔ£¬salary±ØÐë³öÏÖÔÚgroup byºóÃæ
+	       å°†SUM(salary)æ¢æˆsalaryä¸å¯ä»¥ï¼Œsalaryå¿…é¡»å‡ºçŽ°åœ¨group byåŽé¢
 
-5¡¢Èç¹û·Ö×éÁÐµÄÖµÎªnull£¬ÕÕÑù½øÐÐ·Ö×é
-	ÀýÈç:
+5ã€å¦‚æžœåˆ†ç»„åˆ—çš„å€¼ä¸ºnullï¼Œç…§æ ·è¿›è¡Œåˆ†ç»„
+	ä¾‹å¦‚:
 	   dept_id     total
 	      23        100
 	      24        200

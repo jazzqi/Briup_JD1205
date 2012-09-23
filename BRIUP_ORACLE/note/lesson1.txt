@@ -1,52 +1,52 @@
-ÅäÖÃOracle:
- 1) ´ò¿ªÃüÁîÖÕ¶ËÇĞ»»µ½rootÓÃ»§ 
+ï»¿é…ç½®Oracle:
+ 1) æ‰“å¼€å‘½ä»¤ç»ˆç«¯åˆ‡æ¢åˆ°rootç”¨æˆ· 
     su - root
 
- 2) ÇĞ»»µ½oracleÓÃ»§
+ 2) åˆ‡æ¢åˆ°oracleç”¨æˆ·
     su - oracle
 
- 3) ÒÔoracle¹ÜÀíÔ±Éí·İ½øÈëoracle
+ 3) ä»¥oracleç®¡ç†å‘˜èº«ä»½è¿›å…¥oracle
     sqlplus "/as sysdba"
 
- 4) Æô¶¯oracle 
-      SQL>startup£º
-      ¿ÉÒÔ¶ÔÊı¾İ¿â½øĞĞÔöÉ¾¸Ä²é£¬
-      µ«ÊÇ²»ÄÜÍ¨¹ı³ÌĞòÀ´·ÃÎÊ
+ 4) å¯åŠ¨oracle 
+      SQL>startupï¼š
+      å¯ä»¥å¯¹æ•°æ®åº“è¿›è¡Œå¢åˆ æ”¹æŸ¥ï¼Œ
+      ä½†æ˜¯ä¸èƒ½é€šè¿‡ç¨‹åºæ¥è®¿é—®
 
-      //Í£Ö¹oracle: shutdown
+      //åœæ­¢oracle: shutdown
 
- 5) Æô¶¯oracle¼àÌıÆ÷
-       ÏÈÍË³ösqlplus:
+ 5) å¯åŠ¨oracleç›‘å¬å™¨
+       å…ˆé€€å‡ºsqlplus:
            exit
-       Æô¶¯¼àÌıÆ÷:Í¨¹ıjava³ÌĞò·ÃÎÊÊı¾İ¿â£¬¶ÔÊı¾İ¿â½øĞĞÔöÉ¾¸Ä²é
+       å¯åŠ¨ç›‘å¬å™¨:é€šè¿‡javaç¨‹åºè®¿é—®æ•°æ®åº“ï¼Œå¯¹æ•°æ®åº“è¿›è¡Œå¢åˆ æ”¹æŸ¥
            lsnrctl start
 	   lsnrctl status
 
- 6) ´´½¨ĞÂµÄÓÃ»§
+ 6) åˆ›å»ºæ–°çš„ç”¨æˆ·
 	sqlplus "/as sysdba"
 	show user
 
 	create user briup identified by briup;
 	grant resource,connect to briup;
 
-	ÍË³ösqlplus  ÔÚsqlplus»·¾³ÏÂÊäÈëexit»Ø³µ¼´¿É
-	resource£º¿ÉÒÔ·ÃÎÊÒ»Ğ©×ÊÔ´£¬±ÈÈçÔöÉ¾¸Ä²éµÈ×ÊÔ´
-	connect:ÆÕÍ¨ÓÃ»§¿ÉÒÔÁ¬½ÓµÄÊı¾İ¿â
- 7) È»ºóÒÔbriupÓÃ»§µÇÂ½sqlplus
+	é€€å‡ºsqlplus  åœ¨sqlplusç¯å¢ƒä¸‹è¾“å…¥exitå›è½¦å³å¯
+	resourceï¼šå¯ä»¥è®¿é—®ä¸€äº›èµ„æºï¼Œæ¯”å¦‚å¢åˆ æ”¹æŸ¥ç­‰èµ„æº
+	connect:æ™®é€šç”¨æˆ·å¯ä»¥è¿æ¥çš„æ•°æ®åº“
+ 7) ç„¶åä»¥briupç”¨æˆ·ç™»é™†sqlplus
 
         sqlplus briup/briup
 
 
 
- 8) ĞŞ¸Äµ±Ç°µÃÓïÑÔ¸ñÊ½,Ä¬ÈÏÎªÖĞÎÄ
+ 8) ä¿®æ”¹å½“å‰å¾—è¯­è¨€æ ¼å¼,é»˜è®¤ä¸ºä¸­æ–‡
 	alter session set nls_date_language=english;
 
 
- 9) Ö´ĞĞ½Å±¾ÎÄ¼şoracle1.sql
+ 9) æ‰§è¡Œè„šæœ¬æ–‡ä»¶oracle1.sql
 	start d:/oracle1.sql  (start /home/briup/oracle1.sql)
-	»òÕß
+	æˆ–è€…
 	@d:/oracle1.sql
 
- 10) ²é¿´ÓÃ»§briupÖĞµÄÊı¾İ±í
+ 10) æŸ¥çœ‹ç”¨æˆ·briupä¸­çš„æ•°æ®è¡¨
      select table_name from user_tables;
 

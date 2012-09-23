@@ -1,54 +1,54 @@
-					Lesson 11
-1�������¼
-    1) һ�β���һ�м�¼
-       �﷨: INSERT INTO table [(column [, column...])]
+﻿					Lesson 11
+1、插入记录
+    1) 一次插入一行记录
+       语法: INSERT INTO table [(column [, column...])]
 	     VALUES (value [, value...]);
-         ע: Ҫע�������Ͳ���ֵ��˳�����ͺ�������һ��;
-    2) һ�β�����м�¼
-       �﷨: INSERT INTO table [(column [, column...])] subquery
+         注: 要注意列名和插入值的顺序、类型和数量的一致;
+    2) 一次插入多行记录
+       语法: INSERT INTO table [(column [, column...])] subquery
 
-2�����¼�¼
-    �﷨: UPDATE table
+2、更新记录
+    语法: UPDATE table
           SET	column = value [, column = value]
           [WHERE condition];i
-    ע: ����columnΪҪ���µ�������valueΪ����Ϊ����ֵ���������where�Ӿ���������м�¼
+    注: 其中column为要更新的列名，value为更新为的新值。如果不加where子句则更新所有记录
 
-3��ɾ����¼
-    �﷨: DELETE [FROM]	table
+3、删除记录
+    语法: DELETE [FROM]	table
 	  [WHERE condition];
-    ע: �������where�Ӿ���ɾ�����м�¼
+    注: 如果不加where子句则删除所有记录
 
-4������(Transaction)�Լ�������ص�
-   �����������һ��Ķ����������������������һ�����ɷָ��ԭ�Ӳ�����Ҫôͬʱ�ɹ���Ҫôͬʱʧ�ܡ�ͨ������ȷ�����ݵ������ԡ�
-   �ص�(ACID): 
-    1) ԭ����(atomicity): ���������ϳ�ͬʱ�ɹ���ͬʱʧ�ܵ�ԭ�Ӳ�����
-    2) һ����(consistency): ����ǰ������һ�¡���������תһ��Ԫ�������˻���ת��ǰ���ʻ��ܺ�Ϊ2000��ת�˽�������ʻ��ܺ���ҪΪ2000��
-    3) ������(isolation): �������ʵ�������й����е�״̬��Ϊ�����������쿴
-    4) �־���(durability): ���������Ҫ��������й����е�״̬����
-    �־ñ��������ݿ⣬��֤�´��������Ȼ������Ѱ�õ���
+4、事务(Transaction)以及事务的特点
+   事务是组合在一块的多个操作，这多个操作表现像一个不可分割的原子操作，要么同时成功，要么同时失败。通过事务确保数据的完整性。
+   特点(ACID): 
+    1) 原子性(atomicity): 多个操作组合成同时成功，同时失败的原子操作。
+    2) 一致性(consistency): 事务前后数据一致。例从张三转一百元至李四账户，转账前二帐户总和为2000，转账结束后二帐户总和亦要为2000。
+    3) 隔离性(isolation): 并发访问的事务进行过程中的状态不为其它事务所察看
+    4) 持久性(durability): 事务结束后要将事务进行过程中的状态进行
+    持久保存入数据库，保证下次来电后依然可以找寻得到。
 update t_employee
 set last_name='briup'
 where last_name='zhang';
-5������߽������
-    ����ʼ�߽������:
-	1)ͨ��SQL*PLUS����Oracle������ʼ��һ������
-	2)һ������Ľ���Ҳ��ζ����һ������Ŀ�ʼ��
-    ��������߽������:
-        1) ��������: commit
-              a) ���ݸı�д�����ݿ�;
-              b) ֮ǰ�������ö�ʧ;
-              c) �����û����ɿ����ı��Ľ��;
-              d) �����ڼ�¼�ϵ�����ʧ�������û��ɶ���Щ��¼���и�
-	      �²��� 
-              e) ���еĻع��������
-	      ע: DDL��DCL�����ִ��(�Զ��ύ)��DML�����Զ��ύ��
-	      �����˳����Զ��ύ
-        2) �쳣�ع�: rollback
-              a) ������й����е�״̬��ʧ;
-              b) �ָ�������ʼǰ��״̬;
-              c) �����ڼ�¼�ϵ�����ʧ�������û��ɶ���Щ��¼���и�
-	      �²���;  
-	      ע: ϵͳʧ�ܻ����������ֹSQL*Plus�������Զ��ع�
-        3) �ع����ض�λ�ã�
-             a) ͨ������savepoint a���ûع���a;
-             b) ͨ������rollback to a���˵�aλ��;
+5、事务边界的声明
+    事务开始边界的声明:
+	1)通过SQL*PLUS接入Oracle，即开始了一个事务；
+	2)一个事务的结束也意味着另一个事务的开始。
+    事务结束边界的声明:
+        1) 正常结束: commit
+              a) 数据改变写入数据库;
+              b) 之前数据永久丢失;
+              c) 所有用户均可看到改变后的结果;
+              d) 作用于记录上的锁丢失，其它用户可对这些记录进行更
+	      新操作 
+              e) 所有的回滚点擦除。
+	      注: DDL和DCL命令的执行(自动提交)，DML不会自动提交，
+	      正常退出会自动提交
+        2) 异常回滚: rollback
+              a) 事务进行过程中的状态丢失;
+              b) 恢复到事务开始前的状态;
+              c) 作用于记录上的锁丢失，其它用户可对这些记录进行更
+	      新操作;  
+	      注: 系统失败或非正常地终止SQL*Plus，将会自动回滚
+        3) 回滚到特定位置：
+             a) 通过命令savepoint a设置回滚点a;
+             b) 通过命令rollback to a回退到a位置;

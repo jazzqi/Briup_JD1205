@@ -1,49 +1,49 @@
-					Lesson 10
-1¡¢Êý¾Ý×Öµä±íµÄ·ÖÀà
-     ¸ù¾ÝÈ¨ÏÞ¿É·ÖÀàÒÔÏÂ¼¸Àà£º
-     user: ÓÃ»§Ëù´´½¨¶ÔÏó¶ÔÓ¦µÄÊý¾Ý×Ö
-     µä±í£¬
-     Àý£ºuser_objects, user_tablesµÈ¡£
-     all: ÓÃ»§ËùÄÜ·ÃÎÊ¶ÔÏó
-     (°üÀ¨ÓÃ»§´´½¨µÄ¶ÔÏó)¶ÔÓ¦
-     µÄÊý¾Ý×Öµä±í£¬
-     Àý£ºall_objects, all_tablesµÈ¡£
-     dba: ËùÓÐ¶ÔÏó¶ÔÓ¦µÄÊý¾Ý×Öµä±í£¬Àý£ºdba_objects, dba_tablesµÈ¡£
-     v$: ÃèÊöÏµÍ³ÐÔÄÜÏà¹ØµÄÊý¾Ý×Öµä±í¡£
-     dictionary: Ò»¸öÌØÊâµÄÊý¾Ý¿âµä±í¡ª¡ªÓÃÀ´ÃèÊöÊý¾Ý×Öµä±í
-     Ïà¹ØÐÅÏ¢µÄÊý¾Ý×Öµä±í
+ï»¿					Lesson 10
+1ã€æ•°æ®å­—å…¸è¡¨çš„åˆ†ç±»
+     æ ¹æ®æƒé™å¯åˆ†ç±»ä»¥ä¸‹å‡ ç±»ï¼š
+     user: ç”¨æˆ·æ‰€åˆ›å»ºå¯¹è±¡å¯¹åº”çš„æ•°æ®å­—
+     å…¸è¡¨ï¼Œ
+     ä¾‹ï¼šuser_objects, user_tablesç­‰ã€‚
+     all: ç”¨æˆ·æ‰€èƒ½è®¿é—®å¯¹è±¡
+     (åŒ…æ‹¬ç”¨æˆ·åˆ›å»ºçš„å¯¹è±¡)å¯¹åº”
+     çš„æ•°æ®å­—å…¸è¡¨ï¼Œ
+     ä¾‹ï¼šall_objects, all_tablesç­‰ã€‚
+     dba: æ‰€æœ‰å¯¹è±¡å¯¹åº”çš„æ•°æ®å­—å…¸è¡¨ï¼Œä¾‹ï¼šdba_objects, dba_tablesç­‰ã€‚
+     v$: æè¿°ç³»ç»Ÿæ€§èƒ½ç›¸å…³çš„æ•°æ®å­—å…¸è¡¨ã€‚
+     dictionary: ä¸€ä¸ªç‰¹æ®Šçš„æ•°æ®åº“å…¸è¡¨â€”â€”ç”¨æ¥æè¿°æ•°æ®å­—å…¸è¡¨
+     ç›¸å…³ä¿¡æ¯çš„æ•°æ®å­—å…¸è¡¨
      IND: user_indexes
-     TABLE_PRIVILEGES: Êý¾Ý±íÈ¨ÏÞ
+     TABLE_PRIVILEGES: æ•°æ®è¡¨æƒé™
 
-	Ê¹ÓÃÈËÔ±·¶Î§:
-		DBAÈËÔ±Ê¹ÓÃ: 1) V$version  2) DBA
-		¿ª·¢ÈËÔ±Ê¹ÓÃ:  	1) user_* Ö»ÄÜ¿´±¾ÓÃ»§schemaÏÂµÄ±í
+	ä½¿ç”¨äººå‘˜èŒƒå›´:
+		DBAäººå‘˜ä½¿ç”¨: 1) V$version  2) DBA
+		å¼€å‘äººå‘˜ä½¿ç”¨:  	1) user_* åªèƒ½çœ‹æœ¬ç”¨æˆ·schemaä¸‹çš„è¡¨
 					a) user_indexes
 					b) user_tables
 					c) user_views
 					d) user_users
 					e) user_objects
 					f) user_constraints
-			    	2) all_*  ¿ÉÒÔ¿´ÆäËüÓÃ»§µÄ±í(
-				Ìõ¼þÊÇ±ØÐë¸øÓèÈ¨ÏÞ)
+			    	2) all_*  å¯ä»¥çœ‹å…¶å®ƒç”¨æˆ·çš„è¡¨(
+				æ¡ä»¶æ˜¯å¿…é¡»ç»™äºˆæƒé™)
 
-2¡¢Êý¾Ý×ÖµäÖÐ³£ÓÃÊÓÍ¼µÄ¶¨Òå
-	1) dictionary: ´æ·ÅÊý¾Ý×ÖµäÖÐËùÓÐ±íµÄÐÅÏ¢
-	2) user_objects: ´æ·ÅÁËµ±Ç°ÓÃ»§(schema)ÏÂËùÓÐµÄ¶ÔÏó(°üÀ¨±í¡¢ÊÓÍ¼¡¢Ë÷Òý¡¢ÐòÁÐºÍÔ¼Êø		µÈ)
-	3) user_constraints: ´æ·ÅÁËµ±Ç°ÓÃ»§ÏÂµÄËùÓÐÔ¼ÊøÐÅÏ¢
-	4) user_cons_columns:ÓÃÀ´²é¿´ºÍÔ¼ÊøÏà¹ØµÄÁÐ
-		a) ¿ÉÒÔÍ¨¹ýuser_cons_columnsÊÓÍ¼À´²é¿´ºÍÔ¼ÊøÏà¹ØÁªµÄÁÐ£¬Èç¹ûÒÑ¾­²éÑ¯
-		USER_CONSTRAINTSµÃµ½ÁËÉæ¼°Ô¼ÊøµÄÀàÐÍºÍÃû×Ö£¬¾Í¿ÉÒÔÊ¹ÓÃUSER_CONS_COLUMNSÀ´
-		È·¶¨Ô¼Êø¶ÔÓ¦ÓÚÄÄÐ©ÁÐ¡£
-		b) Èç¹ûÄãÊ¹ÓÃÁËÏµÍ³·ÖÅäµÄÔ¼Êø£¬ÄÇÃ´Ê¹ÓÃÕâ¸öÊÓÍ¼À´²é¿´ÊÇÓÈÆäµÄÓÐÓÃ
-	5) dict_columns: ¿ÉÒÔ²é¿´Êý¾Ý×ÖµäÖÐËùÓÐÊÓÍ¼Ëù¶ÔÓ¦µÄÁÐ
-	6) user_users: ´æ·Åµ±Ç°ÓÃ»§µÄÐÅÏ¢
-	   all_users: ´æ·ÅÊý¾Ý¿âÖÐËùÓÐÓÃ»§µÄÐÅÏ¢
-	7) user_indexes: ´æ·Åµ±Ç°ÓÃ»§µÄËùÓÐË÷ÒýÐÅÏ¢
-	   all_indexes: ´æ·ÅÊý¾Ý¿âÖÐËùÓÐÓÃ»§µÄË÷ÒýÐÅÏ¢
-	8) user_tables: ´æ·Åµ±Ç°ÓÃ»§µÄËùÓÐ±íÐÅÏ¢
-	   all_tables: ´æ·ÅÊý¾Ý¿âÖÐËùÓÐÓÃ»§µÄ±íÐÅÏ¢
-	9) user_views: ´æ·Åµ±Ç°ÓÃ»§µÄËùÓÐÊÓÍ¼ÐÅÏ¢
-	   all_views: ´æ·ÅÊý¾Ý¿âÖÐËùÓÐÓÃ»§µÄÊÓÍ¼ÐÅÏ¢
-	10) user_synonyms: ´æ·Åµ±Ç°ÓÃ»§ËùÓÐ±íµÄÍ¬Òå´Ê
-	    ´´½¨Í¬Òå´Ê: create synonym aaa for table_name
+2ã€æ•°æ®å­—å…¸ä¸­å¸¸ç”¨è§†å›¾çš„å®šä¹‰
+	1) dictionary: å­˜æ”¾æ•°æ®å­—å…¸ä¸­æ‰€æœ‰è¡¨çš„ä¿¡æ¯
+	2) user_objects: å­˜æ”¾äº†å½“å‰ç”¨æˆ·(schema)ä¸‹æ‰€æœ‰çš„å¯¹è±¡(åŒ…æ‹¬è¡¨ã€è§†å›¾ã€ç´¢å¼•ã€åºåˆ—å’Œçº¦æŸ		ç­‰)
+	3) user_constraints: å­˜æ”¾äº†å½“å‰ç”¨æˆ·ä¸‹çš„æ‰€æœ‰çº¦æŸä¿¡æ¯
+	4) user_cons_columns:ç”¨æ¥æŸ¥çœ‹å’Œçº¦æŸç›¸å…³çš„åˆ—
+		a) å¯ä»¥é€šè¿‡user_cons_columnsè§†å›¾æ¥æŸ¥çœ‹å’Œçº¦æŸç›¸å…³è”çš„åˆ—ï¼Œå¦‚æžœå·²ç»æŸ¥è¯¢
+		USER_CONSTRAINTSå¾—åˆ°äº†æ¶‰åŠçº¦æŸçš„ç±»åž‹å’Œåå­—ï¼Œå°±å¯ä»¥ä½¿ç”¨USER_CONS_COLUMNSæ¥
+		ç¡®å®šçº¦æŸå¯¹åº”äºŽå“ªäº›åˆ—ã€‚
+		b) å¦‚æžœä½ ä½¿ç”¨äº†ç³»ç»Ÿåˆ†é…çš„çº¦æŸï¼Œé‚£ä¹ˆä½¿ç”¨è¿™ä¸ªè§†å›¾æ¥æŸ¥çœ‹æ˜¯å°¤å…¶çš„æœ‰ç”¨
+	5) dict_columns: å¯ä»¥æŸ¥çœ‹æ•°æ®å­—å…¸ä¸­æ‰€æœ‰è§†å›¾æ‰€å¯¹åº”çš„åˆ—
+	6) user_users: å­˜æ”¾å½“å‰ç”¨æˆ·çš„ä¿¡æ¯
+	   all_users: å­˜æ”¾æ•°æ®åº“ä¸­æ‰€æœ‰ç”¨æˆ·çš„ä¿¡æ¯
+	7) user_indexes: å­˜æ”¾å½“å‰ç”¨æˆ·çš„æ‰€æœ‰ç´¢å¼•ä¿¡æ¯
+	   all_indexes: å­˜æ”¾æ•°æ®åº“ä¸­æ‰€æœ‰ç”¨æˆ·çš„ç´¢å¼•ä¿¡æ¯
+	8) user_tables: å­˜æ”¾å½“å‰ç”¨æˆ·çš„æ‰€æœ‰è¡¨ä¿¡æ¯
+	   all_tables: å­˜æ”¾æ•°æ®åº“ä¸­æ‰€æœ‰ç”¨æˆ·çš„è¡¨ä¿¡æ¯
+	9) user_views: å­˜æ”¾å½“å‰ç”¨æˆ·çš„æ‰€æœ‰è§†å›¾ä¿¡æ¯
+	   all_views: å­˜æ”¾æ•°æ®åº“ä¸­æ‰€æœ‰ç”¨æˆ·çš„è§†å›¾ä¿¡æ¯
+	10) user_synonyms: å­˜æ”¾å½“å‰ç”¨æˆ·æ‰€æœ‰è¡¨çš„åŒä¹‰è¯
+	    åˆ›å»ºåŒä¹‰è¯: create synonym aaa for table_name

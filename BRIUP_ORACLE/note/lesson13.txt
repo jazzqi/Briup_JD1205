@@ -1,9 +1,9 @@
-					Lesson 13
-1��sequence
-	sequence��Oracle���ݿ���һ������Ķ����ܹ���������������ֵ������Ϊ���ݿ�
-�ж������ͬʹ�ã���Ҫ������Ϊ����ֵ��
+﻿					Lesson 13
+1、sequence
+	sequence是Oracle数据库中一种特殊的对象，能够产生连续的整数值，可以为数据库
+中多个对象共同使用，主要用于作为主键值。
 
-2������sequence
+2、创建sequence
 	CREATE SEQUENCE name
 	[INCREMENT BY n]
 	[START WITH n]
@@ -11,25 +11,25 @@
 	[{MINVALUE n | NOMINVALUE}]
 	[{CYCLE | NOCYCLE}]
 	[{CACHE n | NOCACHE}]
-        ע: a) ����ѡ��λ�ò��Ⱥ����
-	    b) ��increment by nΪ����ʱ�� Ĭ��maxvalueΪ: 1E+27 , Ĭ��minvalueΪ: 1
-	       ��increment by nΪ����ʱ�� Ĭ��maxvalueΪ: -1 , Ĭ��minvalueΪ: -1E+26
-	       increment����Ϊ����������  �Ӳ���NOMAXVALUEЧ��һ�����Ȿ����Ĭ��ֵ
-            c) CACHE n����ÿ��Ԥ����ʮ�������ʮ�����ŵ��ڴ��������ܡ�
-               ��дĬ��CACHE 20��
-	    d) cycle����ѭ���������������ѭ��(������ʹ��)
+        注: a) 各可选项位置不先后次序
+	    b) 当increment by n为正数时， 默认maxvalue为: 1E+27 , 默认minvalue为: 1
+	       当increment by n为负数时， 默认maxvalue为: -1 , 默认minvalue为: -1E+26
+	       increment必须为非零整数，  加不加NOMAXVALUE效果一样，这本身是默认值
+            c) CACHE n可以每次预产生十五个，二十个，放到内存里，提高性能。
+               不写默认CACHE 20个
+	    d) cycle用于循环，到了最大数后循环(不建议使用)
 
-3���޸�sequence  
+3、修改sequence  
 	ALTER SEQUENCE sequence
 	[INCREMENT BY n]
 	[{MAXVALUE n | NOMAXVALUE}]
 	[{MINVALUE n | NOMINVALUE}]
 	[{CYCLE | NOCYCLE}]
 	[{CACHE n | NOCACHE}]
-        ע: sequence�����޸���ʼֵ
+        注: sequence不能修改起始值
 
-4��ʹ��sequence
-	ͨ��α��nextval��currval���е���
-	 1) nextval: ÿ�λ�ò�ͬ��sequenceֵ
-	 2) currval: ��õ�ǰָ���sequenceֵ
-	ע: ��sequence����û��ͨ��nextval����֮ǰ������ͨ��currval���ã�������������
+4、使用sequence
+	通过伪列nextval和currval进行调用
+	 1) nextval: 每次获得不同的sequence值
+	 2) currval: 获得当前指向的sequence值
+	注: 在sequence对象没有通过nextval调用之前，不能通过currval调用，否则会产生错误。

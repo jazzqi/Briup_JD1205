@@ -1,27 +1,27 @@
-ãÆÓîË§
+ï»¿é—«å®‡å¸…
 yanys@briup.com
 ---------------------------------------
 oracle
 DB---->RDBMS
-ÊÀ½çµÚÒ»´óÊı¾İ¿â³§ÉÌ
+ä¸–ç•Œç¬¬ä¸€å¤§æ•°æ®åº“å‚å•†
 
-Êı¾İ³Ö¾Ã»¯£ºÔÚÊı¾İ³Ö¾Ã±£´æµÄ»ù´¡Ö®ÉÏ£¬
-		¶ÔÊı¾İ½øĞĞÔöÉ¾¸Ä²éµÄ²Ù×÷¡£
+æ•°æ®æŒä¹…åŒ–ï¼šåœ¨æ•°æ®æŒä¹…ä¿å­˜çš„åŸºç¡€ä¹‹ä¸Šï¼Œ
+		å¯¹æ•°æ®è¿›è¡Œå¢åˆ æ”¹æŸ¥çš„æ“ä½œã€‚
 		
-¹ØÏµĞÍÊı¾İ¿â RDB
-ÈıÒªµã£º
-	1¡¢Êı¾İ¿â¶ÔÏó»ò¹ØÏµµÄ¼¯ºÏ
-	2¡¢¶Ô¹ØÏµµÄ²Ù×÷£¨ÔöÉ¾¸Ä²é£©
-	3¡¢¾ßÓĞÍêÕûĞÔ¡¢Î¨Ò»ĞÔµÈµÄÔ¼Êø
+å…³ç³»å‹æ•°æ®åº“ RDB
+ä¸‰è¦ç‚¹ï¼š
+	1ã€æ•°æ®åº“å¯¹è±¡æˆ–å…³ç³»çš„é›†åˆ
+	2ã€å¯¹å…³ç³»çš„æ“ä½œï¼ˆå¢åˆ æ”¹æŸ¥ï¼‰
+	3ã€å…·æœ‰å®Œæ•´æ€§ã€å”¯ä¸€æ€§ç­‰çš„çº¦æŸ
 	
-pk:primary key(Ö÷¼ü)
-	Î¨Ò»±êÊ¶
-fk:foreign key(Íâ¼ü)
-	½¨Á¢±íÓë±íÖ®¼äµÄ¹ØÁª¹ØÏµ
+pk:primary key(ä¸»é”®)
+	å”¯ä¸€æ ‡è¯†
+fk:foreign key(å¤–é”®)
+	å»ºç«‹è¡¨ä¸è¡¨ä¹‹é—´çš„å…³è”å…³ç³»
 	
-sql:½á¹¹»¯²éÑ¯ÓïÑÔ
-	µÚËÄ´úÓïÑÔ£º½á¹û»¯
-	Ö»¹ØĞÄ×öÊ²Ã´£¬²»¹ØĞÄÔõÃ´×ö
+sql:ç»“æ„åŒ–æŸ¥è¯¢è¯­è¨€
+	ç¬¬å››ä»£è¯­è¨€ï¼šç»“æœåŒ–
+	åªå…³å¿ƒåšä»€ä¹ˆï¼Œä¸å…³å¿ƒæ€ä¹ˆåš
 	
 	PL/sql
 	s_day1~31
@@ -31,32 +31,32 @@ sql:½á¹¹»¯²éÑ¯ÓïÑÔ
 	from s_student
 	where id=1;
 	
-Ô¼Êø£º
-	1¡¢ÊµÌåĞÔÔ¼Êø
-		¶ÔÖ÷¼ü½øĞĞÔ¼Êø£¬ÒªÇóÖ÷¼ü·Ç¿Õ¡¢Î¨Ò»
-	2¡¢¹ØÁªĞÔÔ¼Êø
-		¶ÔÍâ¼ü½øĞĞÔ¼Êø
-		ÒªÇóÍâ¼üµÄÖµ±ØĞëÓë£¨Ëù¹ØÁªÁĞ£©µÄÖµÆ¥Åä
-			»òÎª¿ÕÖµ
-	3¡¢ÁĞÔ¼Êø
-		Ä³Ò»ÁĞÖĞËù±£´æµÄÊı¾İ±ØĞë
-			Óë¸ÃÁĞµÄÊı¾İÀàĞÍÏàÆ¥Åä
+çº¦æŸï¼š
+	1ã€å®ä½“æ€§çº¦æŸ
+		å¯¹ä¸»é”®è¿›è¡Œçº¦æŸï¼Œè¦æ±‚ä¸»é”®éç©ºã€å”¯ä¸€
+	2ã€å…³è”æ€§çº¦æŸ
+		å¯¹å¤–é”®è¿›è¡Œçº¦æŸ
+		è¦æ±‚å¤–é”®çš„å€¼å¿…é¡»ä¸ï¼ˆæ‰€å…³è”åˆ—ï¼‰çš„å€¼åŒ¹é…
+			æˆ–ä¸ºç©ºå€¼
+	3ã€åˆ—çº¦æŸ
+		æŸä¸€åˆ—ä¸­æ‰€ä¿å­˜çš„æ•°æ®å¿…é¡»
+			ä¸è¯¥åˆ—çš„æ•°æ®ç±»å‹ç›¸åŒ¹é…
 			char\varchar\varchar2
 			number
 			date
-	4¡¢×Ô¶¨ÒåÔ¼Êø
+	4ã€è‡ªå®šä¹‰çº¦æŸ
 			gender	
 -------------------------------------
 
-sql server¡¢mysql¡¢oracle¡¢db2¡¢sqlite....
+sql serverã€mysqlã€oracleã€db2ã€sqlite....
 
-ÊÀ½çµÚÒ»´óÊı¾İ¿â³§ÉÌ
-ÊÀ½çµÚ¶ş´óµÄERP³§ÉÌ
-*ÊÀ½çµÚ¶ş´óÈí¼ş³§ÉÌ
+ä¸–ç•Œç¬¬ä¸€å¤§æ•°æ®åº“å‚å•†
+ä¸–ç•Œç¬¬äºŒå¤§çš„ERPå‚å•†
+*ä¸–ç•Œç¬¬äºŒå¤§è½¯ä»¶å‚å•†
 sun  
 
 9i		internet
-10g		grid		Íø¸ñÊ½¼ÆËã¡¢·Ö²¼Ê½¼ÆËã¡¢ÔÆ¼ÆËã
+10g		grid		ç½‘æ ¼å¼è®¡ç®—ã€åˆ†å¸ƒå¼è®¡ç®—ã€äº‘è®¡ç®—
 11g		
 
 dba
@@ -68,65 +68,65 @@ sql:
 select [distinct] {*,colName [alies],...}
 from table_name;
 
-*		ËùÓĞĞÅÏ¢
+*		æ‰€æœ‰ä¿¡æ¯
 
-	¾¡Á¿ÉÙÓÃ
+	å°½é‡å°‘ç”¨
 	
-||		Á¬½Ó×Ö·û
+||		è¿æ¥å­—ç¬¦
 
-²éÑ¯ËùÓĞÔ±¹¤µÄĞÕÃû
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å§“å
 select last_name,id
 from s_emp;
 
-²éÑ¯ËùÓĞÔ±¹¤µÄÄêĞ½
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å¹´è–ª
 select salary*12
 from s_emp;
 
 select (salary+1000)*12
 from s_emp;
 
-²éÑ¯ËùÓÃÔ±¹¤µÄÈ«Ãû
+æŸ¥è¯¢æ‰€ç”¨å‘˜å·¥çš„å…¨å
 select first_name||','||last_name
 from s_emp;
 
-±ğÃû
+åˆ«å
 select first_name||','||last_name "Name"
 from s_emp [alies];
 
-1¡¢colName alies
-2¡¢colName as alies
-3¡¢colName "alies"
+1ã€colName alies
+2ã€colName as alies
+3ã€colName "alies"
 
-´¦Àí¿ÕÖµ
-nvl(colName,'Ìæ»»Öµ')		
+å¤„ç†ç©ºå€¼
+nvl(colName,'æ›¿æ¢å€¼')		
 select commission_pct
 from s_emp;
 
-²éÑ¯ËùÓĞÔ±¹¤µÄÄêĞ½£¨10000*commission_pct£©
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å¹´è–ªï¼ˆ10000*commission_pctï¼‰
 select salary+10000*nvl(commission_pct,0)
 from s_emp;
 
 select nvl(commission_pct,0)
 from s_emp;
 
-È¥ÖØ
-È¥³ıÖØ¸´µÄ¼ÇÂ¼
+å»é‡
+å»é™¤é‡å¤çš„è®°å½•
 distinct
 
 select distinct name,region_id 
 from s_dept;
 
-sql*plusÃüÁî£º
-desc table_name		²éÑ¯±í½á¹¹
-l(ist)				²é¿´bufferÖĞ±£´æµÄsqlÓï¾ä
-/					ÔÙ´ÎÖ´ĞĞbufferÖĞµÄsqlÓï¾ä
-n ÄÚÈİ				¸²¸ÇµÚnĞĞµÄÓï¾ä
-n					¶¨Î»
-a ÄÚÈİ				×·¼Ó
-c/old/new			Ìæ»»
-i ÄÚÈİ				²åÈë£¬µ±Ç°ĞĞµÄÏÂÒ»ĞĞ
-del					É¾³ı
-col					ÉèÖÃÁĞµÄÊä³ö¸ñÊ½
+sql*pluså‘½ä»¤ï¼š
+desc table_name		æŸ¥è¯¢è¡¨ç»“æ„
+l(ist)				æŸ¥çœ‹bufferä¸­ä¿å­˜çš„sqlè¯­å¥
+/					å†æ¬¡æ‰§è¡Œbufferä¸­çš„sqlè¯­å¥
+n å†…å®¹				è¦†ç›–ç¬¬nè¡Œçš„è¯­å¥
+n					å®šä½
+a å†…å®¹				è¿½åŠ 
+c/old/new			æ›¿æ¢
+i å†…å®¹				æ’å…¥ï¼Œå½“å‰è¡Œçš„ä¸‹ä¸€è¡Œ
+del					åˆ é™¤
+col					è®¾ç½®åˆ—çš„è¾“å‡ºæ ¼å¼
 
 select last_name,id,salary6
 from s_emp;
@@ -136,16 +136,16 @@ col colName for(mat) aN
 
 ---------------------------------------
 ch02
-order by			ÅÅĞò
-	ASC				ÉıĞò£¨Ä¬ÈÏ£©
-	DESC			½µĞò
+order by			æ’åº
+	ASC				å‡åºï¼ˆé»˜è®¤ï¼‰
+	DESC			é™åº
 	
-ÓÃ·¨£º
+ç”¨æ³•ï¼š
 	order by colName
-	order by ±ğÃû
-	order by ĞòÁĞºÅ
+	order by åˆ«å
+	order by åºåˆ—å·
 	
-¿ÕÖµ:ÎŞÇî´ó
+ç©ºå€¼:æ— ç©·å¤§
 	select commission_pct com
 	from s_emp
 	order by com;
@@ -154,53 +154,53 @@ order by			ÅÅĞò
 	from 		1
 	order by	3
 
-²éÑ¯ËùÓĞÔ±¹¤µÄ±àºÅ£¬ĞÕÃû£¬ÈëÖ°Ê±¼ä
-	²¢°´±àºÅ½øĞĞÅÅĞò
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„ç¼–å·ï¼Œå§“åï¼Œå…¥èŒæ—¶é—´
+	å¹¶æŒ‰ç¼–å·è¿›è¡Œæ’åº
 SELECT	last_name,id,start_date
 FROM 	 	s_emp
 ORDER BY	id desc;
 
-²éÑ¯ËùÓĞÔ±¹¤µÄĞ½Ë®£¬°´ÕÕÃû×ÖµÄ½µĞòÅÅĞò
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„è–ªæ°´ï¼ŒæŒ‰ç…§åå­—çš„é™åºæ’åº
 select salary,last_name
 from s_emp
 order by 1 desc;
 
-ÏÈ°´ĞÕÃûÉıĞòÅÅÁĞ£¬ÔÙ°´id½µĞò
+å…ˆæŒ‰å§“åå‡åºæ’åˆ—ï¼Œå†æŒ‰idé™åº
 select name,id
 from s_dept
 order by name,id desc;
 
 
-where				ÏŞÖÆ£¨Ìõ¼ş£©²éÑ¯
-	1¡¢Âß¼­ÔËËã·û
+where				é™åˆ¶ï¼ˆæ¡ä»¶ï¼‰æŸ¥è¯¢
+	1ã€é€»è¾‘è¿ç®—ç¬¦
 		=,>,<,>=,<=
-	2¡¢
-		between and 	ÔÚÄ³Ò»¸ö·¶Î§ÄÚ²éÑ¯
-		in(list)		ÔÚÄ³¸ö¼¯ºÏÄÚ²éÑ¯
-		like			Ä£ºı²éÑ¯
-			Í¨Åä·û
-				%		Ã»ÓĞ»ò¶à¸ö				
-				_		Ò»¸ö
-			×ªÒå×Ö·û	
+	2ã€
+		between and 	åœ¨æŸä¸€ä¸ªèŒƒå›´å†…æŸ¥è¯¢
+		in(list)		åœ¨æŸä¸ªé›†åˆå†…æŸ¥è¯¢
+		like			æ¨¡ç³ŠæŸ¥è¯¢
+			é€šé…ç¬¦
+				%		æ²¡æœ‰æˆ–å¤šä¸ª				
+				_		ä¸€ä¸ª
+			è½¬ä¹‰å­—ç¬¦	
 				escape
-		is null			ÅĞ¶ÏÊÇ·ñÎª¿Õ
-	3¡¢
-		ÓÅÏÈ¼¶£º
+		is null			åˆ¤æ–­æ˜¯å¦ä¸ºç©º
+	3ã€
+		ä¼˜å…ˆçº§ï¼š
 			not
 			and
 			or
 	
-²éÑ¯Ğ½Ë®´óÓÚ1000µÄËùÓĞÔ±¹¤µÄĞÅÏ¢
+æŸ¥è¯¢è–ªæ°´å¤§äº1000çš„æ‰€æœ‰å‘˜å·¥çš„ä¿¡æ¯
 select last_name,id,salary
 from s_emp
 where salary>1000;
 
-²éÑ¯last_nameÊÇNgaoµÄÔ±¹¤µÄĞÅÏ¢
+æŸ¥è¯¢last_nameæ˜¯Ngaoçš„å‘˜å·¥çš„ä¿¡æ¯
 select last_name,salary
 from s_emp
 where last_name='Ngao';
 
-²éÑ¯Ğ½Ë®ÔÚ1000~1500Ö®¼äµÄÔ±¹¤ĞÅÏ¢
+æŸ¥è¯¢è–ªæ°´åœ¨1000~1500ä¹‹é—´çš„å‘˜å·¥ä¿¡æ¯
 select last_name,salary
 from s_emp
 where salary between 1000 and 1500;
@@ -209,7 +209,7 @@ select last_name,salary
 from s_emp
 where salary in(1450,1400);
 
-²éÑ¯41~45ºÅ²¿ÃÅµÄÔ±¹¤µÄĞÕÃû£¬±àºÅ
+æŸ¥è¯¢41~45å·éƒ¨é—¨çš„å‘˜å·¥çš„å§“åï¼Œç¼–å·
 select last_name,id,dept_id
 from s_emp
 where dept_id between 41 and 45;
@@ -218,12 +218,12 @@ select last_name,id,dept_id
 from s_emp
 where dept_id in(41,45);
 
-²éÑ¯Ãû×ÖÖĞ´øÓĞ¡®p¡¯µÄÔ±¹¤µÄĞÅÏ¢
+æŸ¥è¯¢åå­—ä¸­å¸¦æœ‰â€˜pâ€™çš„å‘˜å·¥çš„ä¿¡æ¯
 select last_name
 from s_emp
 where last_name like '%p%'
 
-²éÑ¯Ãû×Ö³¤¶ÈÊÇ5µÄÔ±¹¤µÄĞÅÏ¢
+æŸ¥è¯¢åå­—é•¿åº¦æ˜¯5çš„å‘˜å·¥çš„ä¿¡æ¯
 select last_name
 from s_emp
 where last_name like '_____'
@@ -238,26 +238,26 @@ select table_name
 from user_tables
 where table_name like 'S_a%' escape 'a';
 
-²éÑ¯ËùÓĞÃ»ÓÃÌá³ÉµÄÔ±¹¤µÄĞÕÃû
+æŸ¥è¯¢æ‰€æœ‰æ²¡ç”¨ææˆçš„å‘˜å·¥çš„å§“å
 select last_name,commission_pct
 from s_emp
 where commission_pct is null;
 
-²éÑ¯45ºÅ²¿ÃÅÖĞĞ½Ë®´óÓÚ1200µÄÔ±¹¤µÄĞÕÃû
+æŸ¥è¯¢45å·éƒ¨é—¨ä¸­è–ªæ°´å¤§äº1200çš„å‘˜å·¥çš„å§“å
 select last_name,dept_id,salary
 from s_emp
 where dept_id=45
 and salary>1200;
 
-²éÑ¯45ºÅ²¿ÃÅ»òÕßĞ½Ë®´óÓÚ1200µÄÔ±¹¤µÄĞÕÃû
+æŸ¥è¯¢45å·éƒ¨é—¨æˆ–è€…è–ªæ°´å¤§äº1200çš„å‘˜å·¥çš„å§“å
 select last_name,dept_id,salary
 from s_emp
 where dept_id=45
 or salary>1200;
 
-²éÑ¯ 44ºÅÖĞ¹¤×Ê´óÓÚ1000µÄÔ±¹¤
-	»ò 42ºÅ²¿ÃÅµÄÔ±¹¤
-	µÄĞÕÃû£¬Ğ½Ë®£¬²¿ÃÅ±àºÅ
+æŸ¥è¯¢ 44å·ä¸­å·¥èµ„å¤§äº1000çš„å‘˜å·¥
+	æˆ– 42å·éƒ¨é—¨çš„å‘˜å·¥
+	çš„å§“åï¼Œè–ªæ°´ï¼Œéƒ¨é—¨ç¼–å·
 	
 SELECT	last_name, salary, dept_id
 FROM 	s_emp
@@ -277,49 +277,49 @@ where name='Ngao';
 
 ---------------------------------------
 ch03
-µ¥Öµº¯Êı
+å•å€¼å‡½æ•°
 
 function_name(args)
 
-dual:ÑÆ±í
+dual:å“‘è¡¨
 
-×Ö·û
-	LOWER		½«×Ö·û×ª»»ÎªĞ¡Ğ´
-	UPPER		½«×Ö·û×ª»»Îª´óĞ´
-	INITCAP		½«×Ö·û×ª»»ÎªÊ××ÖÄ¸´óĞ´£¬ÆäÓàĞ¡Ğ´
-	CONCAT		Æ´½Ó×Ö·û´®
-	SUBSTR		Çó×Ó´®
-	LENGTH		Çó³¤¶È
-	NVL			´¦Àí¿ÕÖµ
+å­—ç¬¦
+	LOWER		å°†å­—ç¬¦è½¬æ¢ä¸ºå°å†™
+	UPPER		å°†å­—ç¬¦è½¬æ¢ä¸ºå¤§å†™
+	INITCAP		å°†å­—ç¬¦è½¬æ¢ä¸ºé¦–å­—æ¯å¤§å†™ï¼Œå…¶ä½™å°å†™
+	CONCAT		æ‹¼æ¥å­—ç¬¦ä¸²
+	SUBSTR		æ±‚å­ä¸²
+	LENGTH		æ±‚é•¿åº¦
+	NVL			å¤„ç†ç©ºå€¼
 
-²éÑ¯Ãû×ÖÖĞ´øÓĞ¡®p¡¯µÄÔ±¹¤µÄĞÅÏ¢
+æŸ¥è¯¢åå­—ä¸­å¸¦æœ‰â€˜pâ€™çš„å‘˜å·¥çš„ä¿¡æ¯
 select last_name
 from s_emp
 where lower(last_name) like '%p%'
 
-Êı×Ö
-	ROUND		ËÄÉáÎåÈë
-	TRUNC		Ö»Éá²»Èë
-	MOD			ÇóÄ£
-ÈÕÆÚ
-	MONTHS_BETWEEN		ÔÚÄ³Á½¸öÈÕÆÚÖ®¼äÏà²î¼¸¸öÔÂ
-	ADD_MONTHS			ÔÚÄ³¸öÈÕÆÚÉÏ¼Ón¸öÔÂ
-	NEXT_DAY			ÇóÄ³¸öÈÕÆÚµÄÏÂ¸öĞÇÆÚ¼¸ÊÇÄÄÒ»Ìì
-	LAST_DAY	        ÇóÄ³¸öÈÕÆÚËùÔÚÔÂµÄ×îºóÒ»Ìì 
-	ROUND	          	¶ÔÈÕÆÚÀàĞÍµÄÊı¾İ½øĞĞÈ¡Éá
-	TRUNC				¶ÔÈÕÆÚÀàĞÍµÄÊı¾İ½øĞĞÉá
+æ•°å­—
+	ROUND		å››èˆäº”å…¥
+	TRUNC		åªèˆä¸å…¥
+	MOD			æ±‚æ¨¡
+æ—¥æœŸ
+	MONTHS_BETWEEN		åœ¨æŸä¸¤ä¸ªæ—¥æœŸä¹‹é—´ç›¸å·®å‡ ä¸ªæœˆ
+	ADD_MONTHS			åœ¨æŸä¸ªæ—¥æœŸä¸ŠåŠ nä¸ªæœˆ
+	NEXT_DAY			æ±‚æŸä¸ªæ—¥æœŸçš„ä¸‹ä¸ªæ˜ŸæœŸå‡ æ˜¯å“ªä¸€å¤©
+	LAST_DAY	        æ±‚æŸä¸ªæ—¥æœŸæ‰€åœ¨æœˆçš„æœ€åä¸€å¤© 
+	ROUND	          	å¯¹æ—¥æœŸç±»å‹çš„æ•°æ®è¿›è¡Œå–èˆ
+	TRUNC				å¯¹æ—¥æœŸç±»å‹çš„æ•°æ®è¿›è¡Œèˆ
 	
 	sysdate
 	
 	round()
-		month:°´15ºÅÈ¡Éá
-		year:°´6ÔÂÈ¡Éá
+		month:æŒ‰15å·å–èˆ
+		year:æŒ‰6æœˆå–èˆ
 	
 	*round,trunc
-		Ê¹ÓÃÊ±±ØĞëÊ¹ÓÃto_dateº¯Êı¶Ô×Ö·û´®×ª»»
+		ä½¿ç”¨æ—¶å¿…é¡»ä½¿ç”¨to_dateå‡½æ•°å¯¹å­—ç¬¦ä¸²è½¬æ¢
 		
 		
-×ª»»º¯Êı
+è½¬æ¢å‡½æ•°
 	to_char
 	to_number
 	to_date
@@ -331,7 +331,7 @@ where lower(last_name) like '%p%'
 	   49	 1949
 	   
 	   
-	Ç§Äê³æ£º
+	åƒå¹´è™«ï¼š
 		yy    91
 			  00,01
 		rr
@@ -340,35 +340,35 @@ where lower(last_name) like '%p%'
 			
 ----------------------------------------
 ch04 
-¶à±í²éÑ¯
-Equijoin			µÈÁ¬½Ó
-Non-equijoin		²»µÈÁ¬½Ó
-Outer join			ÍâÁ¬½Ó
-Self join			×ÔÁ¬½Ó
+å¤šè¡¨æŸ¥è¯¢
+Equijoin			ç­‰è¿æ¥
+Non-equijoin		ä¸ç­‰è¿æ¥
+Outer join			å¤–è¿æ¥
+Self join			è‡ªè¿æ¥
 Set operators		
 
-µÈÁ¬½Ó£º
-	½«¶àÕÅ±íÍ¨¹ıµÈºÅÁ¬½Ó
+ç­‰è¿æ¥ï¼š
+	å°†å¤šå¼ è¡¨é€šè¿‡ç­‰å·è¿æ¥
 	
-	nÕÅ±í½øĞĞ¶à±í²éÑ¯£¬ÖÁÉÙĞèÒªn-1ÌõÏŞÖÆÓï¾ä
+	nå¼ è¡¨è¿›è¡Œå¤šè¡¨æŸ¥è¯¢ï¼Œè‡³å°‘éœ€è¦n-1æ¡é™åˆ¶è¯­å¥
 	
-	±ÜÃâµÑ¿¨¶û»ıÏÖÏó
+	é¿å…ç¬›å¡å°”ç§¯ç°è±¡
 	
-²éÑ¯41ºÅ²¿ÃÅµÄÔ±¹¤µÄĞÕÃû£¬²¿ÃÅÃû³Æ£¬µØÇøÃû³Æ
+æŸ¥è¯¢41å·éƒ¨é—¨çš„å‘˜å·¥çš„å§“åï¼Œéƒ¨é—¨åç§°ï¼Œåœ°åŒºåç§°
 select e.last_name,d.name,r.name
 from s_emp e,s_dept d,s_region r
 where e.dept_id=d.id
 and d.region_id=r.id
 and dept_id=41;
 
-²éÑ¯ËùÔÚ²¿ÃÅÃû³ÆÖĞ°üº¬saµÄÔ±¹¤µÄĞ½Ë®
+æŸ¥è¯¢æ‰€åœ¨éƒ¨é—¨åç§°ä¸­åŒ…å«saçš„å‘˜å·¥çš„è–ªæ°´
 select e.salary,d.name
 from s_emp e,s_dept d
 where e.dept_id=d.id
 and lower(d.name) like '%sa%';
 
-²éÑ¯Å·ÖŞÏúÊÛ²¿ÃÅµÄĞ½Ë®ÔÚ1000µ½2000Ö®¼äµÄ
-Ô±¹¤µÄÃû×Ö
+æŸ¥è¯¢æ¬§æ´²é”€å”®éƒ¨é—¨çš„è–ªæ°´åœ¨1000åˆ°2000ä¹‹é—´çš„
+å‘˜å·¥çš„åå­—
 select e.last_name,e.salary,d.name
 from s_emp e,s_dept d,s_region r
 where e.dept_id=d.id
@@ -377,9 +377,9 @@ and r.name='Europe'
 and d.region_id=r.id;
 and d.name='Sales';
 
-²éÑ¯²¿ÃÅÃû³ÆÊÇ5Î»
-ÇÒ¸Ã²¿ÃÅÔ±¹¤µÄĞ½Ë®²»µÈÓÚ1500µÄÔ±¹¤Ğ½Ë®
-²¢½«Ô±¹¤Ğ½Ë®½µĞòÅÅÁĞ
+æŸ¥è¯¢éƒ¨é—¨åç§°æ˜¯5ä½
+ä¸”è¯¥éƒ¨é—¨å‘˜å·¥çš„è–ªæ°´ä¸ç­‰äº1500çš„å‘˜å·¥è–ªæ°´
+å¹¶å°†å‘˜å·¥è–ªæ°´é™åºæ’åˆ—
 select e.last_name,e.salary,d.name
 from s_emp e,s_dept d
 where e.dept_id=d.id
@@ -387,8 +387,8 @@ and salary!=1500
 and length(d.name)=5
 order by salary desc;
 
-²»µÈÁ¬½Ó
-	½«¶àÕÅ±í ²»Ê¹ÓÃµÈºÅ Á¬½ÓÆğÀ´
+ä¸ç­‰è¿æ¥
+	å°†å¤šå¼ è¡¨ ä¸ä½¿ç”¨ç­‰å· è¿æ¥èµ·æ¥
 create table s_grade(
 		id number(7) primary key,
 		grade varchar2(10),
@@ -396,41 +396,41 @@ create table s_grade(
 		maxsal number(4)
 );
 insert into s_grade values
-	(1,'À¶Áì',0,1000);
+	(1,'è“é¢†',0,1000);
 insert into s_grade values
-	(2,'°×Áì',1001,1500);
+	(2,'ç™½é¢†',1001,1500);
 insert into s_grade values
-	(3,'½ğÁì',1501,2000);
+	(3,'é‡‘é¢†',1501,2000);
 commit;	
 
-²éÑ¯ËùÓĞÔ±¹¤µÄĞÕÃûºÍµÈ¼¶
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å§“åå’Œç­‰çº§
 select e.last_name,g.grade
 from s_emp e,s_grade g
 where e.salary between g.minsal and g.maxsal;
 
 
-ÍâÁ¬½Ó
+å¤–è¿æ¥
 insert into s_emp values(999,'briup',
 null,null,null,null,null,null,null,
 null,null);
 
 commit;
 
-²éÑ¯ËùÓĞÔ±¹¤µÄĞÕÃû£¬²¿ÃÅÃû³Æ
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å§“åï¼Œéƒ¨é—¨åç§°
 select e.last_name,d.name
 from s_emp e,s_dept d
 where e.dept_id=d.id(+);
 
-ÓÃ·¨£º
-	ÄÄ±ßÊı¾İÉÙ£¬ÔÚÄÇ±ßĞ´+
+ç”¨æ³•ï¼š
+	å“ªè¾¹æ•°æ®å°‘ï¼Œåœ¨é‚£è¾¹å†™+
 	
 SELECT	e.last_name, e.id, c.name
 FROM	s_emp e, s_customer c
 WHERE	e.id(+)  = c.sales_rep_id
 ORDER BY	e.id;
 
-×ÔÁ¬½Ó
-²éÑ¯ËùÓĞÔ±¹¤µÄĞÕÃû¼°Æä¾­ÀíµÄĞÕÃû
+è‡ªè¿æ¥
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„å§“ååŠå…¶ç»ç†çš„å§“å
 select worker.last_name,manager.last_name
 from s_emp worker,s_emp manager
 where worker.manager_id=manager.id;
@@ -439,58 +439,58 @@ where worker.manager_id=manager.id;
 Set operators
 	
 	
-rownum:Î±ÁĞ
-±¾ÉíµÄÖµÊÇ1
-¿ÉÒÔĞ¡ÓÚÈÎºÎµÄÕıÕûÊı
-²»ÄÜ´óÓÚÈÎºÎµÄÕıÕûÊı
+rownum:ä¼ªåˆ—
+æœ¬èº«çš„å€¼æ˜¯1
+å¯ä»¥å°äºä»»ä½•çš„æ­£æ•´æ•°
+ä¸èƒ½å¤§äºä»»ä½•çš„æ­£æ•´æ•°
 
 -----------------------------------------
 ch05
-1¡¢×éº¯Êı
-AVG()			ÇóÆ½¾ùÖµ		
-COUNT()			Í³¼Æ£¬¼ÆÊı
-MAX()			Çó×î´óÖµ
-MIN()			Çó×îĞ¡Öµ
-SUM() 			ÇóºÍ
+1ã€ç»„å‡½æ•°
+AVG()			æ±‚å¹³å‡å€¼		
+COUNT()			ç»Ÿè®¡ï¼Œè®¡æ•°
+MAX()			æ±‚æœ€å¤§å€¼
+MIN()			æ±‚æœ€å°å€¼
+SUM() 			æ±‚å’Œ
 	
 	
-²éÑ¯ËùÓĞÔ±¹¤µÄ×î´óĞ½Ë®£¬×îĞ¡Ğ½Ë®£¬Æ½¾ùĞ½Ë®
+æŸ¥è¯¢æ‰€æœ‰å‘˜å·¥çš„æœ€å¤§è–ªæ°´ï¼Œæœ€å°è–ªæ°´ï¼Œå¹³å‡è–ªæ°´
 select max(salary),min(salary),avg(salary)
 from s_emp;
-²éÑ¯41ºÅ²¿ÃÅµÄÈËÊı£¬Ğ½Ë®×ÜºÍ
+æŸ¥è¯¢41å·éƒ¨é—¨çš„äººæ•°ï¼Œè–ªæ°´æ€»å’Œ
 select count(id),sum(salary)
 from s_emp
 where dept_id=41;
 
-2¡¢·Ö×é²éÑ¯
-group by			¶ÔÏŞÖÆÓï¾ä´¦ÀíºóµÄ½á¹û½øĞĞ½øÒ»²½µÄ·Ö×é
-²éÑ¯Ã¿¸ö²¿ÃÅµÄÈËÊı
+2ã€åˆ†ç»„æŸ¥è¯¢
+group by			å¯¹é™åˆ¶è¯­å¥å¤„ç†åçš„ç»“æœè¿›è¡Œè¿›ä¸€æ­¥çš„åˆ†ç»„
+æŸ¥è¯¢æ¯ä¸ªéƒ¨é—¨çš„äººæ•°
 select count(id),dept_id
 from s_emp
 group by dept_id;
 
-²éÑ¯Æ½¾ùĞ½Ë®ÔÚ1500ÒÔÉÏµÄ²¿ÃÅµÄÔ±¹¤ÈËÊı
+æŸ¥è¯¢å¹³å‡è–ªæ°´åœ¨1500ä»¥ä¸Šçš„éƒ¨é—¨çš„å‘˜å·¥äººæ•°
 select count(id)
 from s_emp
 group by dept_id
 having avg(salary)>1500
 
-²éÑ¯¸÷²¿ÃÅµÄ²¿ÃÅÃû³ÆºÍÔ±¹¤Êı
+æŸ¥è¯¢å„éƒ¨é—¨çš„éƒ¨é—¨åç§°å’Œå‘˜å·¥æ•°
 select d.name,count(e.id)
 from s_emp e,s_dept d
 where e.dept_id=d.id
 group by e.dept_id,d.name;
 
-²éÑ¯Æ½¾ùĞ½Ë®´óÓÚ1500µÄ¸÷²¿ÃÅ¸÷Ö°Î»µÄ
-	Æ½¾ùĞ½Ë®,×î´óĞ½Ë®,Ö°Î»Ãû³Æ
+æŸ¥è¯¢å¹³å‡è–ªæ°´å¤§äº1500çš„å„éƒ¨é—¨å„èŒä½çš„
+	å¹³å‡è–ªæ°´,æœ€å¤§è–ªæ°´,èŒä½åç§°
 select avg(salary),max(salary),title,dept_id
 from s_emp
 group by dept_id,title
 having avg(salary)>1500;
 
-²éÑ¯×ÜĞ½Ë®´óÓÚ5000
-²¢ÇÒÖ°Î»Ãû×Ö²»°üº¬vpµÄÖ°Î»µÄÆ½¾ùĞ½Ë®£¬
-²¢¶ÔÆä½µĞòÅÅÁĞ
+æŸ¥è¯¢æ€»è–ªæ°´å¤§äº5000
+å¹¶ä¸”èŒä½åå­—ä¸åŒ…å«vpçš„èŒä½çš„å¹³å‡è–ªæ°´ï¼Œ
+å¹¶å¯¹å…¶é™åºæ’åˆ—
 select avg(salary),title
 from s_emp
 where lower(title) not like '%vp%'
@@ -499,9 +499,9 @@ having sum(salary)>5000
 order by avg(salary) desc;
 	
 	
-*×éº¯Êı²»ÔÊĞíÔÚwhereÖĞÊ¹ÓÃ
-*ÔÚselect×Ó¾äÖĞ³öÏÖµÄÈÎºÎ·Ç×éº¯ÊıÁĞ£¬
-	¶¼±ØĞëÔÚgroup by×÷Îª·Ö×éÒÀ¾İ
+*ç»„å‡½æ•°ä¸å…è®¸åœ¨whereä¸­ä½¿ç”¨
+*åœ¨selectå­å¥ä¸­å‡ºç°çš„ä»»ä½•éç»„å‡½æ•°åˆ—ï¼Œ
+	éƒ½å¿…é¡»åœ¨group byä½œä¸ºåˆ†ç»„ä¾æ®
 
 select		5
 from		1
@@ -511,12 +511,12 @@ having		4
 order by	6
 
 briup_students
-ĞÕÃû		°à¼¶		ÉúÔ´Ñ§Ğ£
+å§“å		ç­çº§		ç”Ÿæºå­¦æ ¡
 -----------------------------------------
 ch06
-×Ó²éÑ¯
-1¡¢Ìõ¼ş²»Ã÷È·
-²éÑ¯(NgaoËùÔÚ²¿ÃÅ)µÄËùÓÃÔ±¹¤ĞÕÃû,Ğ½Ë®
+å­æŸ¥è¯¢
+1ã€æ¡ä»¶ä¸æ˜ç¡®
+æŸ¥è¯¢(Ngaoæ‰€åœ¨éƒ¨é—¨)çš„æ‰€ç”¨å‘˜å·¥å§“å,è–ªæ°´
 select last_name,salary
 from s_emp
 where dept_id=(
@@ -524,7 +524,7 @@ where dept_id=(
 	from s_emp
 	where last_name='Ngao'
 );
-²éÑ¯¹¤×Ê´óÓÚChangµÄËùÓĞÔ±¹¤µÄ±àºÅºÍĞÕÃû
+æŸ¥è¯¢å·¥èµ„å¤§äºChangçš„æ‰€æœ‰å‘˜å·¥çš„ç¼–å·å’Œå§“å
 select id,last_name
 from s_emp
 where salary>(
@@ -533,7 +533,7 @@ where salary>(
 	where last_name='Chang'
 );
 
-²éÑ¯¹¤×ÊĞ¡ÓÚÆ½¾ùĞ½Ë®µÄÔ±¹¤µÄ±àºÅºÍĞÕÃû
+æŸ¥è¯¢å·¥èµ„å°äºå¹³å‡è–ªæ°´çš„å‘˜å·¥çš„ç¼–å·å’Œå§“å
 select id,last_name
 from s_emp
 where salary<(
@@ -541,8 +541,8 @@ where salary<(
 	from s_emp
 );
 
-²éÑ¯ChangËùÔÚ²¿ÃÅµÄ²¿ÃÅÃû³Æ
-	»òÕßµØÇø±àºÅÎª2µÄ²¿ÃÅµÄÃû³Æ
+æŸ¥è¯¢Changæ‰€åœ¨éƒ¨é—¨çš„éƒ¨é—¨åç§°
+	æˆ–è€…åœ°åŒºç¼–å·ä¸º2çš„éƒ¨é—¨çš„åç§°
 select name
 from s_dept
 where id=(
@@ -552,8 +552,8 @@ where id=(
 )
 or region_id=2;
 	
-²éÑ¯¹¤×ÊÔÚ41ºÅ²¿ÃÅ×î´ó¹¤×ÊºÍ×îĞ¡¹¤×ÊÖ®¼äµÄ
-Ô±¹¤µÄ¹¤×Ê
+æŸ¥è¯¢å·¥èµ„åœ¨41å·éƒ¨é—¨æœ€å¤§å·¥èµ„å’Œæœ€å°å·¥èµ„ä¹‹é—´çš„
+å‘˜å·¥çš„å·¥èµ„
 select salary
 from s_emp
 where salary between (
@@ -566,8 +566,8 @@ where salary between (
 	where dept_id=41
 );
 
-²éÑ¯²¿ÃÅÆ½¾ùĞ½Ë®´óÓÚ32ºÅ²¿ÃÅµÄÆ½¾ùĞ½Ë®
-µÄ²¿ÃÅµÄ±àºÅ
+æŸ¥è¯¢éƒ¨é—¨å¹³å‡è–ªæ°´å¤§äº32å·éƒ¨é—¨çš„å¹³å‡è–ªæ°´
+çš„éƒ¨é—¨çš„ç¼–å·
 select dept_id
 from s_emp
 group by dept_id
@@ -577,8 +577,8 @@ having avg(salary)>(
 	where dept_id=32
 );
 
-²éÑ¯¹¤×Ê´óÓÚsmithËùÔÚ²¿ÃÅÆ½¾ù¹¤×ÊµÄÔ±¹¤
-µÄidºÍÃû×Ö
+æŸ¥è¯¢å·¥èµ„å¤§äºsmithæ‰€åœ¨éƒ¨é—¨å¹³å‡å·¥èµ„çš„å‘˜å·¥
+çš„idå’Œåå­—
 select id,last_name
 from s_emp
 where salary>(
@@ -590,8 +590,8 @@ where salary>(
 		where lower(last_name)='smith'
 	)
 );
-2¡¢±í²»Ã÷È·
-²éÑ¯²¿ÃÅÆ½¾ù¹¤×Ê×î¸ßµÄ²¿ÃÅ±àºÅ
+2ã€è¡¨ä¸æ˜ç¡®
+æŸ¥è¯¢éƒ¨é—¨å¹³å‡å·¥èµ„æœ€é«˜çš„éƒ¨é—¨ç¼–å·
 select dept_id
 from (
 	select avg(salary) avg_sal,dept_id
@@ -609,31 +609,31 @@ where avg_sal=(
 
 --------------------------------------
 ch08
-Êı¾İ½¨Ä£
-½¨Á¢Ò»Ì×ÍêÕûµÄ±íµÄ²½Öè
-1¡¢ĞèÇó·ÖÎö
-	1£©³éÏóÊµÌå
-		ÓòÊµÌå¡¢ĞĞÎªÊµÌå
-	2£©ÌáÁ¶ÊôĞÔ
-	3£©½¨Á¢¹ØÏµ
-		(1)Ò»¶ÔÒ»¡¢Ò»¶Ô¶à¡¢¶à¶Ô¶à
-		Ä³Ò»¸öÊ±¿Ì£ºÊ±Ğ§ĞÔ
-		Ê¹ÓÃÇÅ±í½«¶à¶Ô¶àµÄ¹ØÏµ¼ò»¯ÎªÒ»¶Ô¶àµÄ¹ØÏµ
-		(2)maybe/mustbe			ĞèÇó
-		(3)Ö÷Íâ¼üµÄ¹ØÏµ
-2¡¢Éè¼ÆERÄ£ĞÍÍ¼
-# Î¨Ò»    
-* ·Ç¿Õ   
-o ÈÎÒâ
+æ•°æ®å»ºæ¨¡
+å»ºç«‹ä¸€å¥—å®Œæ•´çš„è¡¨çš„æ­¥éª¤
+1ã€éœ€æ±‚åˆ†æ
+	1ï¼‰æŠ½è±¡å®ä½“
+		åŸŸå®ä½“ã€è¡Œä¸ºå®ä½“
+	2ï¼‰æç‚¼å±æ€§
+	3ï¼‰å»ºç«‹å…³ç³»
+		(1)ä¸€å¯¹ä¸€ã€ä¸€å¯¹å¤šã€å¤šå¯¹å¤š
+		æŸä¸€ä¸ªæ—¶åˆ»ï¼šæ—¶æ•ˆæ€§
+		ä½¿ç”¨æ¡¥è¡¨å°†å¤šå¯¹å¤šçš„å…³ç³»ç®€åŒ–ä¸ºä¸€å¯¹å¤šçš„å…³ç³»
+		(2)maybe/mustbe			éœ€æ±‚
+		(3)ä¸»å¤–é”®çš„å…³ç³»
+2ã€è®¾è®¡ERæ¨¡å‹å›¾
+# å”¯ä¸€    
+* éç©º   
+o ä»»æ„
 
-Ö÷¼ü£º#*
-Íâ¼ü£ºÒ»¶ÔÒ»µÄ¹ØÏµ£¬Íâ¼ü¿ÉÒÔ½¨Á¢ÔÚÈÎÒâÒ»±ß
-	  Ò»¶Ô¶àµÄ¹ØÏµ£¬Íâ¼ü½¨Á¢ÔÚ¶àµÄÄÇ±ß
-3¡¢½¨Á¢ÎÄµµ£¨Êı¾İ×Öµä£©
-4¡¢½¨±í
-5¡¢²âÊÔ£¬²úÆ·»¯
+ä¸»é”®ï¼š#*
+å¤–é”®ï¼šä¸€å¯¹ä¸€çš„å…³ç³»ï¼Œå¤–é”®å¯ä»¥å»ºç«‹åœ¨ä»»æ„ä¸€è¾¹
+	  ä¸€å¯¹å¤šçš„å…³ç³»ï¼Œå¤–é”®å»ºç«‹åœ¨å¤šçš„é‚£è¾¹
+3ã€å»ºç«‹æ–‡æ¡£ï¼ˆæ•°æ®å­—å…¸ï¼‰
+4ã€å»ºè¡¨
+5ã€æµ‹è¯•ï¼Œäº§å“åŒ–
 
-ÁªºÏÖ÷¼ü
+è”åˆä¸»é”®
 order		item
 1			1
 			2
@@ -642,14 +642,14 @@ order		item
 			2
 			3	
 			
-·¶Ê½
-Ò»·¶Ê½£ºËùÓÃµÄÊôĞÔ±ØĞëÊÇµ¥Öµ  
-¶ş·¶Ê½£ºÃ¿¸ö±íÀï±ØĞëÓĞÇÒÖ»ÓĞÒ»¸öÖ÷¼ü  
-Èı·¶Ê½£º·ÇÖ÷¼üÁĞÖ®¼ä²»ÄÜ´æÔÚÒÀÀµ¹ØÏµ
+èŒƒå¼
+ä¸€èŒƒå¼ï¼šæ‰€ç”¨çš„å±æ€§å¿…é¡»æ˜¯å•å€¼  
+äºŒèŒƒå¼ï¼šæ¯ä¸ªè¡¨é‡Œå¿…é¡»æœ‰ä¸”åªæœ‰ä¸€ä¸ªä¸»é”®  
+ä¸‰èŒƒå¼ï¼šéä¸»é”®åˆ—ä¹‹é—´ä¸èƒ½å­˜åœ¨ä¾èµ–å…³ç³»
 
 -------------------------------------------
 ch09
-½¨±í
+å»ºè¡¨
 CREATE TABLE [schema.]table
 		(column datatype [DEFAULT expr] 
 				[column_constraint], 
@@ -657,40 +657,40 @@ CREATE TABLE [schema.]table
 	 	  [table_constraint]);
 		  
 		  
-schema:ÓÃ»§¼¯Èº£¬ÓÃ»§Ãû
+schema:ç”¨æˆ·é›†ç¾¤ï¼Œç”¨æˆ·å
 dba
 create table briup.tableName
 
 datatype:
-×Ö·û
+å­—ç¬¦
 	char
 	varchar
 	varchar2
 	char(10)  varchar2(10)
 	char   			varchar/varchar2
-	¹Ì¶¨³¤¶È		¿É±ä³¤¶È
+	å›ºå®šé•¿åº¦		å¯å˜é•¿åº¦
 	hello-----		hello
-	Ğ§ÂÊ¸ß			Ğ§ÂÊµÍ
-Êı×Ö
-	number(7)	7Î»
-	number(5,2)	×Ü³¤5Î»£¬2Î»Ğ¡Êı
-ÈÕÆÚ
+	æ•ˆç‡é«˜			æ•ˆç‡ä½
+æ•°å­—
+	number(7)	7ä½
+	number(5,2)	æ€»é•¿5ä½ï¼Œ2ä½å°æ•°
+æ—¥æœŸ
 	date
 
 default
-Ä¬ÈÏÖµ	default 2
+é»˜è®¤å€¼	default 2
 
-Ô¼Êø£º
-ÁĞ¼¶Ô¼Êø	Ğ´ÔÚÁĞ×îºó
-±í¼¶Ô¼Êø	Ğ´ÔÚËùÓĞµÄÁĞÈ«²¿Íê³ÉÖ®ºó
+çº¦æŸï¼š
+åˆ—çº§çº¦æŸ	å†™åœ¨åˆ—æœ€å
+è¡¨çº§çº¦æŸ	å†™åœ¨æ‰€æœ‰çš„åˆ—å…¨éƒ¨å®Œæˆä¹‹å
 
-NOT NULL		·Ç¿Õ
-UNIQUE			Î¨Ò»
-PRIMARY KEY		Ö÷¼ü
-FOREIGN KEY		Íâ¼ü
-CHECK			¼ì²â
+NOT NULL		éç©º
+UNIQUE			å”¯ä¸€
+PRIMARY KEY		ä¸»é”®
+FOREIGN KEY		å¤–é”®
+CHECK			æ£€æµ‹
 
-ÁĞ¼¶Ô¼Êø
+åˆ—çº§çº¦æŸ
 create table a(
 	id number(7) constraint a_id_pk 
 		primary key,
@@ -703,7 +703,7 @@ create table a(
 		check (gender in('male','female'))
 );
 
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 create table a(
 	id number(7),
 	name varchar2(10) constraint a_name_nn 
@@ -718,9 +718,9 @@ create table a(
 		check (gender in('male','female'))
 );
 
-±í¼¶Ô¼Êø£º
-	ÓÃÀ´¶¨ÒåÁªºÏÖ÷¼ü¡¢ÁªºÏÍâ¼ü¡¢ÁªºÏÎ¨Ò»¼ü
-·Ç¿Õ²»ÄÜÊ¹ÓÃ±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸï¼š
+	ç”¨æ¥å®šä¹‰è”åˆä¸»é”®ã€è”åˆå¤–é”®ã€è”åˆå”¯ä¸€é”®
+éç©ºä¸èƒ½ä½¿ç”¨è¡¨çº§çº¦æŸ
 
 
 
@@ -732,14 +732,14 @@ from user_constraints
 where table_name='A';
 
 
-Íâ¼ü
-ÁĞ¼¶Ô¼Êø
+å¤–é”®
+åˆ—çº§çº¦æŸ
 create table b(
 	id number(7),
 	a_id number(7) constraint b_a_id_fk
 		references a(id)
 );
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 create table b(
 	id number(7),
 	a_id number(7),
@@ -748,56 +748,56 @@ create table b(
 );
 
 
-PRIMARY KEY		Ö÷¼ü
-ÁĞ¼¶Ô¼Êø
+PRIMARY KEY		ä¸»é”®
+åˆ—çº§çº¦æŸ
 	colName datetype 
 		constraint tableName_colName_pk
 		primary key
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 	constraint tableName_colName_pk 
 		primary key(colName,colName,...)
 
-FOREIGN KEY		Íâ¼ü
-ÁĞ¼¶Ô¼Êø
+FOREIGN KEY		å¤–é”®
+åˆ—çº§çº¦æŸ
 	colName datetype 
 		constraint tableName_colName_fk
 		references tableName(colName)
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 	constraint tableName_colName_fk
 		foreign key(colName,...)
 		references tableName(colName,...)
 
-NOT NULL		·Ç¿Õ
-ÁĞ¼¶Ô¼Êø
+NOT NULL		éç©º
+åˆ—çº§çº¦æŸ
 	colName datetype 
 		constraint tableName_colName_nn
 		not null
 
-UNIQUE			Î¨Ò»
-ÁĞ¼¶Ô¼Êø
+UNIQUE			å”¯ä¸€
+åˆ—çº§çº¦æŸ
 	colName datetype 
 		constraint tableName_colName_uk
 		unique
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 	constraint tableName_colName_uk
 		unique(colName)
 	
-CHECK			¼ì²â
-ÁĞ¼¶Ô¼Êø
+CHECK			æ£€æµ‹
+åˆ—çº§çº¦æŸ
 	colName datetype 
 		constraint tableName_colName_ck
 		check (colName in(list))
-±í¼¶Ô¼Êø
+è¡¨çº§çº¦æŸ
 	constraint tableName_colName_ck
 		check (colName in(list))
 
 -------------------------------------------
 ch11
-²åÈë
+æ’å…¥
 INSERT INTO	table [(column [, column...])]
 VALUES(value [, value...]);
 
-ÊÖ¶¯²åÈë£º
+æ‰‹åŠ¨æ’å…¥ï¼š
 insert into s_emp
 values(999,'briup',null,null,null,null,
 null,null,null,null,null,);
@@ -805,11 +805,11 @@ null,null,null,null,null,);
 insert into s_emp(id,last_name)
 values(999,'briup');
 
-×Ô¶¯²åÈë
+è‡ªåŠ¨æ’å…¥
 insert into a
 select id,last_name from s_emp;
 
-¸üĞÂ/ĞŞ¸Ä
+æ›´æ–°/ä¿®æ”¹
 UPDATE	table
 SET	column = value [, column = value]
 [WHERE	condition];
@@ -818,7 +818,7 @@ update a
 set name='yanys';
 where id=999;
 
-É¾³ı
+åˆ é™¤
 DELETE [FROM] table
 [WHERE	condition];
 
@@ -826,35 +826,35 @@ delete a;
 where id=999;
 
 ============
-ÊÂÎñ
-ÊÂÎñÊÇ×éºÏÔÚÒ»¿éµÄ¶à¸ö²Ù×÷£¬
-Õâ¶à¸ö²Ù×÷±íÏÖÏñÒ»¸ö²»¿É·Ö¸îµÄÔ­×Ó²Ù×÷£¬
-ÒªÃ´Í¬Ê±³É¹¦£¬ÒªÃ´Í¬Ê±Ê§°Ü¡£
-Í¨¹ıÊÂÎñÈ·±£Êı¾İµÄÍêÕûĞÔ¡£
+äº‹åŠ¡
+äº‹åŠ¡æ˜¯ç»„åˆåœ¨ä¸€å—çš„å¤šä¸ªæ“ä½œï¼Œ
+è¿™å¤šä¸ªæ“ä½œè¡¨ç°åƒä¸€ä¸ªä¸å¯åˆ†å‰²çš„åŸå­æ“ä½œï¼Œ
+è¦ä¹ˆåŒæ—¶æˆåŠŸï¼Œè¦ä¹ˆåŒæ—¶å¤±è´¥ã€‚
+é€šè¿‡äº‹åŠ¡ç¡®ä¿æ•°æ®çš„å®Œæ•´æ€§ã€‚
 
-ÊÂÎñµÄËÄ¸öÌØĞÔ£¨ACID£©
-A£ºÔ­×ÓĞÔ£¬ËùÓĞµÄ²Ù×÷ÊÇ²»¿ÉÔÙ·Ö¸îµÄ£¬
-	ÒªÃ´Í¬Ê±³É¹¦£¬ÒªÃ´Í¬Ê±Ê§°Ü¡£
-C: Ò»ÖÂĞÔ£¬Ò»¸öÊÂÎñµÄ¹ı³ÌÖĞ£¬Êı¾İ±£³Ö²»±ä
-I: ¸ôÀëĞÔ£¬Ò»¸öÊÂÎñµÄ¹ı³ÌÖĞ£¬
-	ÆäËûÊÂÎñÎŞ·¨Ó°Ïìµ±Ç°ÊÂÎñµÄÄÚ²¿¹ı³Ì
-D: ³Ö¾ÃĞÔ£¬Ò»¸öÊÂÎñ½áÊøµÄÇé¿öÏÂ£¬
-	»á½«Êı¾İ³Ö¾ÃµÄ±£´æÆğÀ´
+äº‹åŠ¡çš„å››ä¸ªç‰¹æ€§ï¼ˆACIDï¼‰
+Aï¼šåŸå­æ€§ï¼Œæ‰€æœ‰çš„æ“ä½œæ˜¯ä¸å¯å†åˆ†å‰²çš„ï¼Œ
+	è¦ä¹ˆåŒæ—¶æˆåŠŸï¼Œè¦ä¹ˆåŒæ—¶å¤±è´¥ã€‚
+C: ä¸€è‡´æ€§ï¼Œä¸€ä¸ªäº‹åŠ¡çš„è¿‡ç¨‹ä¸­ï¼Œæ•°æ®ä¿æŒä¸å˜
+I: éš”ç¦»æ€§ï¼Œä¸€ä¸ªäº‹åŠ¡çš„è¿‡ç¨‹ä¸­ï¼Œ
+	å…¶ä»–äº‹åŠ¡æ— æ³•å½±å“å½“å‰äº‹åŠ¡çš„å†…éƒ¨è¿‡ç¨‹
+D: æŒä¹…æ€§ï¼Œä¸€ä¸ªäº‹åŠ¡ç»“æŸçš„æƒ…å†µä¸‹ï¼Œ
+	ä¼šå°†æ•°æ®æŒä¹…çš„ä¿å­˜èµ·æ¥
 	
-ÊÂÎñµÄ¿ªÊ¼
-	1¡¢´ò¿ªsqlplus
-	2¡¢µ±Ç°ÊÂÎñÌá½»£¬ÒâÍâ×ÅĞÂµÄÊÂÎñ¿ªÊ¼
-ÊÂÎñµÄ½áÊø
-	1¡¢Õı³£½áÊø:commit;
-	2¡¢Õı³£ÍË³ösqlplus:exit
-	3¡¢DDL£¬DCL×Ô¶¯Ìá½»ÊÂÎñ
+äº‹åŠ¡çš„å¼€å§‹
+	1ã€æ‰“å¼€sqlplus
+	2ã€å½“å‰äº‹åŠ¡æäº¤ï¼Œæ„å¤–ç€æ–°çš„äº‹åŠ¡å¼€å§‹
+äº‹åŠ¡çš„ç»“æŸ
+	1ã€æ­£å¸¸ç»“æŸ:commit;
+	2ã€æ­£å¸¸é€€å‡ºsqlplus:exit
+	3ã€DDLï¼ŒDCLè‡ªåŠ¨æäº¤äº‹åŠ¡
 	
 	
-	rollback:»Ø¹ö
+	rollback:å›æ»š
 	
 ----------------------------------------
 ch10
-Êı¾İ×Öµä
+æ•°æ®å­—å…¸
 select table_name from dictionary;
 
 
@@ -863,25 +863,25 @@ select constraint_name from user_constraints;
 
 ---------------------------------------
 ch12
-²Ù×÷ÁĞ
-	Ôö¼ÓÁĞ
+æ“ä½œåˆ—
+	å¢åŠ åˆ—
 	ALTER TABLE table
 	ADD	(column datatype [DEFAULT expr][NOT NULL]
 		[, column datatype]...);
 
 	alter table a
 	add(phone varchar2(20) not null);
-	*Ö»ÄÜÔö¼Ó·Ç¿ÕÔ¼Êø
-	*ÔÚÌí¼Ó·Ç¿ÕÁĞµÄÊ±ºò£¬±íÄÚ²»ÄÜÓĞÊı¾İ
+	*åªèƒ½å¢åŠ éç©ºçº¦æŸ
+	*åœ¨æ·»åŠ éç©ºåˆ—çš„æ—¶å€™ï¼Œè¡¨å†…ä¸èƒ½æœ‰æ•°æ®
 	
-	É¾³ıÁĞ
+	åˆ é™¤åˆ—
 	ALTER TABLE table
 	DROP COLUMN column;
 	
 	alter table a
 	drop column phone;
 	
-	ĞŞ¸ÄÁĞ
+	ä¿®æ”¹åˆ—
 	ALTER TABLE table
 	MODIFY(column datatype [DEFAULT expr][NOT NULL]
 				[, column datatype]...);
@@ -890,37 +890,37 @@ ch12
 	modify(id number(8) not null);
 	
 	
-²Ù×÷Ô¼Êø
+æ“ä½œçº¦æŸ
 
-Ôö¼ÓÔ¼Êø
+å¢åŠ çº¦æŸ
 	ALTER TABLE	table
 		ADD [CONSTRAINT constraint] type (column);
 
 	alter table a
 		add constraint a_id_pk primary key (id);
-É¾³ıÔ¼Êø
+åˆ é™¤çº¦æŸ
 	ALTER TABLE	table
 		DROP CONSTRAINT constaint_name;
 		
 	alter table a
 		drop constraint a_id_pk;
 		
-Ê§Ğ§Ô¼Êø
+å¤±æ•ˆçº¦æŸ
 	ALTER TABLE	table
 		DISABLE CONSTRAINT constaint_name;
 	
-ÉúĞ§Ô¼Êø
+ç”Ÿæ•ˆçº¦æŸ
 	ALTER TABLE	table
 		ENABLE CONSTRAINT constaint_name;
 		
-ÆäËû²Ù×÷
+å…¶ä»–æ“ä½œ
 
-É¾³ı±í
+åˆ é™¤è¡¨
 	DROP TABLE table [CASCADE CONSTRAINTS];
 	
 	cascade constraints:
-		¼¶ÁªÉ¾³ı£¬
-			ÔÙÉ¾³ı±íµÄÍ¬Ê±Ò»²¢É¾³ıÓëÖ®Ïà¹ØÁªµÄÍâ¼ü
+		çº§è”åˆ é™¤ï¼Œ
+			å†åˆ é™¤è¡¨çš„åŒæ—¶ä¸€å¹¶åˆ é™¤ä¸ä¹‹ç›¸å…³è”çš„å¤–é”®
 	
 create table b(
 	id number(7),
@@ -928,31 +928,31 @@ create table b(
 		references a(id)
 );
 	
-±íÖØÃüÃû
+è¡¨é‡å‘½å
 RENAME oldName TO newName;
 
 rename b to c;
 
-ÁĞÖØÃüÃû
+åˆ—é‡å‘½å
 alter table tableName 
 	rename column columnName to newcolumnName
 	
 alter table a
 	rename column id to bianhao
 
-½Ø¶Ï£º
+æˆªæ–­ï¼š
 TRUNCATE TABLE table_name;
 
 truncate table a;
 
-Çå¿Õ±íÄÚÈİ
-	ÓëdeleteÇø±ğ
-	1¡¢deleteÊÇ¿ÉÒÔ»Ø¹öµÄ£¬truncate²»¿ÉÒÔ
-	2¡¢truncateËÙ¶È±ÈdeleteÒª¿ì
+æ¸…ç©ºè¡¨å†…å®¹
+	ä¸deleteåŒºåˆ«
+	1ã€deleteæ˜¯å¯ä»¥å›æ»šçš„ï¼Œtruncateä¸å¯ä»¥
+	2ã€truncateé€Ÿåº¦æ¯”deleteè¦å¿«
 
 ------------------------------------------
 ch13
-ĞòÁĞ£ºÒ»×é×Ô¶¯Ôö¼ÓµÄ¡¢²»ÖØ¸´µÄÊı×Ö£¬ÉèÖÃÖ÷¼ü
+åºåˆ—ï¼šä¸€ç»„è‡ªåŠ¨å¢åŠ çš„ã€ä¸é‡å¤çš„æ•°å­—ï¼Œè®¾ç½®ä¸»é”®
 CREATE SEQUENCE name
 	[INCREMENT BY n]
 	[START WITH n]
@@ -961,41 +961,41 @@ CREATE SEQUENCE name
 	[{CYCLE | NOCYCLE}]
 	[{CACHE n | NOCACHE}]
 
-increment by	²½³¤
-start with		ÆğÊ¼Öµ
-maxvalue		×î´óÖµ
-minvalue		×îĞ¡Öµ
-cycle			Ñ­»·£¨²»ÍÆ¼öÊ¹ÓÃ£©
-cache			»º´æ
+increment by	æ­¥é•¿
+start with		èµ·å§‹å€¼
+maxvalue		æœ€å¤§å€¼
+minvalue		æœ€å°å€¼
+cycle			å¾ªç¯ï¼ˆä¸æ¨èä½¿ç”¨ï¼‰
+cache			ç¼“å­˜
 
 create sequence seq
 increment by 1
 start with 1;
 
-nextval:ÏÂÒ»¸öÖµ
-currval:µ±Ç°µÄÖµ
+nextval:ä¸‹ä¸€ä¸ªå€¼
+currval:å½“å‰çš„å€¼
 
 create sequence seq2
 maxvalue 5;
 
-ch15 Ë÷Òı£¨Ä¿Â¼£©
-Êı¾İÁ¿ºÜÅÓ´ó£¬¶øĞèÇóÁ¿ºÜĞ¡µÄÇé¿öÏÂ
+ch15 ç´¢å¼•ï¼ˆç›®å½•ï¼‰
+æ•°æ®é‡å¾ˆåºå¤§ï¼Œè€Œéœ€æ±‚é‡å¾ˆå°çš„æƒ…å†µä¸‹
 2%~4%
 
-×Ô¶¯´´½¨
-	Ö÷¼üÔ¼Êø¡¢Î¨Ò»Ô¼Êø£¬×Ô¶¯Ìí¼ÓË÷Òı
-ÊÖ¶¯´´½¨
+è‡ªåŠ¨åˆ›å»º
+	ä¸»é”®çº¦æŸã€å”¯ä¸€çº¦æŸï¼Œè‡ªåŠ¨æ·»åŠ ç´¢å¼•
+æ‰‹åŠ¨åˆ›å»º
 	CREATE INDEX indexName
 	ON table (column[, column]...);
 -------------------------------------
 ch14
-ÊÓÍ¼£¨Ğé±í£©view
+è§†å›¾ï¼ˆè™šè¡¨ï¼‰view
 
-±íÏà£ºĞéÄâ±í£¬¾µÏñ
-±¾ÖÊ£ºsqlÓï¾ä
+è¡¨ç›¸ï¼šè™šæ‹Ÿè¡¨ï¼Œé•œåƒ
+æœ¬è´¨ï¼šsqlè¯­å¥
 
-¼ò»¯²Ù×÷
-Òş²ØÊı¾İ
+ç®€åŒ–æ“ä½œ
+éšè—æ•°æ®
 
 CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view
   [(alias[, alias]...)]
@@ -1003,19 +1003,19 @@ AS subquery
 [WITH CHECK OPTION [CONSTRAINT constraint]]
 [WITH READ ONLY]
 
-or replace			Ìæ»»,ĞŞ¸Ä
-force|noforce		Ç¿ÖÆ|²»Ç¿ÖÆ
-alias				±ğÃû
-with check option	¶ÔÊÓÍ¼µÄ²Ù×÷
-						ÑÏ¸ñ×ñÊØwhere×Ó¾äÖĞµÄÌõ¼ş
-with read only		Ö»¶Á£¬Ö»ÄÜ²éÑ¯£¬²»ÄÜÔöÉ¾¸Ä
+or replace			æ›¿æ¢,ä¿®æ”¹
+force|noforce		å¼ºåˆ¶|ä¸å¼ºåˆ¶
+alias				åˆ«å
+with check option	å¯¹è§†å›¾çš„æ“ä½œ
+						ä¸¥æ ¼éµå®ˆwhereå­å¥ä¸­çš„æ¡ä»¶
+with read only		åªè¯»ï¼Œåªèƒ½æŸ¥è¯¢ï¼Œä¸èƒ½å¢åˆ æ”¹
 
 						
-¼òµ¥ÊÓÍ¼
-	¿ÉÒÔ½øĞĞDML
-¸´ÔÓÊÓÍ¼
-	×Ó²éÑ¯ÖĞÉæ¼°¶à±í²éÑ¯¡¢º¯Êı¡¢·Ö×é
-	¸´ÔÓÊÓÍ¼²»¿ÉÒÔ½øĞĞDML
+ç®€å•è§†å›¾
+	å¯ä»¥è¿›è¡ŒDML
+å¤æ‚è§†å›¾
+	å­æŸ¥è¯¢ä¸­æ¶‰åŠå¤šè¡¨æŸ¥è¯¢ã€å‡½æ•°ã€åˆ†ç»„
+	å¤æ‚è§†å›¾ä¸å¯ä»¥è¿›è¡ŒDML
 
 						
 create or replace force view view1
@@ -1045,8 +1045,8 @@ drop table\sequence\index\view Name
 
 --------------------------------
 ch16
-resource£º¿ÉÒÔ·ÃÎÊÒ»Ğ©×ÊÔ´£¬±ÈÈçÔöÉ¾¸Ä²éµÈ×ÊÔ´
-connect:ÆÕÍ¨ÓÃ»§¿ÉÒÔÁ¬½ÓµÄÊı¾İ¿â
+resourceï¼šå¯ä»¥è®¿é—®ä¸€äº›èµ„æºï¼Œæ¯”å¦‚å¢åˆ æ”¹æŸ¥ç­‰èµ„æº
+connect:æ™®é€šç”¨æˆ·å¯ä»¥è¿æ¥çš„æ•°æ®åº“
 dba:
 
 

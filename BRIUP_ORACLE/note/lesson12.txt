@@ -1,58 +1,58 @@
-				Lesson 12
-1���ı����
-    1) ���ӱ���
+﻿				Lesson 12
+1、改变表列
+    1) 增加表列
       ALTER TABLE table
       ADD(column datatype [DEFAULT expr][NOT NULL][, column datatype]...);
-      ע: ���ӱ��е�ͬʱ��������not nullԼ���Լ�Ĭ��ֵ��������������Լ����
-    2) �޸ı���
+      注: 增加表列的同时可以增加not null约束以及默认值，不能增加其它约束。
+    2) 修改表列
       ALTER TABLE table
       MODIFY(column datatype [DEFAULT expr][NOT NULL][, column datatype]...);
-      ע: a) �޸ı��е�ͬʱ��������not nullԼ���Լ�Ĭ��ֵ��������������Լ����
-          b) ��Ҫ��С�еĿ���ֻ�и���ֵΪ�ջ����û�м�¼;
-	  c) ��Ҫ�ı��е�����ֻ�и���ֵΪ�ջ����û�м�¼
-          d) ���ӵ�Ĭ��ֵֻӰ�쵽���������ֵ��
-          e) ����һ���п�ֵ���ܼӷǿ�Լ����
+      注: a) 修改表列的同时可以增加not null约束以及默认值，不能增加其它约束。
+          b) 如要缩小列的宽度只有该列值为空或表里没有记录;
+	  c) 如要改变列的类型只有该列值为空或表里没有记录
+          d) 增加的默认值只影响到后来插入的值。
+          e) 假设一列有空值不能加非空约束。
 	  
-    3) ɾ������
+    3) 删除表列
        ALTER TABLE table drop column colName;
 
-2���ı�Լ��
-        1) ����Լ��
+2、改变约束
+        1) 增加约束
             ALTER TABLE	table
             ADD [CONSTRAINT constraint] type(column);
-            ע: not nullԼ��ֻ���������л��޸��е�ʱ�����
-        2) ɾ��Լ��
+            注: not null约束只能在增加列或修改列的时候完成
+        2) 删除约束
             ALTER TABLE	table
             DROP CONSTRAINT constraint_name [cascade];
-        3) ʹԼ��ʧЧ
+        3) 使约束失效
             ALTER TABLE s_emp
             DISABLE CONSTRAINT constraint_name [cascade];
-            ע: a) cascade: ����ʧЧ;
-                b) Լ�������޸ģ�ֻ����Ч��ʧЧ;
-        4) ʹԼ����Ч
+            注: a) cascade: 级联失效;
+                b) 约束不能修改，只能生效和失效;
+        4) 使约束生效
              ALTER TABLE s_emp
              ENABLE CONSTRAINT s_emp_id_pk;
 
 
-3������
-    1) ɾ��������
+3、其它
+    1) 删除表对象
         DROP TABLE table [CASCADE CONSTRAINTS]; 
-	 CASCADE CONSTRAINTS: ����ɾ��������������Լ��
-    2) ����������(�������ڱ�����)��
+	 CASCADE CONSTRAINTS: 级联删除相关联表的外键约束
+    2) 重命名对象(不仅限于表对象)：
              RENAME s_ord TO s_order;
-    3) ��ձ�
+    3) 清空表
          TRUNCATE TABLE s_item;
-             ע: a) ɾ���������еļ�¼
-		 b) �ͷű���ռ�õı��ռ�
-		 c) ��һ��DDL��䣬���ܻع�
-		 d) ���ᴥ������������
-		 e) truncate��delete������
-			* truncate�����Իع���delete���Իع�
-			* ��ɾ����������ʱ��truncate�ٶ�Ҫ��delete��
-			* truncate��������ֻ���Ǳ�����delete�����Ǳ�����ͼ����ͬ���
-    4) ������ע��
+             注: a) 删除表中所有的记录
+		 b) 释放表所占用的表空间
+		 c) 是一个DDL语句，不能回滚
+		 d) 不会触发触发器动作
+		 e) truncate和delete的区别
+			* truncate不可以回滚，delete可以回滚
+			* 在删除大量数据时，truncate速度要比delete快
+			* truncate操作对象只能是表，而delete可以是表、视图或者同义词
+    4) 给表加注释
              COMMENT ON TABLE s_emp 
              IS 'Employee Information';
-    5) �����ע�ͣ�
+    5) 清除表注释：
              COMMENT ON TABLE s_emp 
              IS '';
