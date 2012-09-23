@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<style type="text/css">
+		div{
+			margin:auto;
+			padding:auto;
+			width:40%;
+			}
+		#formula{
+			font-size:28px;
+			text-align:center;
+			}
+	</style>
+	<script type="text/javascript">
+		var a = 0;
+		var b = 0;
+		var operator;
+		var formula;
+		var answer;
+
+		var ops = new Array(4);
+		ops[0] = "+";
+		ops[1] = "-";
+		ops[2] = "*";
+		ops[2] = "/";
+
+		var stats = new Array(2);
+		stats[0] = 0;
+		stats[1] = 0;
+
+		function init(){
+			while(a == 0){
+				a = Math.random();
+				a = Math.round(a*100);
+			}
+			while(b ==0 ){
+				b = Math.random();
+				b = Math.round(b*100);
+			}
+			operator = ops[Math.round(Math.random()*5)];
+			formula = a+""+operator+b
+			answer = eval(formula);
+
+			document.getElementById("formula").innerHTML = formula;
+			document.getElementById("result").value = "";
+		}
+
+		function checkResult(){
+			var result = document.getElementById("result").value;
+			if(result == answer){
+				//ok
+				alert("ok");
+				init();
+			}else{
+				//wrong
+				alert("try it again");
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+	<div>
+		<span id="formula"></span>=<input id="result" name="" type="text" size="4" /><input type="button" value="确定" onclick="checkResult()" />
+	</div>
+</body>
+<script type="text/javascript">
+		init();
+</script>
+</html>
