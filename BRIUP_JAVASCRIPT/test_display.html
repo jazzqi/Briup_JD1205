@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<style type="text/css">
+		#bigImg{
+			height:260px;
+			width:200px;
+		}
+		#smallImg{
+			heigth:100px;
+			width:130px;
+		}
+		#bigDiv{
+			display:none;
+		}
+		#smallDiv{
+			display:block;
+		}
+	</style>
+	<script type="text/javascript">
+		function changeBig(){
+			var small = document.getElementById("smallDiv");
+			var big = document.getElementById("bigDiv");
+			small.style.display = "none";
+			big.style.display = "block";
+		}
+		function changeSmall(){
+			var small = document.getElementById("smallDiv");
+			var big = document.getElementById("bigDiv");
+			small.style.display = "block";
+			big.style.display = "none";
+			}
+	</script>
+</head>
+<body>
+	<div id="bigDiv">
+		<img src="./xxx.jpg" id="bigImg" alt="bigImg" onclick="changeSmall()" ></img>
+	</div>
+	<div id="smallDiv">
+		<img src="./xxx.jpg" id="smallImg" alt="smallImg" onclick="changeBig()" />
+	</div>
+</body>
+</html>
