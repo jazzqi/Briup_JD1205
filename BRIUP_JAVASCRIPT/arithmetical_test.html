@@ -21,26 +21,31 @@
 		var formula;
 		var answer;
 
-		var ops = new Array(4);
+		var ops = new Array(2);
 		ops[0] = "+";
 		ops[1] = "-";
-		ops[2] = "*";
-		ops[2] = "/";
+		//ops[2] = "*";
+		//ops[3] = "/";
+		//ops[4] = "%";
 
 		var stats = new Array(2);
+		//做过的题数
 		stats[0] = 0;
+		//正确的题数
 		stats[1] = 0;
 
 		function init(){
-			while(a == 0){
-				a = Math.random();
-				a = Math.round(a*100);
-			}
-			while(b ==0 ){
-				b = Math.random();
-				b = Math.round(b*100);
-			}
-			operator = ops[Math.round(Math.random()*5)];
+			a = Math.random();
+			a = Math.round(a*100);
+			b = Math.random();
+			b = Math.round(b*100);
+			var index = Math.floor(Math.random()*ops.length);
+			operator = ops[index];
+			//alert(a);
+			//alert(b);
+			//alert(operator);
+			//alert(index);
+			//alert(ops);
 			formula = a+""+operator+b
 			answer = eval(formula);
 
@@ -50,16 +55,24 @@
 
 		function checkResult(){
 			var result = document.getElementById("result").value;
-			if(result == answer){
-				//ok
-				alert("ok");
-				init();
-			}else{
-				//wrong
-				alert("try it again");
+			if(isNaN(result)){
+				document.getElementById("result").value="";
+				alert("只能输入数字! ");
+			}
+			else{
+				stats[0]++;
+				if(result == answer){
+					//ok
+					//alert("ok");
+					stats[1]++;
+					init();
+				}else{
+					//wrong
+					alert("try it again");
+				}
 			}
 		}
-
+		//document.onload=init();
 
 	</script>
 </head>
