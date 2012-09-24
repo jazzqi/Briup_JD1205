@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<style type="text/css">
+		.allTable{
+			width:500px;
+			font-size:18px;
+			font-family:Verdana;
+			text-align:center;
+			margin:auto;
+			}
+		h1{
+			width:500px;
+			font-size:36px;
+			margin:auto;
+			text-align:center;
+			}
+		#disPageSpan{
+			}
+		.disBtn{
+			font-size:20px;
+			border-radius:8px solid;
+			}
+	</style>
+	<script type="text/javascript">
+		var stars = new Array();
+		var star0 ={
+			"order" : 1,
+			"name" : "James",
+			"team" : "Heat",
+			"num" : 36
+			};
+		var star1 ={
+			"order" : 2,
+			"name" : "Durant",
+			"team" : "Thunder",
+			"num" : 35
+			};
+		var star2 ={
+			"order" : 3,
+			"name" : "Kobe",
+			"team" : "Lakers",
+			"num" : 24
+			};
+		var star3 ={
+			"order" : 4,
+			"name" : "Howard",
+			"team" : "Lakers",
+			"num" : 12
+			};
+		var star4 ={
+			"order" : 5,
+			"name" : "Wade",
+			"team" : "Heat",
+			"num" : 3
+			};
+		var star5 ={
+			"order" : 6,
+			"name" : "Paul",
+			"team" : "Clippser",
+			"num" : 3
+			};
+		var star6 ={
+			"order" : 7,
+			"name" : "...",
+			"team" : "...",
+			"num" : 0
+			};
+
+
+		stars[0] = star0;
+		stars[1] = star1;
+		stars[2] = star2;
+		stars[3] = star3;
+		stars[4] = star4;
+		stars[5] = star5;
+		stars[6] = star6;
+		var pageCount = parseInt((stars.length-1)/5)+1;
+		var currentPage = 1;
+
+		//alert(stars[4].name);
+
+		function addTableHeader(){
+			disTable.innerHTML = "<tr><td>排名</td><td>姓名</td><td>所属球队</td><td>球衣号</td></tr>";
+			}
+
+		//检测按键可用性
+		function checkAvi(){
+			var firBtn = document.getElementById("firBtn");
+			var lastBtn = document.getElementById("lastBtn");
+			var prevBtn = document.getElementById("prevBtn");
+			var nextBtn = document.getElementById("nextBtn");
+
+			firBtn.disabled = false;
+			lastBtn.disabled = false;
+			prevBtn.disabled = false;
+			nextBtn.disabled = false;
+
+			if(currentPage == 1){
+				prevBtn.disabled = true;
+			}else if(currentPage == pageCount){
+				nextBtn.disabled = true;
+			}
+
+		}
+		function disStarsPage(currentPageVar){
+			//alert(currentPageVar);
+			addTableHeader();
+			var currentStars = null;
+			if(currentPageVar >= pageCount){
+				currentPage = pageCount;
+				currentStars = stars.slice((currentPage-1)*5,stars.length);
+			}else{
+				currentPage = currentPageVar;
+				currentStars = stars.slice((currentPage-1)*5,currentPage*5);
+			}
+			checkAvi();
+			for(var i=0; i<currentStars.length; i++){
+			//alert(currentStars);
+				var orderText = document.createTextNode(currentStars[i].order);
+				var nameText = document.createTextNode(currentStars[i].name);
+				var teamText = document.createTextNode(currentStars[i].team);
+				var numberText = document.createTextNode(currentStars[i].num);
+				//alert(currentStars[i].name);
+				//alert(disTable);
+
+				var orderTd = document.createElement("td");
+				var nameTd = document.createElement("td");
+				var teamTd = document.createElement("td");
+				var numberTd = document.createElement("td");
+
+				var tr = document.createElement("tr");
+
+				orderTd.appendChild(orderText);
+				nameTd.appendChild(nameText);
+				teamTd.appendChild(teamText);
+				numberTd.appendChild(numberText);
+
+				tr.appendChild(orderTd);
+				tr.appendChild(nameTd);
+				tr.appendChild(teamTd);
+				tr.appendChild(numberTd);
+
+				disTable.appendChild(tr);
+
+				disPageSpan.innerHTML = currentPage;
+			}
+		}
+
+	</script>
+</head>
+<body onload="disStarsPage(1)">
+	<h1>您好,当前第<span id="disPageSpan">1</span>页</h1>
+	<table id="disTable" class="allTable">
+	</table>
+	<table id="btnTable" class="allTable">
+		<tr>
+			<td><input type="button" value="上一页" id="prevBtn" class="disBtn" onclick="disStarsPage(currentPage-1)" /></td>
+			<td><input type="button" value="下一页" id="nextBtn" class="disBtn" onclick="disStarsPage(currentPage+1)" /></td>
+			<td><input type="button" value="第一页" id="firBtn" class="disBtn" onclick="disStarsPage(1)" /></td>
+			<td><input type="button" value="最后一页" id="lastBtn" class="disBtn" onclick="disStarsPage(pageCount)" /></td>
+		</tr>
+	</table>
+</body>
+	<script type="text/javascript">
+		var disTable = document.getElementById("disTable");
+		var diPageSpan = document.getElementById("disPageSpan");
+	</script>
+</html>
