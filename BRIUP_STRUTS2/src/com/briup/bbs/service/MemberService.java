@@ -6,4 +6,6 @@ public interface MemberService {
 	public boolean saveOrUpdate(Member member);
 
 	public Member findMemberByName(String name);
+	
+	public Member findMemberByEmail(String email);
 }

@@ -31,3 +31,9 @@ create table post(
 	constraint fk_member_post foreign key(member_id) references member(id),
 	constraint fk_topic_post foreign key(topic_id) references topic(id)
 );
+
+--Ajax auto complete function 
+create table t_prompt(
+	id number(10) primary key,
+	prompt_name varchar2(255)
+);

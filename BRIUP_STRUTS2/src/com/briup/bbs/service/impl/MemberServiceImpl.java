@@ -2,7 +2,6 @@ package com.briup.bbs.service.impl;
 
 import org.hibernate.Session;
 
-import com.briup.bbs.dao.MemberDao;
 import com.briup.bbs.dao.impl.MemberDaoImpl;
 import com.briup.bbs.pojo.Member;
 import com.briup.bbs.service.MemberService;
@@ -10,7 +9,7 @@ import com.briup.bbs.util.HibernateSessionFactory;
 
 public class MemberServiceImpl implements MemberService {
 
-	private MemberDaoImpl memberDao = new MemberDaoImpl();
+	private final MemberDaoImpl memberDao = new MemberDaoImpl();
 
 	@Override
 	public boolean saveOrUpdate(Member member) {
@@ -38,6 +37,24 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			session.beginTransaction();
 			member = memberDao.findMemberByName(name);
+			session.getTransaction().commit();
+			return member;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Member findMemberByEmail(String email) {
+		// TODO Auto-generated method stub
+		Session session = HibernateSessionFactory.getSession();
+		memberDao.setSession(session);
+		Member member = null;
+		try {
+			session.beginTransaction();
+			member = memberDao.findMemberByEmail(email);
 			session.getTransaction().commit();
 			return member;
 		} catch (Exception e) {

@@ -3,6 +3,8 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<!-- Only .action will be intercpeted by struts  -->
+	<constant name="struts.action.extension" value="action"></constant>
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <!-- constant name="struts.i18n.encoding" value="utf-8" /-->
     <!-- 

@@ -1,7 +1,5 @@
 package com.briup.bbs.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.Session;
 
 import com.briup.bbs.dao.MemberDao;
@@ -47,6 +45,23 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public Member findMemberByEmail(String email) {
+		try {
+			if (null!=session
+					.createQuery("from Member m where m.email=?")
+					.setString(0, email).list().get(0)) {
+				return (Member)(session
+					.createQuery("from Member m where m.email=?")
+					.setString(0, email).list().get(0)) ;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
