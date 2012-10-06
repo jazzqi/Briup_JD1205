@@ -22,14 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 	<body>
 		<div>
-			<form action="member/modifyAction" method="get">
+			<form action="./member/modifyAction.action" method="get">
 				<table>
 					<tr>
 						<td>
 							帐号：
 						</td>
 						<td>
-							<input type="text" name="name" value="${sessionScope.member.getName()}" />
+							<input type="text" name="member.name" value="${sessionScope.member.getName()}" />
 						</td>
 					</tr>
 					<tr>
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							密码：
 						</td>
 						<td>
-							<input type="password" name="password" value="${sessionScope.member.getPassword() }"/>
+							<input type="password" name="member.password" value="${sessionScope.member.getPassword() }"/>
 						</td>
 					</tr>
 					<tr>
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							年龄：
 						</td>
 						<td>
-							<input type="text" name="age" value="${sessionScope.member.getAge()}" />
+							<input type="text" name="member.age" value="${sessionScope.member.getAge()}" />
 						</td>
 					</tr>
 					<tr>
@@ -54,11 +54,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td>
 							<% if(((Member)(request.getSession().getAttribute("member"))).getGender().equals("male")) {%>
-							<input type="radio" name="gender" value="male" checked="checked"/> 男
-							<input type="radio" name="gender" value="female" /> 女
+							<input type="radio" name="member.gender" value="male" checked="checked"/> 男
+							<input type="radio" name="member.gender" value="female" /> 女
 							<%} else {%>
-							<input type="radio" name="gender" value="male" /> 男
-							<input type="radio" name="gender" value="female" checked="checked" /> 女
+							<input type="radio" name="member.gender" value="male" /> 男
+							<input type="radio" name="member.gender" value="female" checked="checked" /> 女
 							<%} %>
 						</td>
 					</tr>
@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							Email：
 						</td>
 						<td>
-							<input type="text" name="email" value="${sessionScope.member.getEmail()}"/>
+							<input type="text" name="member.email" value="${sessionScope.member.getEmail()}"/>
 						</td>
 					</tr>
 					<tr>
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							电话：
 						</td>
 						<td>
-							<input type="text" name="tele" value="${sessionScope.member.getTele()}"/>
+							<input type="text" name="member.tele" value="${sessionScope.member.getTele()}"/>
 						</td>
 					</tr>	
 					<tr>

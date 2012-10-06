@@ -36,6 +36,13 @@
     			/login.jsp
     		</result>
     	</action>
+    	<action name="testAjax" class="com.briup.test.action.TestAjaxAction" method="testAjax">
+    		<result name="test_success" type="stream">
+    			<!-- <param name="contentType">text/plain</param> -->
+    			<param name="contentType">text/xml</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
     </package>
     <package name="default" namespace="/" extends="struts-default">
       	<default-action-ref name="error"></default-action-ref>
@@ -59,7 +66,13 @@
       		<result name="input">
     			/register.jsp
     		</result>
-      	</global-results>
+      	</global-results>	
+    	<action name="showMember" class="com.briup.bbs.action.showMemberAction">
+    		<result type="stream">
+    			<param name="contentType">text/xml</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
      	<action name="error" class="com.briup.bbs.test.ErrorAction">
     		<result name="error">
     			/error.jsp
@@ -109,7 +122,13 @@
     			/member/{1}_failed.jsp
     		</result>
     		<result name="input">
-    			/register.jsp
+    		</result>
+    	</action>
+    	<action name="ajaxModifyAction" class="com.briup.bbs.action.MemberAction" method="ajaxModify">
+    		<result name="success" type="stream">
+    			<!-- <param name="contentType">text/plain</param> -->
+    			<param name="contentType">text/plain</param>
+    			<param name="inputName">inputStream</param>
     		</result>
     	</action>
     </package>

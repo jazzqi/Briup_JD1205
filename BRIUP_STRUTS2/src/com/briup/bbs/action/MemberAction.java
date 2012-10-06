@@ -1,5 +1,7 @@
 package com.briup.bbs.action;
 
+import java.io.InputStream;
+import java.io.StringBufferInputStream;
 import java.util.Date;
 
 import com.briup.bbs.pojo.Member;
@@ -18,8 +20,18 @@ public class MemberAction extends ActionSupport {
 	private String tele;
 	private String email;
 	private int age;
+	
+	private InputStream inputStream;
 
 	private final MemberService memberService = new MemberServiceImpl();
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
 
 	public Member getMember() {
 		return member;
@@ -100,10 +112,9 @@ public class MemberAction extends ActionSupport {
 
 	public String login() throws Exception {
 		try {
-			Member member = memberService.findMemberByName(this.member
-					.getName());
-			if (null != member
-					&& member.getPassword().equals(this.member.getPassword())) {
+			Member member = memberService.findMemberByName(this.member.getName());
+			//System.out.println("+++++++++++++++++++++++++++++++++++++++++++"+member.getPassword());
+			if (null != member && member.getPassword().equals(this.member.getPassword())) {
 				ActionContext.getContext().getSession().put("member", member);
 				ActionContext.getContext().getSession()
 						.put("topics", new TopicServiceImpl().findAllTopic());
@@ -136,6 +147,28 @@ public class MemberAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return "modify_failed";
+	}
+	
+	public String ajaxModify() throws Exception{
+		//System.out.println(this.member.getName()+"===============================================");
+		Member memeber = memberService.findMemberByName(this.member.getName());
+		memeber.setAge(this.member.getAge());
+		memeber.setEmail(this.member.getEmail());
+		memeber.setGender(this.member.getGender());
+		memeber.setTele(this.member.getTele());
+		if (memberService.saveOrUpdate(memeber)) {
+			memeber = memberService.findMemberByName(this.member.getName());
+			ActionContext.getContext().getSession().put("member", member);
+			ActionContext.getContext().getSession()
+					.put("topics", new TopicServiceImpl().findAllTopic());
+			// 手动压栈，可以直接使用,但是作用域是request，不能用于重定向
+			ActionContext.getContext().getValueStack()
+					.set("member", member);
+			inputStream = new StringBufferInputStream("true");
+		} else{
+			inputStream = new StringBufferInputStream("false");
+		}
+		return SUCCESS;
 	}
 
 }

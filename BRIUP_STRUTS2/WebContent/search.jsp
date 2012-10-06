@@ -69,12 +69,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						var promptDiv = document.getElementById("promptDiv");
 						//alert(promptWords.length);
 						for(var i=0;i<promptWords.length;i++){
-							promptDiv.innerHTML+="<div onmouseover='' onclick=''>"+promptWords[i].firstChild.nodeValue+"</div>";
+							promptDiv.innerHTML+="<div onmouseover='highlight(this)' onmouseout='noHighlight(this)' onclick='select(this)' >"+promptWords[i].firstChild.nodeValue+"</div>";
 							promptDiv.style.border="1px solid black";
 							//alert(promptWords[i].firstChild.nodeValue);
 						}
 					}
 				}
+			}
+			
+			function highlight(divVar){
+				divVar.style.background="gray";
+			}
+			
+			function noHighlight(divVar){
+				divVar.style.background="white";
+			}
+			function select(divVar){
+				var userInputText = document.getElementById("userInputText");
+				userInputText.value = divVar.innerHTML;
+				var promptDiv = document.getElementById("promptDiv");
+				promptDiv.innerHTML="";
+				promptDiv.style.border="0";
 			}
 		</script>
 	</head>
