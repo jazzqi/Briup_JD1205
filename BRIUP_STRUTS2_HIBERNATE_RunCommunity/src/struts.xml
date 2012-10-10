@@ -1,0 +1,116 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<package name="member" extends="struts-default">
+		<action name="registerAction" class="com.briup.run.web.action.RegisterAction">
+			<result name="success">
+				activity.jsp
+			</result>
+		</action>
+		<action name="loginAction" class="com.briup.run.web.action.LoginAction">
+			<result name="success" type="redirect">
+				/member/afterLoginAction.action
+			</result>
+			<result name="input" type="redirect">
+				/login.jsp
+			</result>
+		</action>
+		<action name="checkAutoLoginAction" class="com.briup.run.web.action.CheckAutoLoginAction">
+			<result name="success" type="redirect">
+				/loginAction.action
+			</result>
+		</action>
+		<action name="afterLoginAction" class="com.briup.run.web.action.AfterLoginAction">
+			<result name="success">
+				/member/activity.jsp
+			</result>
+		</action>
+    	<action name="getNewPasswordAction" class="com.briup.run.web.action.GetNewPassowrdAction" >
+    		<result name="success" type="stream">
+    			<param name="contentType">text/plain</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
+    	<action name="createSpaceAction" class="com.briup.run.web.action.CreateSpaceAction" >
+    		<result name="success" type="redirect">
+    			/member/viewSpaceAction.action?member_nickname=${#session.member.nickname}
+    		</result>
+    	</action>
+    	<action name="viewSpaceAction" class="com.briup.run.web.action.ViewSpaceAction" >
+    		<result name="success" >
+    			/member/space.jsp
+    		</result>
+    		<result name="error" ></result>
+    	</action>
+	   	<action name="isCreateSpaceAction" class="com.briup.run.web.action.IsCreateSpaceAction" >
+    		<result name="hasspace" type="redirect">
+    			/member/viewSpaceAction.action?member_nickname=${#request.member_nickname}
+    		</result>
+    		<result name="nospace" >
+    			/member/noSpace.jsp
+    		</result>
+    		<result name="error" ></result>
+    	</action>
+    	<action name="addFriendAction" class="com.briup.run.web.action.AddFriendAction" >
+      		<result name="success" type="stream">
+    			<param name="contentType">text/plain</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+	   	</action>
+
+	</package>
+
+	<package name="messenger" extends="struts-default">
+	 	<action name="randomMemberAction" class="com.briup.run.web.action.MatchFriendAction" method="randomMember">
+    		<result name="success" type="stream">
+  	   			<param name="contentType">text/plain</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
+   	 	<action name="queryMemberAction" class="com.briup.run.web.action.MatchFriendAction" method="queryMember">
+    		<result name="success" type="stream">
+  	   			<param name="contentType">text/plain</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
+     	<action name="sendMessageAction" class="com.briup.run.web.action.SendMessageAction">
+    		<result name="success" type="redirect">
+    			/messenger/showOutboxAction.action
+    		</result>
+    	</action>
+    	<action name="showOutboxAction" class="com.briup.run.web.action.ShowOutboxAction">
+    		<result name="success">
+    			/messenger/outbox.jsp
+    		</result>
+    	</action>
+    	<action name="showInboxAction" class="com.briup.run.web.action.ShowInboxAction">
+    		<result name="success">
+    			/messenger/inbox.jsp
+    		</result>
+    	</action>
+    	<action name="viewMessageAction" class="com.briup.run.web.action.ViewMessageAction" method="viewMessage">
+    		<result name="success">
+    			/messenger/view.jsp
+    		</result>
+    	</action>
+	 	<action name="showBlackAction" class="com.briup.run.web.action.ShowBlackAction" >
+    		<result name="success">
+    			/messenger/blackList.jsp
+    		</result>
+    	</action>	 	<action name="showFriendAction" class="com.briup.run.web.action.ShowFriendAction" >
+    		<result name="success">
+    			/messenger/buddyList.jsp
+    		</result>
+    	</action>	 	<action name="addBlackAction" class="com.briup.run.web.action.AddBlackAction" >
+    		<result name="success" type="chain">
+    			showFriendAction
+    		</result>
+    	</action>	</package>
+	
+	<package name="/" extends="struts-default">
+		
+	</package> 
+</struts>
