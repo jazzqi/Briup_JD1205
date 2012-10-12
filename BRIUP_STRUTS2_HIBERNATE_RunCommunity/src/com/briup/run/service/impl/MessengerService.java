@@ -68,7 +68,6 @@ public class MessengerService implements IMessengerService {
 			e.printStackTrace();
 			ht.rollback();
 		}
-
 	}
 
 	@Override

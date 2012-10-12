@@ -63,15 +63,11 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	}
 	
 	private String login(String loginname,String password) throws Exception {
-		//System.out.println("++++++++++"+loginname);
-		//System.out.println("++++++++++"+password);
 		Memberinfo m = memberService.login(loginname, password);
 		if(null != m){
 			session.put("member", m);
 			//设置自动登录Cookie
-			//System.out.println("++++++++++++++++++++++++++++"+autoLogin);
 			if(null != autoLogin && autoLogin.equals("0")){
-				//System.out.println("++++++++++++++++++++++++++++++++++++cookie");
 				Cookie loginnameCo = new Cookie("loginname",m.getNickname());
 				Cookie passwordCo = new Cookie("password",m.getPassword());
 				//Cookie有效期90天

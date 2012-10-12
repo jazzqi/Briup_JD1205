@@ -81,7 +81,7 @@ public class MemberService implements IMemberService {
 		if (null != member) {
 			if (member.getPassword().equals(passwd)) {
 				// 增加登录积分
-				if (new Date().compareTo(member.getLatestdate()) > 0) {
+				if (new Date().compareTo(member.getLatestdate()) > 0 && new Date().getDay() != member.getLatestdate().getDay()) {
 					Pointaction action = this
 							.findPointactionByPointAction("LOGIN");
 					Pointrecord record = new Pointrecord(action,
@@ -102,7 +102,6 @@ public class MemberService implements IMemberService {
 	@Override
 	public void logout(String nickname) throws MemberServiceException {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
