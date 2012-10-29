@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+           default-autowire="byType"
+           >
+           
+           <!-- autowire属性有三个值：byName，byType，default -->
+           <!-- byName byType: 如名所述 -->
+           <!-- default: 使用beans中定义的default-autowire类型 -->
+           
+           <bean name="teacher" class="com.briup.bean.Teacher" autowire="byName">
+           </bean>
+           
+           <bean name="student" class="com.briup.bean.Student">
+           	<property name="name" value="s"></property>
+           </bean>
+           
+           <bean name="student1" class="com.briup.bean.Student">
+           	<property name="address" ref="address"></property>
+           	<property name="name" value="1"></property>
+           </bean>
+           
+           <bean name="student2" class="com.briup.bean.Student">
+           	<property name="name" value="2"></property>
+           </bean>
+           
+           <bean name="student3" class="com.briup.bean.Student">
+           	<property name="name" value="3"></property>
+           </bean>
+           
+           <bean name="address" class="com.briup.bean.Address"></bean>
+           
+</beans>

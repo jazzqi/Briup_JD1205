@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+           
+           <!-- 默认情况下Spring是使用单例模式的，
+           	可以在bean元素中使用scope="prototype"来取消单例模式 -->
+           <bean name="teacher" class="com.briup.bean.Teacher">
+           	<property name="student" ref="student"></property>
+           	<property name="id" value="10"></property>
+           	<property name="name">
+           		<value>tom</value>
+           	</property>
+           </bean>
+           
+           <bean name="student" class="com.briup.bean.Student">
+           	<property name="address" ref="address"></property>
+           </bean>
+           
+           <bean name="address" class="com.briup.bean.Address"></bean>
+           
+</beans>

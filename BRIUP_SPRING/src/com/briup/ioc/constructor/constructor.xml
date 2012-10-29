@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+			<!-- 使用构造器注入的方式时，要在类中提供相对应的构造器，同时也要保留无参构造器 -->
+           <bean name="teacher" class="com.briup.bean.Teacher">
+           <!-- 可以单独或结合使用index或者type属性来确定参数列表 -->
+           	<constructor-arg index="0" value="99" type="long" ></constructor-arg>
+           	<constructor-arg index="1" value="Catty" type="java.lang.String" ></constructor-arg>
+           	<constructor-arg index="2" ref="student" type="com.briup.bean.Student"></constructor-arg>
+           </bean>
+           
+           <bean name="student" class="com.briup.bean.Student">
+           	<property name="address" ref="address"></property>
+           </bean>
+           
+           <bean name="address" class="com.briup.bean.Address"></bean>
+           
+</beans>

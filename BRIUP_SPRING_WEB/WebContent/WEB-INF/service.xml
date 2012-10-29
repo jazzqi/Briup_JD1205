@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+          <bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+           	<property name="sessionFactory" ref="sessionFactory"></property>
+           </bean>
+           
+           <bean name="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+           	<property name="transactionManager" ref="transactionManager"></property>
+           	<property name="transactionAttributes">
+           		<props>
+           			<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+           		</props>
+           	</property>
+           </bean>
+           
+           <bean name="target" class="com.briup.service.UserServiceImpl">
+           	<property name="dao" ref="dao"></property>
+           </bean>
+           
+           <!-- 要和Action中的成员变量一致,spring会将它自动注入到action中 -->
+           <bean name="service" class="org.springframework.aop.framework.ProxyFactoryBean">
+           	<property name="target" ref="target"></property>
+           	<property name="proxyInterfaces">
+           		<list>
+           			<value>com.briup.service.IUserService</value>
+           		</list>
+           	</property>
+           	<property name="interceptorNames">
+           		<list>
+           			<value>transactionInterceptor</value>
+           		</list>
+           	</property>
+           </bean>
+</beans>

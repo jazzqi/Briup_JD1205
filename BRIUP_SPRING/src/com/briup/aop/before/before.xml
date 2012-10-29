@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+           
+           <bean name="log" class="com.briup.log.Logger"></bean>
+           <!-- 拦截器或者说增强器 -->
+           <bean name="beforeAdvice" class="com.briup.aop.before.BeforeAdvice">
+           	<property name="log" ref="log"></property>
+           </bean>
+           <!-- 目标对象 -->
+           <bean name="target" class="com.briup.service.impl.MemberService">
+           	<property name="dao" ref="dao"></property>
+           </bean>
+           <bean name="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+           <!-- 注入目标对象 -->
+           	<property name="target" ref="target"></property>
+           <!-- 注入目标对象的接口 -->
+           	<property name="proxyInterfaces">
+           		<list>
+           			<value>com.briup.service.IMemberService</value>
+           		</list>
+           	</property>
+           	<!-- 注入拦截器或者增强器 -->
+           	<property name="interceptorNames">
+           		<list>
+           			<value>beforeAdvice</value>
+           		</list>
+           	</property>
+           </bean>
+</beans>

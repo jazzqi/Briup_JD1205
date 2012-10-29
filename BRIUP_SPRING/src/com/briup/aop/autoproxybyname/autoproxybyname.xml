@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+           <!-- 需要被注入的一些对象 -->
+           <bean name="log" class="com.briup.log.Logger"></bean>
+           <bean name="dao" class="com.briup.dao.impl.MemberDao"></bean>
+           <!-- 定义拦截器 -->
+           <bean name="beforeAdvice" class="com.briup.aop.before.BeforeAdvice">
+           	<property name="log" ref="log"></property>
+           </bean>
+           <!-- 配置 增强器  作用：筛选拦截器需要拦截的目标对象中的方法  -->
+           	<bean name="advisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+           		<property name="advice" ref="beforeAdvice"></property>
+           		<property name="patterns">
+       				<list>
+       					<value>.*save</value>
+       					<value>.*update</value>
+      				</list>
+           		</property>
+           	</bean>
+           <!-- 目标对象 -->
+           <bean name="target1" class="com.briup.service.impl.MemberService">
+           	<property name="dao" ref="dao"></property>
+           </bean>
+           <bean name="target2" class="com.briup.service.impl.MemberService">
+           	<property name="dao" ref="dao"></property>
+           </bean>
+           <bean name="target3" class="com.briup.service.impl.MemberService">
+           	<property name="dao" ref="dao"></property>
+           </bean>
+           <!-- 自定义自动代理，可以不配置增强器，只有拦截器也可以 -->
+           <bean name="proxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+           	<property name="beanNames">
+           		<list>
+           			<value>target1</value>
+           			<value>target3</value>
+           		</list>
+           	</property>
+           	<property name="interceptorNames">
+           		<list>
+           			<value>advisor</value>
+           		</list>
+           	</property>
+           </bean>
+</beans>
