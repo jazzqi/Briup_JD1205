@@ -16,7 +16,26 @@ import com.briup.util.ConfigurationImpl;
 import com.briup.util.Logger;
 import com.briup.woss.ConfigurationAWare;
 
-public class DBStoreImpl implements DBStore, ConfigurationAWare {
+public class DBStoreImpl extends Thread implements DBStore, ConfigurationAWare {
+
+	private Collection<BIDR> recordList;
+	
+	
+	public Collection<BIDR> getRecordList() {
+		return recordList;
+	}
+
+	public void setRecordList(Collection<BIDR> recordList) {
+		this.recordList = recordList;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stud
+		//对备份文件进行恢复
+		this.restoreToDB(backupFileName);
+		this.saveToDB(recordList);
+	}
 
 	private ConfigurationImpl conf = null;
 	private static Logger log = null;
@@ -26,6 +45,7 @@ public class DBStoreImpl implements DBStore, ConfigurationAWare {
 	private String passwd;
 	private String backupFileName;
 
+	// 在配置模块初始化此模块时调用该方法，传入参数
 	@Override
 	public void init(Properties p) {
 		// TODO Auto-generated method stub
@@ -34,8 +54,6 @@ public class DBStoreImpl implements DBStore, ConfigurationAWare {
 		user = p.getProperty("uname");
 		passwd = p.getProperty("passwd");
 		backupFileName=p.getProperty("ServerBackupFileName");
-		//对备份文件进行恢复
-		restoreToDB(backupFileName);
 	}
 
 	@Override
@@ -138,7 +156,8 @@ public class DBStoreImpl implements DBStore, ConfigurationAWare {
 			log.error(e.getMessage());
 		}
 	}
-
+	
+	//测试用
 	public static void main(String args[]) {
 		log.info("begin");
 		DBStoreImpl d = new DBStoreImpl();

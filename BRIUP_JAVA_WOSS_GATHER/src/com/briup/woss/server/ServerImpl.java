@@ -28,7 +28,13 @@ public class ServerImpl implements Server, ConfigurationAWare {
 	public void init(Properties p) {
 		// TODO Auto-generated method stub
 		port=Integer.parseInt(p.getProperty("Port"));
-	
+		// 获取port参数后初始化ServerSocket
+		try {
+			ss = new ServerSocket(port);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -37,7 +43,8 @@ public class ServerImpl implements Server, ConfigurationAWare {
 		this.conf = (ConfigurationImpl) arg0;
 		try {
 			log = conf.getLogger();
-			ss = new ServerSocket(port);
+			//此处不能初始化ServerSocket，因为还配置模块还没有调用init传进来参数
+			//ss = new ServerSocket();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +55,7 @@ public class ServerImpl implements Server, ConfigurationAWare {
 	@Override
 	public Collection<BIDR> revicer() throws Exception {
 		// TODO Auto-generated method stub
+		log.info("Server starts"+port+":"+ss.toString());
 		while (true) {
 			so = ss.accept();
 			log.info("Server accepts a new connection");
@@ -79,4 +87,5 @@ public class ServerImpl implements Server, ConfigurationAWare {
 					+ e.getMessage());
 		}
 	}
+
 }

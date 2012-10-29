@@ -70,12 +70,12 @@ public class ConfigurationImpl implements Configuration {
 		Object o=clazz.newInstance();
 		//判断是否要调用setConfiguration()方法
 		if(o instanceof com.briup.woss.ConfigurationAWare){
-			Method m=clazz.getDeclaredMethod("setConfiguration", com.briup.util.Configuration.class);
-			m.invoke(o, this);
-		}		
-		Method m = clazz.getMethod("init", Properties.class);
+			Method m2 = clazz.getDeclaredMethod("setConfiguration", com.briup.util.Configuration.class);
+			m2.invoke(o, this);
+		}
+		Method m1 = clazz.getMethod("init", Properties.class);
 		//调用init()方法
-		m.invoke(o, properties);
+		m1.invoke(o, properties);
 		return o;
 	}
 }
